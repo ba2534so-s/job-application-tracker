@@ -36,3 +36,9 @@ def init_db_command():
     # Clears the existing data and creates new tables
     init_db()
     click.echo("Database initialized")
+
+# Function that takes an application and registers the close_db and init_db_command functions 
+# with application instance
+def init_app(app):
+    app.teardown_appcontext(close_db)
+    app.cli.add_command(init_db_command)
