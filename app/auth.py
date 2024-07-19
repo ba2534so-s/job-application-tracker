@@ -57,7 +57,7 @@ def login():
         if error is None:
             db = get_db()
             # the argument for the query might have to be within ()
-            user = db.execute("SELECT * FROM user WHERE username = ?", (username)).fetchone()
+            user = db.execute("SELECT * FROM users WHERE username = ?", (username)).fetchone()
 
         if user is None:
             error = "Incorrect username"
@@ -73,3 +73,13 @@ def login():
 
     else:
         return render_template("auth/login.html")
+    
+@bp.before_app_request
+def load_logged_in_user():
+    user_id = session.get("user_id")
+
+    if user_id is None:
+        g.user = None
+    else:
+        g.user = get_db.execute("SELECT * FROM users WHERE id = ?", (user_id)).fetchone()
+     
