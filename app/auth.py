@@ -18,7 +18,7 @@ def register():
             error = "Username is required"
         elif not password:
             error = "Password is required"
-        elif not confirmation:
+        elif password != confirmation:
             error = "Confirmation is required"
 
         db = get_db()
@@ -27,7 +27,7 @@ def register():
             try:
                 db.execute(
                     # the arguments for the query might have to be within ()
-                    "INSERT INTO user (username, hashed_password) VALUES (? , ?)", username, generate_password_hash(password)
+                    "INSERT INTO user (username, hashed_password) VALUES (? , ?)", (username, generate_password_hash(password))
                 )
                 db.commit()
             except db.IntegrityError:
@@ -45,8 +45,8 @@ def register():
 @bp.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        username = request.method.get("username")
-        password = request.method.get("password")
+        username = request.form.get("username")
+        password = request.form.get("password")
         error = None
 
         if not username:
@@ -57,7 +57,7 @@ def login():
         if error is None:
             db = get_db()
             # the argument for the query might have to be within ()
-            user = db.execute("SELECT * FROM user WHERE username = ?", username).fetchone()
+            user = db.execute("SELECT * FROM user WHERE username = ?", (username)).fetchone()
 
         if user is None:
             error = "Incorrect username"
