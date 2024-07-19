@@ -26,6 +26,7 @@ def register():
         if error is None:
             try:
                 db.execute(
+                    # the arguments for the query might have to be within ()
                     "INSERT INTO user (username, hashed_password) VALUES (? , ?)", username, generate_password_hash(password)
                 )
                 db.commit()
@@ -55,6 +56,7 @@ def login():
 
         if error is None:
             db = get_db()
+            # the argument for the query might have to be within ()
             user = db.execute("SELECT * FROM user WHERE username = ?", username).fetchone()
 
         if user is None:
