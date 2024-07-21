@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS applications;
-DROP TABLE IF EXISTS statuses
+DROP TABLE IF EXISTS statuses;
+DROP TABLE IF EXISTS contract_types;
 
 CREATE TABLE users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -32,4 +33,9 @@ CREATE TABLE applications (
 CREATE TABLE statuses (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     application_status TEXT UNIQUE NOT NULL
+);
+
+CREATE TABLE contract_types (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    contract_type TEXT UNIQUE NOT NULL 
 );
