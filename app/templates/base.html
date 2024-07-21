@@ -10,15 +10,17 @@
         
 
         <!-- Add favicon here-->
-        <link href="static/icons/favicon_white.ico" rel="icon">
-        <link href="static/styles.css" rel="stylesheet">
+        <link href="../static/icons/favicon_white.ico" rel="icon">
+        <link href="../static/styles.css" rel="stylesheet">
 
         <title>{% block title %} {% endblock %}</title>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
-            <div class="container">
-                <a class="navbar-brand" href="#">JobHuntr</a>
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="../static/icons/nav_icon.svg" alt="JobHuntr" width="300px">
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
