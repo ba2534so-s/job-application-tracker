@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS applications;
 DROP TABLE IF EXISTS statuses;
 DROP TABLE IF EXISTS contract_types;
 DROP TABLE IF EXISTS contacts;
+DROP TABLE IF EXISTS skills;
 
 
 CREATE TABLE users (
@@ -48,4 +49,9 @@ CREATE TABLE contacts (
     last_name TEXT,
     email TEXT,
     phone_number TEXT
+);
+
+CREATE TABLE skills (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    skill TEXT UNIQUE NOT NUll 
 );
