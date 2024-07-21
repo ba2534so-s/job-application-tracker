@@ -46,24 +46,27 @@
                         </li>
                     </ul>
                     <ul class="navbar-nav ms-auto mt-2">
+                        {% if g.user %}
                         <li class="nav-item me-3">
                             <a class="btn btn-outline-success" href="#">Add Job</a>
                         </li>
+                        {% else %}
                         <li class="nav-item me-3">
                             <a type="button" class="btn btn-outline-light" href="#">Register</a>
                         </li>
                         <li class="nav-item me-2">
                             <a class="btn btn-outline-light" href="">Login</a>
                         </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
         </nav>
         <header>
-
+            {% block header %}{% endblock %}
         </header>
         <main>
-
+            {% block main %}{% endblock %}
         </main>
         <!---
         <footer class="p-3 bg-dark text-white text-center position-relative">
