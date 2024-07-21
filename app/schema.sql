@@ -63,3 +63,21 @@ CREATE TABLE application_skills (
     FOREIGN KEY (skill_id) references skills (id),
     PRIMARY KEY (application_id, skill_id)
 );
+
+
+INSERT INTO statuses (status) VALUES
+('Not Started'),
+('Applied'),
+('Interviewing'),
+('Rejected'),
+('Job Offer'),
+('Expired');
+
+INSERT INTO contract_types (contract_type) VALUES
+('Full-Time'),
+('Part-Time'),
+('Contract'),
+('Temporary'),
+('Internship'),
+('Freelance'),
+('Student Job');
