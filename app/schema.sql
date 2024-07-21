@@ -55,3 +55,11 @@ CREATE TABLE skills (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     skill TEXT UNIQUE NOT NUll 
 );
+
+CREATE TABLE application_skills (
+    application_id INTEGER NOT NULL,
+    skill_id INTEGER NOT NULL,
+    FOREIGN KEY (application_id) references applications (id),
+    FOREIGN KEY (skill_id) references skills (id),
+    PRIMARY KEY (application_id, skill_id)
+);
