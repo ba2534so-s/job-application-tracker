@@ -1,8 +1,8 @@
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS applications;
+DROP TABLE IF EXISTS statuses
 
-
-CREATE TABLE user (
+CREATE TABLE users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     email TEXT UNIQUE NOT NULL,
     username TEXT UNIQUE NOT NULL,
@@ -27,4 +27,9 @@ CREATE TABLE applications (
     FOREIGN KEY (contract_type_id) references contract_types (id),
     FOREIGN KEY (contact_id) references contacts (id),
     FOREIGN KEY (status_id) references statuses (id)
+);
+
+CREATE TABLE statuses (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    application_status TEXT UNIQUE NOT NULL
 );
