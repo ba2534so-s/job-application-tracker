@@ -70,9 +70,11 @@
         </nav>
         {% if get_flashed_messages() %}
         <header>
+            {% for message in get_flashed_messages %}
             <div class="alert alert-dark mb-0 text-center">
-                {{ get_flashed_messages() | join(" ") }}
+                {{ message }}
             </div>
+            {% endfor %}
         </header>
         {% endif %}
         <main>
