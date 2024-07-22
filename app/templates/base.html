@@ -54,14 +54,14 @@
                             <a class="nav-link"><span>{{ g.user["username"]}}</span></a>
                         </li>
                         <li class="nav-item me-2">
-                            <a class="btn btn-outline-light" href="">Logout</a>
+                            <a class="btn btn-outline-light" href="{{ url_for('auth.logout')}}">Logout</a>
                         </li>
                         {% else %}
                         <li class="nav-item me-3">
-                            <a type="button" class="btn btn-outline-light" href="#">Register</a>
+                            <a type="button" class="btn btn-outline-light" href="{{ url_for('auth.register')}}">Register</a>
                         </li>
                         <li class="nav-item me-2">
-                            <a class="btn btn-outline-light" href="">Login</a>
+                            <a class="btn btn-outline-light" href="{{ url_for('auth.login')}}">Login</a>
                         </li>
                         {% endif %}
                     </ul>
