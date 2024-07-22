@@ -50,6 +50,12 @@
                         <li class="nav-item me-3">
                             <a class="btn btn-outline-success" href="#">Add Job</a>
                         </li>
+                        <li>
+                            <a class="nav-link"><span>{{ g.user["username"]}}</span></a>
+                        </li>
+                        <li class="nav-item me-2">
+                            <a class="btn btn-outline-light" href="">Logout</a>
+                        </li>
                         {% else %}
                         <li class="nav-item me-3">
                             <a type="button" class="btn btn-outline-light" href="#">Register</a>
@@ -62,10 +68,15 @@
                 </div>
             </div>
         </nav>
+        {% if get_flashed_messages() %}
         <header>
-            {% block header %}{% endblock %}
+            <div class="alert alert-dark mb-0 text-center">
+                {{ get_flashed_messages() | join(" ") }}
+            </div>
         </header>
+        {% endif %}
         <main>
+
             {% block main %}{% endblock %}
         </main>
         <!---
