@@ -3,6 +3,10 @@
 {% block main %}
     <h1>{% block title %}Register{% endblock %}</h1>
     <form action="/register" method="post">
-        
+        <input  class="form-control" autocomplete="off" autofocus name="username" placeholder="Username" type="text" required>
+        <input  class="form-control" autocomplete="off" autofocus name="email" placeholder="Email" type="email" required>
+        <input class="form-control" name="password" placeholder="Password" type="password" required>
+        <input class="form-control" name="confirmation" placeholder="Repeat your password" password="password" required>
+        <button class="btn btn-outline-success" type="submit">Register</button>
     </form>
 {% endblock %}
