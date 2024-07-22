@@ -29,6 +29,7 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
+                        {% if g.user %}
                         <li class="nav-item">
                             <a class="nav-link" href="#">All Applications</a>
                         </li>
@@ -46,25 +47,36 @@
                         </li>
                     </ul>
                     <ul class="navbar-nav ms-auto mt-2">
-                        {% if g.user %}
                         <li class="nav-item me-3">
                             <a class="btn btn-outline-success" href="#">Add Job</a>
                         </li>
-                        {% else %}
-                        <li class="nav-item me-3">
-                            <a type="button" class="btn btn-outline-light" href="#">Register</a>
+                        <li>
+                            <a class="nav-link"><span>{{ g.user["username"]}}</span></a>
                         </li>
                         <li class="nav-item me-2">
-                            <a class="btn btn-outline-light" href="">Login</a>
+                            <a class="btn btn-outline-light" href="{{ url_for('auth.logout')}}">Logout</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item me-3">
+                            <a type="button" class="btn btn-outline-light" href="{{ url_for('auth.register')}}">Register</a>
+                        </li>
+                        <li class="nav-item me-2">
+                            <a class="btn btn-outline-light" href="{{ url_for('auth.login')}}">Login</a>
                         </li>
                         {% endif %}
                     </ul>
                 </div>
             </div>
         </nav>
+        {% if get_flashed_messages() %}
         <header>
-            {% block header %}{% endblock %}
+            {% for message in get_flashed_messages %}
+            <div class="alert alert-dark mb-0 text-center">
+                {{ message }}
+            </div>
+            {% endfor %}
         </header>
+        {% endif %}
         <main>
             {% block main %}{% endblock %}
         </main>
