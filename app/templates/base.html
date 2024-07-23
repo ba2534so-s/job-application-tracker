@@ -45,8 +45,10 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Archive</a>
                         </li>
+                        {% endif %}
                     </ul>
                     <ul class="navbar-nav ms-auto mt-2">
+                        {% if g.user %}
                         <li class="nav-item me-3">
                             <a class="btn btn-outline-success" href="#">Add Job</a>
                         </li>
