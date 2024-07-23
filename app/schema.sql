@@ -65,7 +65,7 @@ CREATE TABLE application_skills (
 );
 
 
-INSERT INTO statuses (status) VALUES
+INSERT INTO statuses (application_status) VALUES
 ('Not Started'),
 ('Applied'),
 ('Interviewing'),
