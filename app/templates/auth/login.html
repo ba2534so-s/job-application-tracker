@@ -6,7 +6,7 @@
         <h1>{% block title %}Login{% endblock %}</h1>
     </div>
     <div class="container bg-secondary bg-gradient text-center p-5">
-        <form action="/login" method="submit">
+        <form action="{{ url_for('auth.login') }}" method="submit">
             <div class="mb-3">
                 <input class="form-control mx-auto w-25" autocomplete="off" autofocus name="username" placeholder="Username" type="text" required>
             </div>
