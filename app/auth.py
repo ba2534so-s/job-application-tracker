@@ -30,7 +30,7 @@ def register():
             try:
                 db.execute(
                     # the arguments for the query might have to be within ()
-                    "INSERT INTO user (username, email, hashed_password) VALUES (?, ?, ?)", (username, email, generate_password_hash(password))
+                    "INSERT INTO users (username, email, hashed_password) VALUES (?, ?, ?)", (username, email, generate_password_hash(password))
                 )
                 db.commit()
             except db.IntegrityError:
