@@ -60,11 +60,11 @@ def login():
         if error is None:
             db = get_db()
             # the argument for the query might have to be within ()
-            user = db.execute("SELECT * FROM users WHERE username = ?", (username)).fetchone()
-
+            user = db.execute("SELECT * FROM users WHERE username = ?", (username,)).fetchone()
+        
         if user is None:
             error = "Incorrect username"
-        elif not check_password_hash(user["password"], password):
+        elif not check_password_hash(user["hashed_password"], password):
             error = "Incorrect password"
         
         if error is None:
