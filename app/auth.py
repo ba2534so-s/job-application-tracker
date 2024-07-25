@@ -10,12 +10,15 @@ bp = Blueprint("auth",__name__, url_prefix="/auth")
 def register():
     if request.method == "POST":
         username = request.form.get("username")
+        email = request.form.get("email")
         password = request.form.get("password")
         confirmation = request.form.get("confirmation")
         error = None
 
         if not username:
             error = "Username is required"
+        elif not email:
+            error = "Email is required"
         elif not password:
             error = "Password is required"
         elif password != confirmation:
@@ -27,11 +30,11 @@ def register():
             try:
                 db.execute(
                     # the arguments for the query might have to be within ()
-                    "INSERT INTO user (username, hashed_password) VALUES (? , ?)", (username, generate_password_hash(password))
+                    "INSERT INTO users (username, email, hashed_password) VALUES (?, ?, ?)", (username, email, generate_password_hash(password))
                 )
                 db.commit()
             except db.IntegrityError:
-                error = f"User {username} is already registered."
+                error = f"User {username} or email {email} is already registered."
             else:
                 return redirect(url_for("auth.login")) 
             
@@ -57,11 +60,11 @@ def login():
         if error is None:
             db = get_db()
             # the argument for the query might have to be within ()
-            user = db.execute("SELECT * FROM users WHERE username = ?", (username)).fetchone()
-
+            user = db.execute("SELECT * FROM users WHERE username = ?", (username,)).fetchone()
+        
         if user is None:
             error = "Incorrect username"
-        elif not check_password_hash(user["password"], password):
+        elif not check_password_hash(user["hashed_password"], password):
             error = "Incorrect password"
         
         if error is None:
