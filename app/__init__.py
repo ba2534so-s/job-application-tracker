@@ -35,8 +35,9 @@ def create_app(test_config=None):
     from . import auth
     app.register_blueprint(auth.bp)
 
-    from . import app
-    app.register_blueprint(app.bp)
+    from . import jobhuntr
+    app.register_blueprint(jobhuntr.bp)
+    app.add_url_rule("/", endpoint="index")
 
     # Ensure responses aren't cached
     @app.after_request
