@@ -35,6 +35,9 @@ def create_app(test_config=None):
     from . import auth
     app.register_blueprint(auth.bp)
 
+    from . import app
+    app.register_blueprint(app.bp)
+
     # Ensure responses aren't cached
     @app.after_request
     def after_request(response):
