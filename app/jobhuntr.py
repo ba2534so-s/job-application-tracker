@@ -3,9 +3,10 @@ from werkzeug.exceptions import abort
 from app.auth import login_required
 from app.db import get_db
 
-bp = Blueprint("index", __name__)
+bp = Blueprint("jobhuntr", __name__)
 
-bp.route("/")
+@bp.route("/")
 def index():
+    print("Index route called")  # Debug print statement
     # Later we will present statistics and some type of dashboard/overview of the users applications
     return render_template("jobhuntr/index.html")
