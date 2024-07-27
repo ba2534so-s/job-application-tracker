@@ -10,3 +10,10 @@ def index():
     print("Index route called")  # Debug print statement
     # Later we will present statistics and some type of dashboard/overview of the users applications
     return render_template("jobhuntr/index.html")
+
+@bp.route("/add", methods=["GET", "POST"])
+def add():
+    if request.method == "POST":
+        pass
+    else:
+        return render_template("jobhuntr/add.html")

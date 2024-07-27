@@ -53,7 +53,7 @@
                             <a class="nav-link me-2"><span>{{ g.user["username"]}}</span></a>
                         </li>
                         <li class="nav-item me-3">
-                            <a class="btn btn-outline-success" href="#">Add Job</a>
+                            <a class="btn btn-outline-success" href="{{ url_for('jobhuntr.add')}}">Add Job</a>
                         </li>
                         <li class="nav-item me-2">
                             <a class="btn btn-outline-light" href="{{ url_for('auth.logout')}}">Logout</a>
