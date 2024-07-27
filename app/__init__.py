@@ -35,10 +35,6 @@ def create_app(test_config=None):
     from . import auth
     app.register_blueprint(auth.bp)
 
-    print()
-    print(app.url_map)
-    print()
-
     from . import jobhuntr
     app.register_blueprint(jobhuntr.bp)
     app.add_url_rule("/", endpoint="index")
@@ -50,5 +46,5 @@ def create_app(test_config=None):
         response.headers["Expires"] = 0
         response.headers["Pragma"] = "no-cache"
         return response
-    print(app.url_map)
+    
     return app
