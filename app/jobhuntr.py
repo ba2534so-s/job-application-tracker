@@ -14,6 +14,17 @@ def index():
 @bp.route("/add", methods=["GET", "POST"])
 def add():
     if request.method == "POST":
-        pass
+        company = request.form.get("company")
+        position = request.form.get("positon")
+        contract_type = request.form.get("contract_type")
+        location = request.form.get("location")
+        url = request.form.get("url")
+
+        # check radio button if user wants to add contact information
+        # If yes, get contact info
+
+
     else:
+        # Fill the contract type select
+
         return render_template("jobhuntr/add.html")
