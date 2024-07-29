@@ -14,9 +14,9 @@
                     <input class="form-control" name="position" placeholder="Position" type="text" required>
                 </div>
                 <div class="col">
-                    <select class="form-select">
+                    <select class="form-select" name="contract_type">
                         {% for contract_type in contract_types %}
-                            <option value="{{ contract_type }}">{{ contract_type }}</option>
+                            <option value="{{ contract_type }}">{{ contract_type["contract_type"] }}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -29,11 +29,6 @@
                     <input class="form-control" name="url" placeholder="URL" type="url">
                 </div>
             </div>
-                <div class="row">
-                    <div class="col">
-                        <textarea class="form-control" placeholder="Description" name="description" id="" rows="8"></textarea>
-                    </div>
-                </div>
             <div class="container border border-black rounded my-4 p-3">
                 <p class="h5">Contact Info</p>
                 <div class="row mb-3">
@@ -41,7 +36,7 @@
                         <input class="form-control" name="contact" placeholder="Contact" type="text">
                     </div>
                     <div class="col">
-                        <input class="form-control" name="email" placeholder="email" type="email">
+                        <input class="form-control" name="email" placeholder="Email" type="email">
                     </div>
                     <div class="col">
                         <input class="form-control" name="phone" placeholder="Phone" type="phone">
