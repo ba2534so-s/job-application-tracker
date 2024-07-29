@@ -26,5 +26,11 @@ def add():
 
     else:
         # Fill the contract type select
+        db = get_db()
 
-        return render_template("jobhuntr/add.html")
+        try:
+            contract_types = db.execute("SELECT * FROM contract_types").fetchall()
+        except:
+            pass
+        
+        return render_template("jobhuntr/add.html", contract_types=contract_types)
