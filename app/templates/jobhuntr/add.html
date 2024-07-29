@@ -14,7 +14,7 @@
                     <input class="form-control" name="position" placeholder="Position" type="text" required>
                 </div>
                 <div class="col">
-                    <select class="form-select">
+                    <select class="form-select" name="contract_type">
                         {% for contract_type in contract_types %}
                             <option value="{{ contract_type }}">{{ contract_type }}</option>
                         {% endfor %}
