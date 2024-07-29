@@ -16,7 +16,7 @@
                 <div class="col">
                     <select class="form-select" name="contract_type">
                         {% for contract_type in contract_types %}
-                            <option value="{{ contract_type }}">{{ contract_type }}</option>
+                            <option value="{{ contract_type }}">{{ contract_type["contract_type"] }}</option>
                         {% endfor %}
                     </select>
                 </div>
