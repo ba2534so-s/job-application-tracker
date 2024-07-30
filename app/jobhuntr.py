@@ -19,6 +19,14 @@ def add():
         contract_type = request.form.get("contract_type")
         location = request.form.get("location")
         url = request.form.get("url")
+        error = None
+
+        if not company:
+            error = "Company name required"
+        elif not position:
+            error = "Position required"
+
+
 
         # check radio button if user wants to add contact information
         # If yes, get contact info
@@ -27,7 +35,6 @@ def add():
     else:
         # Fill the contract type select
         db = get_db()
-
         try:
             contract_types = db.execute("SELECT * FROM contract_types").fetchall()
         except:
