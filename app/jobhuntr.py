@@ -17,9 +17,10 @@ def add():
     if request.method == "POST":
         company = request.form.get("company")
         position = request.form.get("positon")
-        contract_type = request.form.get("contract_type")
+        contract_type = request.form.get("contract-type")
         location = request.form.get("location")
         url = request.form.get("url")
+        force_submit = request.form.get("force-submit")
         date_added = datetime.now().isoformat(sep=" ", timespec="minutes")
         error = None
 
@@ -30,11 +31,29 @@ def add():
         elif not contract_type:
             error = "Contract type required"
         elif not location:
-            error = "Location remoted"
+            error = "Location required"
         
-        #if error is None:
+        if error is None:
+            db = get_db()
+            if force_submit != "true":
+                existing_application = db.execute(
+                    """
+                    SELECT *
+                    FROM applications
+                    WHERE user_id = ?
+                    AND company_name = ?
+                    AND job_position = ?
+                    AND job_location = ?
+                    AND contract_type_id = ?
+                    AND (date('now') - date(?)) < 150
+                    """,
+                    (g.user["id"], company, position, location, contract_type)
+                ).fetchone()
 
-        print(date_added)
+                
+
+
+        
         
             
 
