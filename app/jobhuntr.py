@@ -25,6 +25,12 @@ def add():
             error = "Company name required"
         elif not position:
             error = "Position required"
+        elif not contract_type:
+            error = "Contract type required"
+        elif not location:
+            error = "Location remoted"
+        
+        
 
 
 
