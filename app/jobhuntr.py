@@ -13,10 +13,11 @@ def index():
     return render_template("jobhuntr/index.html")
 
 @bp.route("/add", methods=["GET", "POST"])
+# Add login required
 def add():
     if request.method == "POST":
         company = request.form.get("company")
-        position = request.form.get("positon")
+        position = request.form.get("position")
         contract_type = request.form.get("contract-type")
         location = request.form.get("location")
         url = request.form.get("url")
