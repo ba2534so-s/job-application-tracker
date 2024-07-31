@@ -2,7 +2,7 @@ from flask import Blueprint, flash, g, redirect, render_template, request, url_f
 from werkzeug.exceptions import abort
 from app.auth import login_required
 from app.db import get_db
-from datetime import datetime
+from datetime import datetime, timedelta
 
 bp = Blueprint("jobhuntr", __name__)
 
@@ -36,6 +36,7 @@ def add():
         if error is None:
             db = get_db()
             if force_submit != "true":
+                date_threshhold = (datetime.now() - timedelta(days=150)).isoformat(sep=" ", timespec="minutes")
                 existing_application = db.execute(
                     """
                     SELECT *
@@ -45,9 +46,9 @@ def add():
                     AND job_position = ?
                     AND job_location = ?
                     AND contract_type_id = ?
-                    AND (date('now') - date(?)) < 150
+                    AND date_added >= ?
                     """,
-                    (g.user["id"], company, position, location, contract_type)
+                    (g.user["id"], company, position, location, contract_type, date_threshhold)
                 ).fetchone()
 
                 if existing_application:
