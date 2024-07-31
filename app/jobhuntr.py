@@ -1,4 +1,4 @@
-from flask import Blueprint, flash, g, redirect, render_template, request, url_for
+from flask import Blueprint, flash, g, redirect, render_template, request, url_for, jsonify
 from werkzeug.exceptions import abort
 from app.auth import login_required
 from app.db import get_db
@@ -50,7 +50,10 @@ def add():
                     (g.user["id"], company, position, location, contract_type)
                 ).fetchone()
 
-                
+                if existing_application:
+                    return jsonify({"duplicate": True})
+
+
 
 
         
