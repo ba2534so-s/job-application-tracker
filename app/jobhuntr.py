@@ -35,46 +35,42 @@ def add():
         
         if error is None:
             db = get_db()
-            if force_submit != "true":
-                date_threshhold = (datetime.now() - timedelta(days=150)).isoformat(sep=" ", timespec="minutes")
-                existing_application = db.execute(
+            try:
+                if force_submit != "true":
+                    date_threshhold = (datetime.now() - timedelta(days=150)).isoformat(sep=" ", timespec="minutes")
+                    existing_application = db.execute(
+                        """
+                        SELECT *
+                        FROM applications
+                        WHERE user_id = ?
+                        AND company_name = ?
+                        AND job_position = ?
+                        AND job_location = ?
+                        AND contract_type_id = ?
+                        AND date_added >= ?
+                        """,
+                        (g.user["id"], company, position, location, contract_type, date_threshhold)
+                    ).fetchone()
+
+                    if existing_application:
+                        return jsonify({"duplicate": True})
+                
+                db.execute(
                     """
-                    SELECT *
-                    FROM applications
-                    WHERE user_id = ?
-                    AND company_name = ?
-                    AND job_position = ?
-                    AND job_location = ?
-                    AND contract_type_id = ?
-                    AND date_added >= ?
+                    INSERT INTO applications (
+                        user_id, company_name, job_position, job_location, contract_type_id, job_post_link, date_added, status_id
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                     """,
-                    (g.user["id"], company, position, location, contract_type, date_threshhold)
-                ).fetchone()
-
-                if existing_application:
-                    return jsonify({"duplicate": True})
-            
-            db.execute(
-                """
-                INSERT INTO applications (
-                    user_id, company_name, job_position, job_location, contract_type_id, job_post_link, date_added, status_id
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-                """,
-                (
-                    g.user["id"], company, position, location, contract_type, url, date_added, 1
+                    (
+                        g.user["id"], company, position, location, contract_type, url, date_added, 1
+                    )
                 )
-            )
-            db.commit()
-            flash("Job application added successfully.")
-            return redirect(url_for("index"))
-
-
-
-        
-        
-            
-
-
+                db.commit()
+                flash("Job application added successfully.")
+                return redirect(url_for("index"))
+            except db.IntegrityError:
+                flash("An error occurred while adding the job application. Please try again.")
+                return redirect(url_for("jobhuntr.add"))
 
 
         # check radio button if user wants to add contact information
