@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const userConfirmed = confirm("You have already added a similar job recently. Are you sure you want to add it?");
                 
                 if (userConfirmed) {
-                    document.getElementById("force_submit").value ="true";
+                    document.getElementById("force-submit").value ="true";
                     form.onsubmit();
                 }
             } else {
