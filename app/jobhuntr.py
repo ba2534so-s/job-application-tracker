@@ -2,6 +2,7 @@ from flask import Blueprint, flash, g, redirect, render_template, request, url_f
 from werkzeug.exceptions import abort
 from app.auth import login_required
 from app.db import get_db
+from datetime import datetime
 
 bp = Blueprint("jobhuntr", __name__)
 
@@ -19,6 +20,7 @@ def add():
         contract_type = request.form.get("contract_type")
         location = request.form.get("location")
         url = request.form.get("url")
+        date_added = datetime.now().isoformat(sep=" ", timespec="minutes")
         error = None
 
         if not company:
@@ -30,7 +32,12 @@ def add():
         elif not location:
             error = "Location remoted"
         
+        #if error is None:
+
+        print(date_added)
         
+            
+
 
 
 
