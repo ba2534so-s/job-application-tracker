@@ -52,7 +52,20 @@ def add():
 
                 if existing_application:
                     return jsonify({"duplicate": True})
-
+            
+            db.execute(
+                """
+                INSERT INTO applications (
+                    user_id, company_name, job_position, job_location, contract_type_id, job_post_link, date_added, status_id
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    g.user["id"], company, position, location, contract_type, url, date_added, 1
+                )
+            )
+            db.commit()
+            flash("Job application added successfully.")
+            return redirect(url_for("index"))
 
 
 
