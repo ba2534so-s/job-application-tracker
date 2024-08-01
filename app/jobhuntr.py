@@ -7,13 +7,25 @@ from datetime import datetime, timedelta
 bp = Blueprint("jobhuntr", __name__)
 
 @bp.route("/")
+@login_required
 def index():
-    print("Index route called")  # Debug print statement
-    # Later we will present statistics and some type of dashboard/overview of the users applications
-    return render_template("jobhuntr/index.html")
+    applications = None
+    try:
+        db = get_db()
+        user_id = g.user["id"]
+        applications = db.execute("SELECT * FROM applications WHERE user_id = ?", (user_id,)).fetchall()
+        print(applications)
+    # query database for the logged in users applications
+    # query database for contract types
+    # query database for statuses
+    except Exception as error:
+        print(f"Error: {error}")
+
+    print(applications)
+    return render_template("jobhuntr/index.html", applications=applications)
 
 @bp.route("/add", methods=["GET", "POST"])
-# Add login required
+@login_required
 def add():
     if request.method == "POST":
         company = request.form.get("company")
