@@ -13,12 +13,23 @@ def index():
     try:
         db = get_db()
         applications = db.execute("SELECT * FROM applications WHERE user_id = ?", (g.user["id"],)).fetchall()
+        
+        # Move these to a query folder and create functions to return these tbales converted to dicts
         contract_types = db.execute("SELECT * FROM contract_types").fetchall()
         statuses = db.execute("SELECT * FROM statuses").fetchall()
+
+        contract_types_dict = {ct["id"]: ct for ct in contract_types}
+        statuses_dict = {s["id"]: s for s in statuses}
+
+        for contract_type in contract_types:
+            print(contract_type["contract_type"])
     except Exception as error:
         print(f"Error: {error}")
 
-    return render_template("jobhuntr/index.html", applications=applications, contract_types=contract_types, statuses=statuses)
+    return render_template("jobhuntr/index.html", 
+                           applications=applications, 
+                           contract_types=contract_types_dict,
+                           statuses=statuses_dict)
 
 @bp.route("/add", methods=["GET", "POST"])
 @login_required
