@@ -21,14 +21,16 @@
         {% if applications %}
             {% for application in applications %}
                 <tbody>
-                    <th>{{ application["id"] }}</th>
-                    <th>{{ application["company_name"] }}</th>
-                    <th>{{ application["job_position"] }}</th>
-                    <th>{{ application["job_location"] }}</th>
-                    <th></th>
-                    <th></th>
-                    <th>{{ application["date_added"] }}</th>
-                    <th></th>
+                    <tr>
+                        <td>{{ application["id"] }}</td>
+                        <td>{{ application["company_name"] }}</td>
+                        <td>{{ application["job_position"] }}</td>
+                        <td>{{ application["job_location"] }}</td>
+                        <td></td>
+                        <td></td>
+                        <td>{{ application["date_added"] }}</td>
+                        <td></td>
+                    </tr>
                 </tbody>
             {% endfor %}
         {% else %}
