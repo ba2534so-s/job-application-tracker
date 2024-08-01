@@ -21,10 +21,11 @@ def index():
         contract_types_dict = {ct["id"]: ct for ct in contract_types}
         statuses_dict = {s["id"]: s for s in statuses}
 
-        for contract_type in contract_types:
-            print(contract_type["contract_type"])
     except Exception as error:
         print(f"Error: {error}")
+        applications = []
+        contract_types_dict = {}
+        statuses_dict = {}
 
     return render_template("jobhuntr/index.html", 
                            applications=applications, 
