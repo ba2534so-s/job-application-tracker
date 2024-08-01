@@ -12,14 +12,12 @@ def index():
     applications = None
     try:
         db = get_db()
-        user_id = g.user["id"]
-        applications = db.execute("SELECT * FROM applications WHERE user_id = ?", (user_id,)).fetchall()
+        applications = db.execute("SELECT * FROM applications WHERE user_id = ?", (g.user["id"],)).fetchall()
         contract_types = db.execute("SELECT * FROM contract_types").fetchall()
-        statuses = db.execute("SELECT * FROM statuses")
+        statuses = db.execute("SELECT * FROM statuses").fetchall()
     except Exception as error:
         print(f"Error: {error}")
 
-    print(applications)
     return render_template("jobhuntr/index.html", applications=applications, contract_types=contract_types, statuses=statuses)
 
 @bp.route("/add", methods=["GET", "POST"])
