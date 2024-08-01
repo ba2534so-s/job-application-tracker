@@ -7,12 +7,13 @@ from datetime import datetime, timedelta
 bp = Blueprint("jobhuntr", __name__)
 
 @bp.route("/")
-#Add login required
+@login_required
 def index():
+    
     # query database for the logged in users applications
     # query database for contract types
     # query database for statuses
-    
+
 
     # Later we will present statistics and some type of dashboard/overview of the users applications
     return render_template("jobhuntr/index.html")
