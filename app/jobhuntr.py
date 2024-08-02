@@ -60,24 +60,24 @@ def add():
         if error is None:
             db = get_db()
             try:
-                if force_submit != "true":
-                    date_threshhold = (datetime.now() - timedelta(days=150)).strftime("%Y-%m-%d")
-                    existing_application = db.execute(
-                        """
-                        SELECT *
-                        FROM applications
-                        WHERE user_id = ?
-                        AND company_name = ?
-                        AND job_position = ?
-                        AND job_location = ?
-                        AND contract_type_id = ?
-                        AND date_added >= ?
-                        """,
-                        (g.user["id"], company, position, location, contract_type, date_threshhold)
-                    ).fetchone()
+                date_threshhold = (datetime.now() - timedelta(days=150)).strftime("%Y-%m-%d")
+                existing_application = db.execute(
+                    """
+                    SELECT *
+                    FROM applications
+                    WHERE user_id = ?
+                    AND company_name = ?
+                    AND job_position = ?
+                    AND job_location = ?
+                    AND contract_type_id = ?
+                    AND date_added >= ?
+                    """,
+                    (g.user["id"], company, position, location, contract_type, date_threshhold)
+                ).fetchone()
 
-                    if existing_application:
-                        return jsonify({"duplicate": True})
+                if existing_application:
+                    flash("You have already added this job recently")
+                    return redirect(url_for("jobhuntr.add"))
                 
                 db.execute(
                     """
