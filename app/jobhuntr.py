@@ -86,7 +86,7 @@ def add():
                     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                     """,
                     (
-                        g.user["id"], company, position, location, contract_type["id"], url, date_added, 1
+                        g.user["id"], company, position, location, contract_type, url, date_added, 1
                     )
                 )
                 db.commit()
