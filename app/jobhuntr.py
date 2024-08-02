@@ -12,17 +12,28 @@ def index():
     applications = None
     try:
         db = get_db()
-        user_id = g.user["id"]
-        applications = db.execute("SELECT * FROM applications WHERE user_id = ?", (user_id,)).fetchall()
-        print(applications)
-    # query database for the logged in users applications
-    # query database for contract types
-    # query database for statuses
+        applications = db.execute("SELECT * FROM applications WHERE user_id = ?", (g.user["id"],)).fetchall()
     except Exception as error:
-        print(f"Error: {error}")
+        print(f"Error getting the applications: {error}")
+        applications = []
+        
+        # Move these to a query folder and create functions to return these tbales converted to dicts
+    try:
+        contract_types = db.execute("SELECT * FROM contract_types").fetchall()
+    except Exception as error:
+        print(f"Error getting the contract types: {error}")
+        contract_types = []
 
-    print(applications)
-    return render_template("jobhuntr/index.html", applications=applications)
+    try:
+        statuses = db.execute("SELECT * FROM statuses").fetchall()
+    except Exception as error:
+        print(f"Error getting the statuses: {error}")
+        statuses = []
+
+    return render_template("jobhuntr/index.html", 
+                           applications=applications, 
+                           contract_types=contract_types,
+                           statuses=statuses)
 
 @bp.route("/add", methods=["GET", "POST"])
 @login_required
@@ -34,7 +45,7 @@ def add():
         location = request.form.get("location")
         url = request.form.get("url")
         force_submit = request.form.get("force-submit")
-        date_added = datetime.now().isoformat(sep=" ", timespec="minutes")
+        date_added = datetime.now().strftime("%Y-%m-%d")
         error = None
 
         if not company:
@@ -50,7 +61,7 @@ def add():
             db = get_db()
             try:
                 if force_submit != "true":
-                    date_threshhold = (datetime.now() - timedelta(days=150)).isoformat(sep=" ", timespec="minutes")
+                    date_threshhold = (datetime.now() - timedelta(days=150)).strftime("%Y-%m-%d")
                     existing_application = db.execute(
                         """
                         SELECT *
