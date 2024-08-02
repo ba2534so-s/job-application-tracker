@@ -13,24 +13,27 @@ def index():
     try:
         db = get_db()
         applications = db.execute("SELECT * FROM applications WHERE user_id = ?", (g.user["id"],)).fetchall()
+    except Exception as error:
+        print(f"Error getting the applications: {error}")
+        applications = []
         
         # Move these to a query folder and create functions to return these tbales converted to dicts
+    try:
         contract_types = db.execute("SELECT * FROM contract_types").fetchall()
-        statuses = db.execute("SELECT * FROM statuses").fetchall()
-
-        contract_types_dict = {ct["id"]: ct for ct in contract_types}
-        statuses_dict = {s["id"]: s for s in statuses}
-
     except Exception as error:
-        print(f"Error: {error}")
-        applications = []
-        contract_types_dict = {}
-        statuses_dict = {}
+        print(f"Error getting the contract types: {error}")
+        contract_types = []
+
+    try:
+        statuses = db.execute("SELECT * FROM statuses").fetchall()
+    except Exception as error:
+        print(f"Error getting the statuses: {error}")
+        statuses = []
 
     return render_template("jobhuntr/index.html", 
                            applications=applications, 
-                           contract_types=contract_types_dict,
-                           statuses=statuses_dict)
+                           contract_types=contract_types,
+                           statuses=statuses)
 
 @bp.route("/add", methods=["GET", "POST"])
 @login_required
@@ -83,7 +86,7 @@ def add():
                     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                     """,
                     (
-                        g.user["id"], company, position, location, contract_type, url, date_added, 1
+                        g.user["id"], company, position, location, contract_type["id"], url, date_added, 1
                     )
                 )
                 db.commit()
