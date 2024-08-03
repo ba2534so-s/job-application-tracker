@@ -53,7 +53,7 @@ def login():
             error = "Password is required"
 
         if error is None:
-            user = get_user(username)
+            user = get_user_by_username(username)
         
         if user is None:
             error = "Incorrect username"
