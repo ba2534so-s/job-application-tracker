@@ -31,8 +31,13 @@ def get_user_by_username(username):
 
 
 # CONTRACT TYPES
+# get contract types as dict
 
 # APPLICATION STATUSES
-
+# get application statuses as dict
 
 # APPLICATIONS
+# add job
+# apply to job
+# edit job application
+# remove job 
