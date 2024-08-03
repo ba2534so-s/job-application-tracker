@@ -38,6 +38,10 @@ def get_user_by_username(username):
 
 # APPLICATIONS
 # add job
+# get all added jobs for a user
+# get all jobs with status not started
+# get all jobs with status applied
+# get all jobs with status interviewing
 # apply to job
 # edit job application
 # remove job 
