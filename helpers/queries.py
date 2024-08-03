@@ -18,6 +18,11 @@ def create_user(username, email, password):
         return False, error_message
     
 
+def get_user_by_id(id):
+    db = get_db()
+    user = db.execute("SELECT * FROM users WHERE id = ?", (id,)).fetchone()
+    return user
+
 def get_user_by_username(username):
     db = get_db()
     user = db.execute("SELECT * FROM users WHERE username = ?", (username,)).fetchone()
