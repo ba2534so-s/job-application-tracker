@@ -5,7 +5,15 @@ from werkzeug.security import generate_password_hash, check_password_hash
 # USERS
 def create_user(username, email, password):
     db = get_db()
-    db.execute("INSERT INTO users (id, email, hashed_password) VALUES (?, ?, ?)",
-               (username, email, generate_password_hash(password)))
-    db.commit()
+    try:
+        db.execute("INSERT INTO users (id, email, hashed_password) VALUES (?, ?, ?)",
+                   (username, email, generate_password_hash(password)))
+        db.commit()
+        return True, None
+    except db.IntegrityError as e:
+        error_message = f"User {username} or email {email} is already registered."
+        return False, error_message
+    except Exception as e:
+        error_message = f"An unexpected error occurred: {e}"
+        return False, error_message
 
