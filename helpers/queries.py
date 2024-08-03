@@ -27,3 +27,12 @@ def get_user_by_username(username):
     db = get_db()
     user = db.execute("SELECT * FROM users WHERE username = ?", (username,)).fetchone()
     return user
+
+
+
+# CONTRACT TYPES
+
+# APPLICATION STATUSES
+
+
+# APPLICATIONS
