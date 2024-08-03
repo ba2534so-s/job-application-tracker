@@ -16,4 +16,9 @@ def create_user(username, email, password):
     except Exception as e:
         error_message = f"An unexpected error occurred: {e}"
         return False, error_message
+    
 
+def get_user(username):
+    db = get_db()
+    user = db.execute("SELECT * FROM users WHERE username = ?", (username,)).fetchone()
+    return user
