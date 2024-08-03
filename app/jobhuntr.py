@@ -44,7 +44,6 @@ def add():
         contract_type = request.form.get("contract-type")
         location = request.form.get("location")
         url = request.form.get("url")
-        force_submit = request.form.get("force-submit")
         date_added = datetime.now().strftime("%Y-%m-%d")
         error = None
 
