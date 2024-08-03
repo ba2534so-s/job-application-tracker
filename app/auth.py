@@ -2,7 +2,7 @@ from functools import wraps
 from flask import Blueprint, flash, g, redirect, render_template, request, session, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
 from app.db import get_db
-from helpers.queries import create_user
+from helpers.queries import create_user, get_user_by_username
 
 bp = Blueprint("auth",__name__, url_prefix="/auth")
 
@@ -53,9 +53,7 @@ def login():
             error = "Password is required"
 
         if error is None:
-            db = get_db()
-            # the argument for the query might have to be within ()
-            user = db.execute("SELECT * FROM users WHERE username = ?", (username,)).fetchone()
+            user = get_user(username)
         
         if user is None:
             error = "Incorrect username"
