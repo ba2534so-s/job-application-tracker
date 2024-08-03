@@ -2,6 +2,7 @@ from functools import wraps
 from flask import Blueprint, flash, g, redirect, render_template, request, session, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
 from app.db import get_db
+from helpers.queries import create_user
 
 bp = Blueprint("auth",__name__, url_prefix="/auth")
 
@@ -27,18 +28,12 @@ def register():
         db = get_db()
 
         if error is None:
-            try:
-                db.execute(
-                    # the arguments for the query might have to be within ()
-                    "INSERT INTO users (username, email, hashed_password) VALUES (?, ?, ?)", (username, email, generate_password_hash(password))
-                )
-                db.commit()
-            except db.IntegrityError:
-                error = f"User {username} or email {email} is already registered."
-            else:
+            success, error_message = create_user(username, email, password)
+            if success:
                 return redirect(url_for("auth.login")) 
+            else:
+                error = error_message
             
-        
         flash(error)
     
     else:
