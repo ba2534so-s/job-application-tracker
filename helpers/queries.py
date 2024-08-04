@@ -31,10 +31,25 @@ def get_user_by_username(username):
 
 
 # CONTRACT TYPES
-# get contract types as dict
+def get_contract_types_dict():
+    db = get_db()
+    contract_types = db.execute("SELECT * FROM contract_types").fetchall()
+
+    contract_types_dict = {} 
+    for contract_type in contract_types:
+        contract_types_dict[contract_type["id"]] = contract_type["contract_type"]
+
+    return contract_types_dict
 
 # APPLICATION STATUSES
-# get application statuses as dict
+def get_statuses_dict():
+    db = get_db()
+    statuses = db.execute("SELECT * FROM statuses").fetchall()
+
+    statuses_dict = {}
+    for status in statuses:
+        statuses_dict[status["id"]] = status["application_status"]
+    return statuses_dict
 
 # APPLICATIONS
 # add job
