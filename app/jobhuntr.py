@@ -3,7 +3,7 @@ from werkzeug.exceptions import abort
 from app.auth import login_required
 from app.db import get_db
 from datetime import datetime, timedelta
-from helpers.queries import get_contract_types_dict
+from helpers.queries import get_contract_types_dict, get_statuses_dict
 
 bp = Blueprint("jobhuntr", __name__)
 
@@ -20,12 +20,7 @@ def index():
         
         # Move these to a query folder and create functions to return these tbales converted to dicts
     contract_types = get_contract_types_dict()
-
-    try:
-        statuses = db.execute("SELECT * FROM statuses").fetchall()
-    except Exception as error:
-        print(f"Error getting the statuses: {error}")
-        statuses = []
+    statuses = get_statuses_dict()
     
 
     return render_template("jobhuntr/index.html", 
