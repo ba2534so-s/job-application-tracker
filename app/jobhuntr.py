@@ -3,26 +3,17 @@ from werkzeug.exceptions import abort
 from app.auth import login_required
 from app.db import get_db
 from datetime import datetime, timedelta
-from helpers.queries import get_contract_types_dict, get_statuses_dict
+from helpers.queries import get_contract_types_dict, get_statuses_dict, get_all_applications_for_user
 
 bp = Blueprint("jobhuntr", __name__)
 
 @bp.route("/")
 @login_required
 def index():
-    applications = None
-    try:
-        db = get_db()
-        applications = db.execute("SELECT * FROM applications WHERE user_id = ?", (g.user["id"],)).fetchall()
-    except Exception as error:
-        print(f"Error getting the applications: {error}")
-        applications = []
-        
-        # Move these to a query folder and create functions to return these tbales converted to dicts
+    applications = get_all_applications_for_user(g.user["id"])
     contract_types = get_contract_types_dict()
     statuses = get_statuses_dict()
     
-
     return render_template("jobhuntr/index.html", 
                            applications=applications, 
                            contract_types=contract_types,
