@@ -54,6 +54,11 @@ def get_statuses_dict():
 # APPLICATIONS
 # add job
 # get all added jobs for a user
+def get_all_applications_for_user(user_id):
+    db = get_db()
+    applications = db.execute("SELECT * FROM applications WHERE user_id = ?", (user_id,)).fetchall()
+    return applications
+
 # get all jobs with status not started
 # get all jobs with status applied
 # get all jobs with status interviewing
