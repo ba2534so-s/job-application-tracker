@@ -1,5 +1,6 @@
 from app.db import get_db
-from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.security import generate_password_hash
+from datetime import datetime, timedelta
 
 
 # USERS
@@ -53,6 +54,44 @@ def get_statuses_dict():
 
 # APPLICATIONS
 # add job
+def add_job(user_id, company, position, location, contract_type, url, date_added):
+    db = get_db()
+    db.execute(
+        """
+        INSERT INTO applications (
+            user_id, company_name, job_position, job_location, contract_type_id, job_post_link, date_added, status_id
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        """,
+        (
+            user_id, company, position, location, contract_type, url, date_added, 1
+        )
+    )
+    db.commit()
+
+# check existing job
+def check_existing_application(user_id, company, position, location, contract_type, url, date_added):
+    date_threshold = (datetime.now() - timedelta(days=150)).strftime("%Y-%m-%d")
+    db = get_db()
+    existing_application = db.execute(
+        """
+        SELECT *
+        FROM applications
+        WHERE user_id = ?
+        AND company_name = ?
+        AND job_position = ?
+        AND job_location = ?
+        AND contract_type_id = ?
+        AND date_added >= ?
+        """,
+        (user_id, company, position, location, contract_type, url, date_threshold)
+    ).fetchone()
+    if existing_application:
+        return True
+    else:
+        return False
+
+
+
 # get all added jobs for a user
 def get_all_applications_for_user(user_id):
     db = get_db()
