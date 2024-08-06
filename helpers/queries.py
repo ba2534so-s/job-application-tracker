@@ -1,5 +1,6 @@
 from app.db import get_db
 from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime, timedelta
 
 
 # USERS
@@ -66,6 +67,30 @@ def add_job(user_id, company, position, location, contract_type, url, date_added
         )
     )
     db.commit()
+
+# check existing job
+def check_existing_application(user_id, company, position, location, contract_type, url, date_added):
+    date_threshold = (datetime.now() - timedelta(days=150)).strftime("%Y-%m-%d")
+    db = get_db()
+    existing_application = db.execute(
+        """
+        SELECT *
+        FROM applications
+        WHERE user_id = ?
+        AND company_name = ?
+        AND job_position = ?
+        AND job_location = ?
+        AND contract_type_id = ?
+        AND date_added >= ?
+        """,
+        (g.user["id"], company, position, location, contract_type, date_threshold)
+    ).fetchone()
+    if existing_application:
+        return True
+    else:
+        return False
+
+
 
 # get all added jobs for a user
 def get_all_applications_for_user(user_id):
