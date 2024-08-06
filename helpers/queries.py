@@ -53,6 +53,20 @@ def get_statuses_dict():
 
 # APPLICATIONS
 # add job
+def add_job(user_id, company, position, location, contract_type, url, date_added):
+    db = get_db()
+    db.execute(
+        """
+        INSERT INTO applications (
+            user_id, company_name, job_position, job_location, contract_type_id, job_post_link, date_added, status_id
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        """,
+        (
+            user_id, company, position, location, contract_type, url, date_added, 1
+        )
+    )
+    db.commit()
+
 # get all added jobs for a user
 def get_all_applications_for_user(user_id):
     db = get_db()
