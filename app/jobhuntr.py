@@ -2,7 +2,7 @@ from flask import Blueprint, flash, g, redirect, render_template, request, url_f
 from werkzeug.exceptions import abort
 from app.auth import login_required
 from app.db import get_db
-from datetime import datetime, timedelta
+from datetime import datetime
 from helpers.queries import *
 
 bp = Blueprint("jobhuntr", __name__)
@@ -41,24 +41,8 @@ def add():
             error = "Location required"
         
         if error is None:
-            db = get_db()
             try:
-                date_threshhold = (datetime.now() - timedelta(days=150)).strftime("%Y-%m-%d")
-                existing_application = db.execute(
-                    """
-                    SELECT *
-                    FROM applications
-                    WHERE user_id = ?
-                    AND company_name = ?
-                    AND job_position = ?
-                    AND job_location = ?
-                    AND contract_type_id = ?
-                    AND date_added >= ?
-                    """,
-                    (g.user["id"], company, position, location, contract_type, date_threshhold)
-                ).fetchone()
-
-                if existing_application:
+                if check_existing_application(g.user["id"], company, position, contract_type, location, url, date_added):
                     flash("You have already added this job recently")
                     return redirect(url_for("jobhuntr.add"))
                 
