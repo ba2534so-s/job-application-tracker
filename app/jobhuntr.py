@@ -3,7 +3,7 @@ from werkzeug.exceptions import abort
 from app.auth import login_required
 from app.db import get_db
 from datetime import datetime, timedelta
-from helpers.queries import get_contract_types_dict, get_statuses_dict, get_all_applications_for_user
+from helpers.queries import *
 
 bp = Blueprint("jobhuntr", __name__)
 
@@ -62,17 +62,7 @@ def add():
                     flash("You have already added this job recently")
                     return redirect(url_for("jobhuntr.add"))
                 
-                db.execute(
-                    """
-                    INSERT INTO applications (
-                        user_id, company_name, job_position, job_location, contract_type_id, job_post_link, date_added, status_id
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-                    """,
-                    (
-                        g.user["id"], company, position, location, contract_type, url, date_added, 1
-                    )
-                )
-                db.commit()
+                add_job(g.user["id"], company, position, location, contract_type, url, date_added)
                 flash("Job application added successfully.")
                 return redirect(url_for("index"))
             except db.IntegrityError:
