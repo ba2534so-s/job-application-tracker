@@ -83,7 +83,7 @@ def check_existing_application(user_id, company, position, location, contract_ty
         AND contract_type_id = ?
         AND date_added >= ?
         """,
-        (user_id, company, position, location, contract_type, date_threshold)
+        (user_id, company, position, location, contract_type, url, date_threshold)
     ).fetchone()
     if existing_application:
         return True
