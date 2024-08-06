@@ -1,5 +1,5 @@
 from app.db import get_db
-from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.security import generate_password_hash
 from datetime import datetime, timedelta
 
 
@@ -83,7 +83,7 @@ def check_existing_application(user_id, company, position, location, contract_ty
         AND contract_type_id = ?
         AND date_added >= ?
         """,
-        (g.user["id"], company, position, location, contract_type, date_threshold)
+        (user_id, company, position, location, contract_type, date_threshold)
     ).fetchone()
     if existing_application:
         return True
