@@ -7,8 +7,9 @@ from datetime import datetime, timedelta
 def create_user(username, email, password):
     db = get_db()
     try:
-        db.execute("INSERT INTO users (id, email, hashed_password) VALUES (?, ?, ?)",
-                   (username, email, generate_password_hash(password)))
+        db.execute("INSERT INTO users (username, email, hashed_password) VALUES (?, ?, ?)",
+                   (username, email, generate_password_hash(password))
+        )
         db.commit()
         return True, None
     except db.IntegrityError as e:
