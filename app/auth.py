@@ -25,8 +25,6 @@ def register():
         elif password != confirmation:
             error = "Confirmation is required"
 
-        db = get_db()
-
         if error is None:
             success, error_message = create_user(username, email, password)
             if success:
