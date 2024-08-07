@@ -1,14 +1,13 @@
 from app.db import get_db
-from werkzeug.security import generate_password_hash
 from datetime import datetime, timedelta
 
 
 # USERS
-def create_user(username, email, password):
+def create_user(username, email, hashed_password):
     db = get_db()
     try:
         db.execute("INSERT INTO users (username, email, hashed_password) VALUES (?, ?, ?)",
-                   (username, email, generate_password_hash(password))
+                   (username, email, hashed_password)
         )
         db.commit()
         return True, None
