@@ -32,6 +32,16 @@ def get_user_by_username(username):
 
 
 # CONTRACT TYPES
+def get_contract_types_tuple():
+    db = get_db()
+    contract_types = db.execute("SELECT * FROM contract_types").fetchall()
+
+    contract_types_tuple = []
+    for contract_type in contract_types:
+        contract_types_tuple.append((contract_type["id"], contract_type["contract_type"]))
+    
+    return contract_types_tuple
+
 def get_contract_types_dict():
     db = get_db()
     contract_types = db.execute("SELECT * FROM contract_types").fetchall()
