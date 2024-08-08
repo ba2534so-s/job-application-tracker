@@ -1,9 +1,9 @@
 from flask import Blueprint, flash, g, redirect, render_template, request, url_for, jsonify
 from werkzeug.exceptions import abort
 from app.auth import login_required
-from app.db import get_db
 from datetime import datetime
 from helpers.queries import *
+from forms import AddForm
 
 bp = Blueprint("jobhuntr", __name__)
 
@@ -59,11 +59,5 @@ def add():
 
 
     else:
-        # Fill the contract type select
-        db = get_db()
-        try:
-            contract_types = db.execute("SELECT * FROM contract_types").fetchall()
-        except:
-            pass
-        
-        return render_template("jobhuntr/add.html", contract_types=contract_types)
+        form = AddForm()
+        return render_template("jobhuntr/add.html", form=form)
