@@ -25,16 +25,20 @@ def get_user_by_id(id):
     return user
 
 def get_user_by_username(username):
+
     db = get_db()
     user = db.execute("SELECT * FROM users WHERE username = ?", (username,)).fetchone()
     return user
 
 
-
 # CONTRACT TYPES
-def get_contract_types_tuple():
+def get_contract_types():
     db = get_db()
     contract_types = db.execute("SELECT * FROM contract_types").fetchall()
+    return contract_types
+
+
+def get_contract_types_tuple():
 
     contract_types_tuple = []
     for contract_type in contract_types:
