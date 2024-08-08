@@ -41,17 +41,14 @@ def add():
             error = "Location required"
         
         if error is None:
-            try:
-                if check_existing_application(g.user["id"], company, position, contract_type, location, url, date_added):
-                    flash("You have already added this job recently")
-                    return redirect(url_for("jobhuntr.add"))
-                
-                add_job(g.user["id"], company, position, location, contract_type, url, date_added)
-                flash("Job application added successfully.")
-                return redirect(url_for("index"))
-            except db.IntegrityError:
-                flash("An error occurred while adding the job application. Please try again.")
+            if check_existing_application(g.user["id"], company, position, contract_type, location, url, date_added):
+                flash("You have already added this job recently")
                 return redirect(url_for("jobhuntr.add"))
+            
+            add_job(g.user["id"], company, position, location, contract_type, url, date_added)
+            flash("Job application added successfully.")
+            return redirect(url_for("index"))
+
 
 
         # check radio button if user wants to add contact information
