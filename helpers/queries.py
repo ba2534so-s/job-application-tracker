@@ -46,11 +46,8 @@ def get_contract_types_tuple():
     return contract_types_tuple
 
 def get_contract_types_dict():
-    db = get_db()
-    contract_types = db.execute("SELECT * FROM contract_types").fetchall()
-
     contract_types_dict = {} 
-    for contract_type in contract_types:
+    for contract_type in get_contract_types():
         contract_types_dict[contract_type["id"]] = contract_type["contract_type"]
 
     return contract_types_dict
