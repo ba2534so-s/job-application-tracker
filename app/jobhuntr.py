@@ -3,7 +3,7 @@ from werkzeug.exceptions import abort
 from app.auth import login_required
 from datetime import datetime
 from helpers.queries import *
-from forms import AddForm
+from app.forms import AddForm
 
 bp = Blueprint("jobhuntr", __name__)
 
@@ -57,4 +57,5 @@ def add():
 
     else:
         form = AddForm()
+        form.contract_type.choices = get_contract_types_tuple()
         return render_template("jobhuntr/add.html", form=form)
