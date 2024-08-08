@@ -25,10 +25,8 @@ def register():
         elif password != confirmation:
             error = "Confirmation is required"
 
-        db = get_db()
-
         if error is None:
-            success, error_message = create_user(username, email, password)
+            success, error_message = create_user(username, email, generate_password_hash(password))
             if success:
                 return redirect(url_for("auth.login")) 
             else:

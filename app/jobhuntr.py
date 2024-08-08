@@ -1,9 +1,9 @@
 from flask import Blueprint, flash, g, redirect, render_template, request, url_for, jsonify
 from werkzeug.exceptions import abort
 from app.auth import login_required
-from app.db import get_db
 from datetime import datetime
 from helpers.queries import *
+from app.forms import AddForm
 
 bp = Blueprint("jobhuntr", __name__)
 
@@ -41,17 +41,14 @@ def add():
             error = "Location required"
         
         if error is None:
-            try:
-                if check_existing_application(g.user["id"], company, position, contract_type, location, url, date_added):
-                    flash("You have already added this job recently")
-                    return redirect(url_for("jobhuntr.add"))
-                
-                add_job(g.user["id"], company, position, location, contract_type, url, date_added)
-                flash("Job application added successfully.")
-                return redirect(url_for("index"))
-            except db.IntegrityError:
-                flash("An error occurred while adding the job application. Please try again.")
+            if check_existing_application(g.user["id"], company, position, contract_type, location, url, date_added):
+                flash("You have already added this job recently")
                 return redirect(url_for("jobhuntr.add"))
+            
+            add_job(g.user["id"], company, position, location, contract_type, url, date_added)
+            flash("Job application added successfully.")
+            return redirect(url_for("index"))
+
 
 
         # check radio button if user wants to add contact information
@@ -59,11 +56,6 @@ def add():
 
 
     else:
-        # Fill the contract type select
-        db = get_db()
-        try:
-            contract_types = db.execute("SELECT * FROM contract_types").fetchall()
-        except:
-            pass
-        
-        return render_template("jobhuntr/add.html", contract_types=contract_types)
+        form = AddForm()
+        form.contract_type.choices = get_contract_types_tuple()
+        return render_template("jobhuntr/add.html", form=form)

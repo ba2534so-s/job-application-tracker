@@ -1,14 +1,14 @@
 from app.db import get_db
-from werkzeug.security import generate_password_hash
 from datetime import datetime, timedelta
 
 
 # USERS
-def create_user(username, email, password):
+def create_user(username, email, hashed_password):
     db = get_db()
     try:
-        db.execute("INSERT INTO users (id, email, hashed_password) VALUES (?, ?, ?)",
-                   (username, email, generate_password_hash(password)))
+        db.execute("INSERT INTO users (username, email, hashed_password) VALUES (?, ?, ?)",
+                   (username, email, hashed_password)
+        )
         db.commit()
         return True, None
     except db.IntegrityError as e:
@@ -25,19 +25,29 @@ def get_user_by_id(id):
     return user
 
 def get_user_by_username(username):
+
     db = get_db()
     user = db.execute("SELECT * FROM users WHERE username = ?", (username,)).fetchone()
     return user
 
 
-
 # CONTRACT TYPES
-def get_contract_types_dict():
+def get_contract_types():
     db = get_db()
     contract_types = db.execute("SELECT * FROM contract_types").fetchall()
+    return contract_types
 
+
+def get_contract_types_tuple():
+    contract_types_tuple = []
+    for contract_type in get_contract_types():
+        contract_types_tuple.append((contract_type["id"], contract_type["contract_type"]))
+    
+    return contract_types_tuple
+
+def get_contract_types_dict():
     contract_types_dict = {} 
-    for contract_type in contract_types:
+    for contract_type in get_contract_types():
         contract_types_dict[contract_type["id"]] = contract_type["contract_type"]
 
     return contract_types_dict
