@@ -39,9 +39,8 @@ def get_contract_types():
 
 
 def get_contract_types_tuple():
-
     contract_types_tuple = []
-    for contract_type in contract_types:
+    for contract_type in get_contract_types():
         contract_types_tuple.append((contract_type["id"], contract_type["contract_type"]))
     
     return contract_types_tuple
