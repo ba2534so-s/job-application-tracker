@@ -74,7 +74,8 @@ def add():
                 contract_type=form.contract_type.data,
                 location=form.location.data,
                 url = form.url.data)
-        
-
+        return redirect(url_for("index"))
+    
+    if form.errors != {}: # If there are no errors (errors returnes as dict)
 
     return render_template("jobhuntr/add.html", form=form)
