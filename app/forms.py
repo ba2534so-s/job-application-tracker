@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import PasswordField, StringField, SelectField, SubmitField, URLField
-from wtforms.validators import Length
+from wtforms.validators import EqualTo, Length
 
 
 class AddForm(FlaskForm):
@@ -15,5 +15,5 @@ class RegisterForm(FlaskForm):
     username = StringField(label="Username", validators=Length(min=3, max=30))
     email = StringField(label="Email")
     password = PasswordField(label="Password", validators=Length(min=8))
-    password_confirm = PasswordField(label="Confirm Password", validators=Length(min=8))
+    password_confirm = PasswordField(label="Confirm Password", validators=EqualTo("password"))
     submit_button = SubmitField(label="Create User")
