@@ -76,6 +76,8 @@ def add():
                 url = form.url.data)
         return redirect(url_for("index"))
     
-    if form.errors != {}: # If there are no errors (errors returnes as dict)
+    if form.errors != {}: # If there are errors from validations (errors returnes as dict)
+        for err_msg in form.errors.values():
+            print(err_msg)
 
     return render_template("jobhuntr/add.html", form=form)
