@@ -4,7 +4,7 @@ from wtforms import StringField, SelectField, SubmitField, URLField
 
 class AddForm(FlaskForm):
     company = StringField(label="Company")
-    position = StringField(label="Position")
+    position = StringField(label="Job Position")
     contract_type = SelectField("Contract Type", choices=[])
     location = StringField(label="Location")
     url = URLField(label="URL")
