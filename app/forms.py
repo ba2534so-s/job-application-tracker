@@ -14,6 +14,6 @@ class AddForm(FlaskForm):
 class RegisterForm(FlaskForm):
     username = StringField(label="Username", validators=Length(min=3, max=30))
     email = StringField(label="Email")
-    password = PasswordField(label="Password")
-    password_confirm = PasswordField(label="Confirm Password")
+    password = PasswordField(label="Password", validators=Length(min=8))
+    password_confirm = PasswordField(label="Confirm Password", validators=Length(min=8))
     submit_button = SubmitField(label="Create User")
