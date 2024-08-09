@@ -22,6 +22,8 @@ def index():
 @bp.route("/add", methods=["GET", "POST"])
 @login_required
 def add():
+
+    '''
     if request.method == "POST":
         company = request.form.get("company")
         position = request.form.get("position")
@@ -39,6 +41,7 @@ def add():
             error = "Contract type required"
         elif not location:
             error = "Location required"
+            
         
         if error is None:
             if check_existing_application(g.user["id"], company, position, contract_type, location, url, date_added):
@@ -59,3 +62,18 @@ def add():
         form = AddForm()
         form.contract_type.choices = [("", "Select Contract Type")] + get_contract_types_tuple()
         return render_template("jobhuntr/add.html", form=form)
+    '''
+        
+    form = AddForm()
+    form.contract_type.choices = [("", "Select Contract Type")] + get_contract_types_tuple()
+
+    if form.validate_on_submit():
+        add_job(company=form.company.data,
+                position=form.position.data,
+                contract_type=form.contract_type.data,
+                location=form.location.data,
+                url = form.url.data)
+        
+
+
+    return render_template("jobhuntr/add.html", form=form)
