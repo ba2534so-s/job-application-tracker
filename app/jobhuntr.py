@@ -68,6 +68,7 @@ def add():
     form.contract_type.choices = [("", "Select Contract Type")] + get_contract_types_tuple()
 
     if form.validate_on_submit():
+        # I might have to handle the case if url is empty!
         add_job(company=form.company.data,
                 position=form.position.data,
                 contract_type=form.contract_type.data,
