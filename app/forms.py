@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SelectField, SubmitField, URLField
+from wtforms import PasswordField, StringField, SelectField, SubmitField, URLField
 
 
 class AddForm(FlaskForm):
@@ -9,3 +9,10 @@ class AddForm(FlaskForm):
     location = StringField(label="Location")
     url = URLField(label="URL")
     add_button = SubmitField(label="Add Job")
+
+class RegisterForm(FlaskForm):
+    username = StringField(label="Username")
+    email = StringField(label="Email")
+    password = PasswordField(label="Password")
+    password_confirm = PasswordField(label="Confirm Password")
+    submit_button = SubmitField(label="Create User")
