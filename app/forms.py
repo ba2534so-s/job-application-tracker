@@ -9,7 +9,7 @@ class AddForm(FlaskForm):
     contract_type = SelectField("Contract Type", choices=[], validators=[DataRequired()])
     location = StringField(label="Location", validators=[DataRequired()])
     url = URLField(label="URL", validators=[URL()])
-    add_button = SubmitField(label="Add Job", validators=[])
+    add_button = SubmitField(label="Add Job")
 
 class RegisterForm(FlaskForm):
     username = StringField(label="Username", validators=[DataRequired(), Length(min=3, max=30)])
