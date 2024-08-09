@@ -57,5 +57,5 @@ def add():
 
     else:
         form = AddForm()
-        form.contract_type.choices = get_contract_types_tuple()
+        form.contract_type.choices = [("", "Select Contract Type")] + get_contract_types_tuple()
         return render_template("jobhuntr/add.html", form=form)
