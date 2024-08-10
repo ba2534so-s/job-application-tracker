@@ -64,14 +64,15 @@ def get_statuses_dict():
 
 # APPLICATIONS
 # add job
-def add_job(user_id, company, position, location, contract_type, url, date_added):
+def add_job(user_id, company, position, location, contract_type, url):
+    date_added = datetime.now().strftime("%Y-%m-%d")
     db = get_db()
     if url is None:
         db.execute(
             """
             INSERT INTO applications (
                 user_id, company_name, job_position, job_location, contract_type_id, date_added, status_id
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            ) VALUES (?, ?, ?, ?, ?, ?, ?)
             """,
             (
                 user_id, company, position, location, contract_type, date_added, 1
