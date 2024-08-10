@@ -3,12 +3,17 @@ from flask import Blueprint, flash, g, redirect, render_template, request, sessi
 from werkzeug.security import check_password_hash, generate_password_hash
 from app.db import get_db
 from helpers.queries import create_user, get_user_by_username, get_user_by_id
+from app.forms import RegisterForm
 
 bp = Blueprint("auth",__name__, url_prefix="/auth")
 
 
 @bp.route("/register", methods=["GET", "POST"])
 def register():
+    form = RegisterForm()
+
+    return render_template("auth/register.html")
+    '''
     if request.method == "POST":
         username = request.form.get("username")
         email = request.form.get("email")
@@ -35,7 +40,7 @@ def register():
         flash(error)
     
     else:
-        return render_template("auth/register.html")
+    '''
 
 
 @bp.route("/login", methods=["GET", "POST"])
