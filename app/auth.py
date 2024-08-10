@@ -20,7 +20,7 @@ def register():
         for err_msg in form.errors.values():
             flash(f"There was an error creating the user: {err_msg}", category="danger")
 
-    return render_template("auth/register.html")
+    return render_template("auth/register.html", form=form)
 
 
 @bp.route("/login", methods=["GET", "POST"])
