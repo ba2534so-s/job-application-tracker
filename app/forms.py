@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import PasswordField, StringField, SelectField, SubmitField, URLField
-from wtforms.validators import DataRequired, Email, EqualTo, Length, URL
+from wtforms.validators import DataRequired, Email, EqualTo, Length, Optional, URL
 
 
 class AddForm(FlaskForm):
@@ -8,7 +8,7 @@ class AddForm(FlaskForm):
     position = StringField(label="Job Position", validators=[DataRequired()])
     contract_type = SelectField("Contract Type", choices=[], validators=[DataRequired()])
     location = StringField(label="Location", validators=[DataRequired()])
-    url = URLField(label="URL", validators=[URL()])
+    url = URLField(label="URL", validators=[Optional(), URL()])
     add_button = SubmitField(label="Add Job")
 
 class RegisterForm(FlaskForm):
