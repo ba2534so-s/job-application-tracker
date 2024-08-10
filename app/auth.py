@@ -16,6 +16,9 @@ def register():
                     email=form.email.data,
                     hashed_password=generate_password_hash(form.password.data))
         return redirect(url_for("auth/login"))
+    if form.errors != {}:
+        for err_msg in form.errors.values():
+            flash(f"There was an error creating the user: {err_msg}", category="danger")
 
     return render_template("auth/register.html")
     '''
