@@ -1,7 +1,6 @@
 from flask import Blueprint, flash, g, redirect, render_template, request, url_for, jsonify
 from werkzeug.exceptions import abort
 from app.auth import login_required
-from datetime import datetime
 from helpers.queries import *
 from app.forms import AddForm
 
@@ -69,7 +68,8 @@ def add():
 
     if form.validate_on_submit():
         url = form.url.data or None # If the URL is empty, store None
-        add_job(company=form.company.data,
+        add_job(user_id=g.user["id"],
+                company=form.company.data,
                 position=form.position.data,
                 contract_type=form.contract_type.data,
                 location=form.location.data,
