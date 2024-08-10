@@ -11,6 +11,10 @@ bp = Blueprint("auth",__name__, url_prefix="/auth")
 @bp.route("/register", methods=["GET", "POST"])
 def register():
     form = RegisterForm()
+    if form.validate_on_submit():
+        create_user(username=form.username.data,
+                    email=form.email.data,
+                    hashed_password=generate_password_hash(form.password.data))
 
     return render_template("auth/register.html")
     '''
