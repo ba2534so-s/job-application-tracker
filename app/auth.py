@@ -21,34 +21,6 @@ def register():
             flash(f"There was an error creating the user: {err_msg}", category="danger")
 
     return render_template("auth/register.html")
-    '''
-    if request.method == "POST":
-        username = request.form.get("username")
-        email = request.form.get("email")
-        password = request.form.get("password")
-        confirmation = request.form.get("confirmation")
-        error = None
-
-        if not username:
-            error = "Username is required"
-        elif not email:
-            error = "Email is required"
-        elif not password:
-            error = "Password is required"
-        elif password != confirmation:
-            error = "Confirmation is required"
-
-        if error is None:
-            success, error_message = create_user(username, email, generate_password_hash(password))
-            if success:
-                return redirect(url_for("auth.login")) 
-            else:
-                error = error_message
-            
-        flash(error)
-    
-    else:
-    '''
 
 
 @bp.route("/login", methods=["GET", "POST"])
