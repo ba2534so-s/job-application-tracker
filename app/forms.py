@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import PasswordField, StringField, SelectField, SubmitField, URLField
+from wtforms import PasswordField, StringField, SelectField, SubmitField, URLField, ValidationError
 from wtforms.validators import DataRequired, Email, EqualTo, Length, Optional, URL
+from helpers.queries import get_user_by_username
 
 
 class AddForm(FlaskForm):
@@ -12,6 +13,14 @@ class AddForm(FlaskForm):
     add_button = SubmitField(label="Add Job")
 
 class RegisterForm(FlaskForm):
+
+    def validate_username(self, username_to_check):
+        user = get_user_by_username(username_to_check)
+        if user:
+            raise ValidationError("Username already exists! Please try a different username")
+    
+    
+
     username = StringField(label="Username", validators=[DataRequired(), Length(min=3, max=30)])
     email = StringField(label="Email", validators=[DataRequired(), Email()])
     password = PasswordField(label="Password", validators=[DataRequired(), Length(min=8)])
