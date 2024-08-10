@@ -69,11 +69,12 @@ def add():
 
     if form.validate_on_submit():
         # I might have to handle the case if url is empty!
+        url = form.url.data or None
         add_job(company=form.company.data,
                 position=form.position.data,
                 contract_type=form.contract_type.data,
                 location=form.location.data,
-                url = form.url.data)
+                url=url)
         return redirect(url_for("index"))
     
     if form.errors != {}: # If there are errors from validations (errors returnes as dict)
