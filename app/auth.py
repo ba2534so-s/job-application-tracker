@@ -3,39 +3,24 @@ from flask import Blueprint, flash, g, redirect, render_template, request, sessi
 from werkzeug.security import check_password_hash, generate_password_hash
 from app.db import get_db
 from helpers.queries import create_user, get_user_by_username, get_user_by_id
+from app.forms import RegisterForm
 
 bp = Blueprint("auth",__name__, url_prefix="/auth")
 
 
 @bp.route("/register", methods=["GET", "POST"])
 def register():
-    if request.method == "POST":
-        username = request.form.get("username")
-        email = request.form.get("email")
-        password = request.form.get("password")
-        confirmation = request.form.get("confirmation")
-        error = None
+    form = RegisterForm()
+    if form.validate_on_submit():
+        create_user(username=form.username.data,
+                    email=form.email.data,
+                    hashed_password=generate_password_hash(form.password.data))
+        return redirect(url_for("auth.login"))
+    if form.errors != {}:
+        for err_msg in form.errors.values():
+            flash(f"There was an error creating the user: {err_msg}", category="danger")
 
-        if not username:
-            error = "Username is required"
-        elif not email:
-            error = "Email is required"
-        elif not password:
-            error = "Password is required"
-        elif password != confirmation:
-            error = "Confirmation is required"
-
-        if error is None:
-            success, error_message = create_user(username, email, generate_password_hash(password))
-            if success:
-                return redirect(url_for("auth.login")) 
-            else:
-                error = error_message
-            
-        flash(error)
-    
-    else:
-        return render_template("auth/register.html")
+    return render_template("auth/register.html", form=form)
 
 
 @bp.route("/login", methods=["GET", "POST"])

@@ -4,48 +4,23 @@
     <div class="mb-3 text-center">
         <h1>{% block title %}Add Job{% endblock %}</h1>
     </div>
-    <div class="container bg-secondary bg-gradient text-center p-5 shadow-lg rounded-3">
+    <div class="container bg-secondary bg-gradient text-center py-4 px-5 shadow-lg rounded-3">
         <form id="add-job-form" action="{{ url_for('jobhuntr.add')}}" method="post">
-            <div class="row mb-3">
-                <div class="col">
-                    <input class="form-control" autofocus name="company" placeholder="Company" type="text" required>
-                </div>
-                <div class="col">
-                    <input class="form-control" name="position" placeholder="Position" type="text" required>
-                </div>
-                <div class="col">
-                    <select class="form-select" name="contract-type">
-                        {% for contract_type in contract_types %}
-                            <option value="{{ contract_type['id'] }}">{{ contract_type["contract_type"] }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col">
-                    <input class="form-control" name="location" placeholder="Location" type="text">
-                </div>
-                <div class="col-8">
-                    <input class="form-control" name="url" placeholder="URL" type="url">
-                </div>
-            </div>
-            <div class="container border border-black rounded my-4 p-3">
-                <p class="h5">Contact Info</p>
-                <div class="row mb-3">
-                    <div class="col">
-                        <input class="form-control" name="contact" placeholder="Contact" type="text">
-                    </div>
-                    <div class="col">
-                        <input class="form-control" name="email" placeholder="Email" type="email">
-                    </div>
-                    <div class="col">
-                        <input class="form-control" name="phone" placeholder="Phone" type="phone">
-                    </div>
-                </div>
-            </div>
-            <button class="btn btn-success" type="submit">Add Job</button>
+            {{ form.hidden_tag() }}
+            <h3 class="mb-3">Job Information</h3>
+            {{ form.company.label() }}
+            {{ form.company(class="form-control my-3", placeholder="Enter Company Name") }}
+            {{ form.position.label() }}
+            {{ form.position(class="form-control my-3", placeholder="Job Position")}}
+            {{ form.contract_type.label() }}
+            {{ form.contract_type(class="form-select my-3") }}
+            {{ form.location.label() }}
+            {{ form.location(class="form-control my-3", placeholder="Enter Location") }}
+            {{ form.url.label() }}
+            {{ form.url(class="form-control my-3", placeholder="Enter Application URL")}}
+            {{ form.add_button(class="btn btn-lg btn-success mt-3")}}
+
+
         </form>
     </div>
-
-    <script src="{{ url_for('static', filename='js/add_job.js') }}"></script>
 {% endblock %}

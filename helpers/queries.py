@@ -25,10 +25,14 @@ def get_user_by_id(id):
     return user
 
 def get_user_by_username(username):
-
     db = get_db()
     user = db.execute("SELECT * FROM users WHERE username = ?", (username,)).fetchone()
     return user
+
+def get_user_by_email(email):
+    db = get_db()
+    user = db.execute("SELECT * FROM users WHERE email = ?", (email,)).fetchone()
+    return user 
 
 
 # CONTRACT TYPES
@@ -64,18 +68,31 @@ def get_statuses_dict():
 
 # APPLICATIONS
 # add job
-def add_job(user_id, company, position, location, contract_type, url, date_added):
+def add_job(user_id, company, position, location, contract_type, url):
+    date_added = datetime.now().strftime("%Y-%m-%d")
     db = get_db()
-    db.execute(
-        """
-        INSERT INTO applications (
-            user_id, company_name, job_position, job_location, contract_type_id, job_post_link, date_added, status_id
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-        """,
-        (
-            user_id, company, position, location, contract_type, url, date_added, 1
+    if url is None:
+        db.execute(
+            """
+            INSERT INTO applications (
+                user_id, company_name, job_position, job_location, contract_type_id, date_added, status_id
+            ) VALUES (?, ?, ?, ?, ?, ?, ?)
+            """,
+            (
+                user_id, company, position, location, contract_type, date_added, 1
+            )
         )
-    )
+    else:
+        db.execute(
+            """
+            INSERT INTO applications (
+                user_id, company_name, job_position, job_location, contract_type_id, job_post_link, date_added, status_id
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            """,
+            (
+                user_id, company, position, location, contract_type, url, date_added, 1
+            )
+        )
     db.commit()
 
 # check existing job
