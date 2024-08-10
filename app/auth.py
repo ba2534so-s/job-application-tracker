@@ -15,6 +15,7 @@ def register():
         create_user(username=form.username.data,
                     email=form.email.data,
                     hashed_password=generate_password_hash(form.password.data))
+        return redirect(url_for("auth/login"))
 
     return render_template("auth/register.html")
     '''
