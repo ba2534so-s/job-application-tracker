@@ -15,12 +15,12 @@ class AddForm(FlaskForm):
 class RegisterForm(FlaskForm):
 
     def validate_username(self, username_to_check):
-        user = get_user_by_username(username_to_check)
+        user = get_user_by_username(username_to_check.data)
         if user:
             raise ValidationError("Username already exists! Please try a different username")
     
     def validate_email(self, email_to_check):
-        user = get_user_by_email(email_to_check)
+        user = get_user_by_email(email_to_check.data)
         if user:
             raise ValidationError("Email already exists! Please try a different email")
 

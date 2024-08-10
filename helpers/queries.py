@@ -25,7 +25,6 @@ def get_user_by_id(id):
     return user
 
 def get_user_by_username(username):
-
     db = get_db()
     user = db.execute("SELECT * FROM users WHERE username = ?", (username,)).fetchone()
     return user
@@ -33,7 +32,7 @@ def get_user_by_username(username):
 def get_user_by_email(email):
     db = get_db()
     user = db.execute("SELECT * FROM users WHERE email = ?", (email,)).fetchone()
-    return user
+    return user 
 
 
 # CONTRACT TYPES
