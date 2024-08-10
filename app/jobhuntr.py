@@ -78,6 +78,6 @@ def add():
     
     if form.errors != {}: # If there are errors from validations (errors returnes as dict)
         for err_msg in form.errors.values():
-            flash(f"There was an error adding the job: {err_msg}")
+            flash(f"There was an error adding the job: {err_msg}", category="danger")
 
     return render_template("jobhuntr/add.html", form=form)
