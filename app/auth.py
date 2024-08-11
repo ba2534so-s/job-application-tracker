@@ -37,35 +37,7 @@ def login():
             flash("Wrong username or password! Please try again.", category="danger")
 
     return render_template("auth/login.html", form=form)
-    '''
-    if request.method == "POST":
-        username = request.form.get("username")
-        password = request.form.get("password")
-        error = None
-
-        if not username:
-            error = "Username is required"
-        elif not password:
-            error = "Password is required"
-
-        if error is None:
-            user = get_user_by_username(username)
-        
-        if user is None:
-            error = "Incorrect username"
-        elif not check_password_hash(user["hashed_password"], password):
-            error = "Incorrect password"
-        
-        if error is None:
-            session.clear()
-            session["user_id"] = user["id"]
-            return redirect(url_for("index"))
-        
-        flash(error)
-
-    else:
-        return render_template("auth/login.html")
-    '''
+   
 
 @bp.before_app_request
 def load_logged_in_user():
