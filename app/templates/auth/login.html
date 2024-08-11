@@ -13,13 +13,13 @@
             {{ form.password.label() }}
             {{ form.password(class="form-control my-2", placeholder="Enter Password")}}
 
-            <div class="checkbox my-2">
+            <div class="checkbox my-3">
                 <h6>Don't have an account yet?</h6>
                 <a class="btn btn-sm btn-outline-warning" href="{{url_for('auth.register')}}">Register</a>
             </div>
 
 
-            {{ form.login_button(class="btn btn-lg btn-success mt-3")}}
+            {{ form.login_button(class="btn btn-lg btn-success")}}
         </form>
     </div>
 {% endblock %}
