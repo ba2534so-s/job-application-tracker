@@ -3,7 +3,7 @@ from flask import Blueprint, flash, g, redirect, render_template, request, sessi
 from werkzeug.security import check_password_hash, generate_password_hash
 from app.db import get_db
 from helpers.queries import create_user, get_user_by_username, get_user_by_id
-from app.forms import RegisterForm
+from app.forms import RegisterForm, LoginForm
 
 bp = Blueprint("auth",__name__, url_prefix="/auth")
 
@@ -25,6 +25,10 @@ def register():
 
 @bp.route("/login", methods=["GET", "POST"])
 def login():
+    form = LoginForm()
+    
+    return render_template("auth/login.html", form=form)
+    '''
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
@@ -52,7 +56,8 @@ def login():
 
     else:
         return render_template("auth/login.html")
-    
+    '''
+
 @bp.before_app_request
 def load_logged_in_user():
     user_id = session.get("user_id")
