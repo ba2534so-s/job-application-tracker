@@ -3,7 +3,7 @@ from flask import Blueprint, flash, g, redirect, render_template, request, sessi
 from werkzeug.security import check_password_hash, generate_password_hash
 from app.db import get_db
 from helpers.queries import create_user, get_user_by_username, get_user_by_id
-from app.forms import RegisterForm
+from app.forms import RegisterForm, LoginForm
 
 bp = Blueprint("auth",__name__, url_prefix="/auth")
 
@@ -12,10 +12,13 @@ bp = Blueprint("auth",__name__, url_prefix="/auth")
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
-        create_user(username=form.username.data,
+        user_id = create_user(username=form.username.data,
                     email=form.email.data,
-                    hashed_password=generate_password_hash(form.password.data))
-        return redirect(url_for("auth.login"))
+                    hashed_password=generate_password_hash(form.password.data))        
+        session.clear()
+        session["user_id"] = user_id
+        flash("Registration successful! You are now logged in")
+        return redirect(url_for("index"))
     if form.errors != {}:
         for err_msg in form.errors.values():
             flash(f"There was an error creating the user: {err_msg}", category="danger")
@@ -25,34 +28,20 @@ def register():
 
 @bp.route("/login", methods=["GET", "POST"])
 def login():
-    if request.method == "POST":
-        username = request.form.get("username")
-        password = request.form.get("password")
-        error = None
-
-        if not username:
-            error = "Username is required"
-        elif not password:
-            error = "Password is required"
-
-        if error is None:
-            user = get_user_by_username(username)
-        
-        if user is None:
-            error = "Incorrect username"
-        elif not check_password_hash(user["hashed_password"], password):
-            error = "Incorrect password"
-        
-        if error is None:
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = get_user_by_username(form.username.data)
+        if user and check_password_hash(user["hashed_password"], form.password.data):
             session.clear()
             session["user_id"] = user["id"]
+            flash(f"You are logged in as {user['username']}", category="success")
             return redirect(url_for("index"))
-        
-        flash(error)
+        else: 
+            flash("Wrong username or password! Please try again.", category="danger")
 
-    else:
-        return render_template("auth/login.html")
-    
+    return render_template("auth/login.html", form=form)
+   
+
 @bp.before_app_request
 def load_logged_in_user():
     user_id = session.get("user_id")
@@ -66,6 +55,7 @@ def load_logged_in_user():
 @bp.route("/logout")
 def logout():
     session.clear()
+    flash("You have been logged out", category="info")
     return redirect(url_for("index"))
 
 
