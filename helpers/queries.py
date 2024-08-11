@@ -5,18 +5,14 @@ from datetime import datetime, timedelta
 # USERS
 def create_user(username, email, hashed_password):
     db = get_db()
-    try:
-        db.execute("INSERT INTO users (username, email, hashed_password) VALUES (?, ?, ?)",
-                   (username, email, hashed_password)
-        )
-        db.commit()
-        return True, None
-    except db.IntegrityError as e:
-        error_message = f"User {username} or email {email} is already registered."
-        return False, error_message
-    except Exception as e:
-        error_message = f"An unexpected error occurred: {e}"
-        return False, error_message
+
+    new_user = db.execute("INSERT INTO users (username, email, hashed_password) VALUES (?, ?, ?)",
+                (username, email, hashed_password)
+    )
+    db.commit()
+    return new_user
+
+        
     
 
 def get_user_by_id(id):
