@@ -26,7 +26,11 @@ def register():
 @bp.route("/login", methods=["GET", "POST"])
 def login():
     form = LoginForm()
-    
+    if form.validate_on_submit():
+        user = get_user_by_username(form.username.data)
+        if user and check_password_hash(user["hashed_password"], form.password.data):
+
+
     return render_template("auth/login.html", form=form)
     '''
     if request.method == "POST":
