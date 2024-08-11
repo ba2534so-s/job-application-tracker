@@ -6,11 +6,11 @@ from datetime import datetime, timedelta
 def create_user(username, email, hashed_password):
     db = get_db()
 
-    new_user = db.execute("INSERT INTO users (username, email, hashed_password) VALUES (?, ?, ?)",
+    cursor = db.execute("INSERT INTO users (username, email, hashed_password) VALUES (?, ?, ?)",
                 (username, email, hashed_password)
     )
     db.commit()
-    return new_user
+    return cursor.lastrowid
 
         
     
