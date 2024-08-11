@@ -31,7 +31,7 @@ def login():
         if user and check_password_hash(user["hashed_password"], form.password.data):
             session.clear()
             session["user_id"] = user["id"]
-            flash(f"You are logged in as {user["username"]}", category="success")
+            flash(f"You are logged in as {user['username']}", category="success")
             return redirect(url_for("index"))
         else: 
             flash("Wrong username or password! Please try again.", category="danger")
