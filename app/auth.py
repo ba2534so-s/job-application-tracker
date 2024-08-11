@@ -33,6 +33,8 @@ def login():
             session["user_id"] = user["id"]
             flash(f"You are logged in as {user["username"]}")
             return redirect(url_for("index"))
+        else: 
+            flash("Wrong username or password! Please try again.")
 
     return render_template("auth/login.html", form=form)
     '''
