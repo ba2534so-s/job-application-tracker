@@ -29,7 +29,10 @@ def login():
     if form.validate_on_submit():
         user = get_user_by_username(form.username.data)
         if user and check_password_hash(user["hashed_password"], form.password.data):
-
+            session.clear()
+            session["user_id"] = user["id"]
+            flash(f"You are logged in as {user["username"]}")
+            return redirect(url_for("index"))
 
     return render_template("auth/login.html", form=form)
     '''
