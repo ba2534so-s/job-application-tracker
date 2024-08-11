@@ -5,21 +5,14 @@
     <div class="mb-3 text-center">
         <h1>{% block title %}Login{% endblock %}</h1>
     </div>
-    <div class="container bg-secondary bg-gradient text-center p-5">
+    <div class="container bg-secondary bg-gradient text-center py-4 px-5">
         <form action="{{ url_for('auth.login') }}" method="post">
             {{ form.hidden_tag() }}
             {{ form.username.label() }}
             {{ form.username(class="form-control my-2", placeholder="Enter Username")}}
             {{ form.password.label() }}
             {{ form.password(class="form-control my-2", placeholder="Enter Password")}}
-            {{ form.login_button(class="btn btn-lg btn-success")}}
-            <div class="mb-3">
-                <input class="form-control mx-auto w-25" autocomplete="off" autofocus name="username" placeholder="Username" type="text" required>
-            </div>
-            <div class="mb-3">
-                <input class="form-control mx-auto w-25" name="password" placeholder="Password" type="password" required>
-            </div>
-            <button class="btn btn-success" type="submit">Login</button>
+            {{ form.login_button(class="btn btn-lg btn-success mt-3")}}
         </form>
     </div>
 {% endblock %}
