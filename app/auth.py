@@ -12,10 +12,13 @@ bp = Blueprint("auth",__name__, url_prefix="/auth")
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
-        create_user(username=form.username.data,
+        user_id = create_user(username=form.username.data,
                     email=form.email.data,
-                    hashed_password=generate_password_hash(form.password.data))
-        return redirect(url_for("auth.login"))
+                    hashed_password=generate_password_hash(form.password.data))        
+        session.clear()
+        session["user_id"] = user_id
+        flash("Registration successful! You are now logged in")
+        return redirect(url_for("index"))
     if form.errors != {}:
         for err_msg in form.errors.values():
             flash(f"There was an error creating the user: {err_msg}", category="danger")
