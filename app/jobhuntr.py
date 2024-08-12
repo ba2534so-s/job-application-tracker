@@ -81,3 +81,20 @@ def add():
             flash(f"There was an error adding the job: {err_msg}", category="danger")
 
     return render_template("jobhuntr/add.html", form=form)
+
+@bp.route("/delete", methods=["POST"])
+def delete():
+    job_id = request.form.get('job_id')
+    if job_id is None:
+        flash("Invalid job deletion request.", category="danger")
+        return redirect(url_for("index"))
+    
+    job_to_delete = delete_job(g.user["id"], job_id)
+
+    if job_to_delete:
+        flash(f"Job '{job_to_delete['job_position']}' at '{job_to_delete['company_name']}' was deleted successfully.",
+              category="warning")
+    else:
+        flash("Job could not be found or you don't have permission to delete it.", category="danger")
+    
+    return redirect(url_for("index"))
