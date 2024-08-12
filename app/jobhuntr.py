@@ -90,3 +90,10 @@ def delete():
         return redirect(url_for("index"))
     
     job_to_delete = delete_job(g.user["id"], job_id)
+
+    if job_to_delete:
+        flash(f"Job '{job_to_delete['job_position']}' at '{job_to_delete['company_name']}' was deleted successfully.",
+              category="warning")
+    else:
+        flash("Job could not be found or you don't have permission to delete it.", category="danger")
+    
