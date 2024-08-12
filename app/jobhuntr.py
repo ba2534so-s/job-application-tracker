@@ -84,4 +84,7 @@ def add():
 
 @bp.route("/delete", methods=["POST"])
 def delete():
-    print(f"DELETE: {request.form.get("job_id")}")
+    job_id = request.form.get('job_id')
+    if job_id is None:
+        flash("Invalid job deletion request.", category="danger")
+        return redirect(url_for("index"))
