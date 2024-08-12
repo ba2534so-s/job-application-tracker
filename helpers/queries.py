@@ -126,4 +126,13 @@ def get_all_applications_for_user(user_id):
 # get all jobs with status interviewing
 # apply to job
 # edit job application
-# remove job 
+# delete job 
+def delete_job(user_id, job_id):
+    db = get_db()
+    job_to_delete = db.execute("SELECT * FROM applications WHERE user_id = ? AND id = ?", (user_id, job_id)).fetchone()
+
+    if job_to_delete:
+        db.execute("DELETE FROM applications WHERE user_id = ? AND id = ?", (user_id, job_id))
+        db.commit()
+        return job_to_delete
+    return None
