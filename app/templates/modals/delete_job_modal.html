@@ -6,12 +6,16 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>Body text goes here!</p>
+                <p>
+                    Are you sure you want to delete the job application for 
+                    <strong>{{ application["job_position"] }}</strong> at <strong>{{ application["company_name"] }}</strong>? 
+                    This action cannot be undone.
+                </p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
 
-                 <form action="url_for('jobhuntr.delete')" method="post">
+                 <form action="url_for('jobhuntr.delete', job_id=application['id'])" method="post">
                      <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
             </div>
