@@ -88,3 +88,5 @@ def delete():
     if job_id is None:
         flash("Invalid job deletion request.", category="danger")
         return redirect(url_for("index"))
+    
+    job_to_delete = delete_job(g.user["id"], job_id)
