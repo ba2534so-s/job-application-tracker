@@ -81,3 +81,7 @@ def add():
             flash(f"There was an error adding the job: {err_msg}", category="danger")
 
     return render_template("jobhuntr/add.html", form=form)
+
+@bp.route("/delete", methods=["POST"])
+def delete():
+    print(f"DELETE: {request.form.get("job_id")}")
