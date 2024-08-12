@@ -97,3 +97,4 @@ def delete():
     else:
         flash("Job could not be found or you don't have permission to delete it.", category="danger")
     
+    return redirect(url_for("index"))
