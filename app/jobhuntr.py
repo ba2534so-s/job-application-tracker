@@ -6,10 +6,12 @@ from app.forms import AddForm, DeleteApplicationForm
 
 bp = Blueprint("jobhuntr", __name__)
 
-@bp.route("/")
+@bp.route("/", methods=["GET", "POST"])
 @login_required
 def index():
     delete_form = DeleteApplicationForm()
+    if delete_form.validate_on_submit():
+        
     
     applications = get_all_applications_for_user(g.user["id"])
     contract_types = get_contract_types_dict()
