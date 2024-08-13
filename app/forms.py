@@ -35,3 +35,7 @@ class LoginForm(FlaskForm):
     username = StringField(label="Username", validators=[DataRequired()])
     password = PasswordField(label="Password", validators=[DataRequired()])
     login_button = SubmitField(label="Login")
+
+
+class DeleteApplicationForm(FlaskForm):
+    delete_button = SubmitField(label="Delete")
