@@ -37,5 +37,5 @@ class LoginForm(FlaskForm):
     login_button = SubmitField(label="Login")
 
 
-class DeleteApplicationForm():
+class DeleteApplicationForm(FlaskForm):
     delete_button = SubmitField(label="Delete")
