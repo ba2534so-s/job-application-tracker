@@ -86,6 +86,7 @@ def add():
     return render_template("jobhuntr/add.html", form=form)
 
 @bp.route("/delete", methods=["POST"])
+@login_required
 def delete():
     form = DeleteApplicationForm()
     
