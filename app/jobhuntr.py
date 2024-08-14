@@ -10,9 +10,7 @@ bp = Blueprint("jobhuntr", __name__)
 @login_required
 def index():
     delete_form = DeleteApplicationForm()
-    if delete_form.validate_on_submit():
-        
-    
+
     applications = get_all_applications_for_user(g.user["id"])
     contract_types = get_contract_types_dict()
     statuses = get_statuses_dict()
@@ -88,18 +86,25 @@ def add():
     return render_template("jobhuntr/add.html", form=form)
 
 @bp.route("/delete", methods=["POST"])
+@login_required
 def delete():
-    job_id = request.form.get('job_id')
-    if job_id is None:
-        flash("Invalid job deletion request.", category="danger")
-        return redirect(url_for("index"))
+    form = DeleteApplicationForm()
     
-    job_to_delete = delete_job(g.user["id"], job_id)
+    if form.validate_on_submit():
 
-    if job_to_delete:
-        flash(f"Job '{job_to_delete['job_position']}' at '{job_to_delete['company_name']}' was deleted successfully.",
-              category="warning")
+        job_id = request.form.get('job_id')
+        if job_id is None:
+            flash("Invalid job deletion request.", category="danger")
+            return redirect(url_for("index"))
+        
+        job_to_delete = delete_job(g.user["id"], job_id)
+
+        if job_to_delete:
+            flash(f"Job '{job_to_delete['job_position']}' at '{job_to_delete['company_name']}' was deleted successfully.",
+                category="warning")
+        else:
+            flash("Job could not be found or you don't have permission to delete it.", category="danger")
     else:
-        flash("Job could not be found or you don't have permission to delete it.", category="danger")
+        flash("There was an error processing your request.", category="danger")
     
     return redirect(url_for("index"))
