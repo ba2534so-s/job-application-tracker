@@ -12,6 +12,9 @@ class AddForm(FlaskForm):
     url = URLField(label="URL", validators=[Optional(), URL()])
     add_button = SubmitField(label="Add Job")
 
+class EditForm(FlaskForm):
+    company = StringField(label="Company", validators=[DataRequired()])
+
 class RegisterForm(FlaskForm):
 
     def validate_username(self, username_to_check):
