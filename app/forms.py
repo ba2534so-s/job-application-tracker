@@ -15,7 +15,8 @@ class AddForm(FlaskForm):
 class EditForm(FlaskForm):
     company = StringField(label="Company", validators=[DataRequired()])
     position = StringField(label="Job Position", validators=[DataRequired()])
-    
+    contract_type = SelectField(label="Contract Type", choices=[], validators=[DataRequired()])
+
 
 class RegisterForm(FlaskForm):
 
