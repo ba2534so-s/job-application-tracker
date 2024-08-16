@@ -19,6 +19,8 @@ class EditForm(FlaskForm):
     location = StringField(label="Location", validators=[DataRequired()])
     url = URLField(label="URL", validators=[Optional(), URL()])
     status = SelectField(label="Status", validators=[DataRequired()])
+    save_button = SubmitField(label="Save Changes")
+
 
 
 class RegisterForm(FlaskForm):
