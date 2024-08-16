@@ -2,7 +2,7 @@ from flask import Blueprint, flash, g, redirect, render_template, request, url_f
 from werkzeug.exceptions import abort
 from app.auth import login_required
 from helpers.queries import *
-from app.forms import AddForm, DeleteApplicationForm
+from app.forms import AddForm, DeleteApplicationForm, EditForm
 
 bp = Blueprint("jobhuntr", __name__)
 
@@ -46,7 +46,8 @@ def add():
 @bp.route("/edit/<int:job_id>", methods=["GET", "POST"])
 @login_required
 def edit(job_id):
-    pass
+    form = EditForm()
+    
 
 @bp.route("/delete", methods=["POST"])
 @login_required
