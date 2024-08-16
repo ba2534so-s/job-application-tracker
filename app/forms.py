@@ -17,6 +17,7 @@ class EditForm(FlaskForm):
     position = StringField(label="Job Position", validators=[DataRequired()])
     contract_type = SelectField(label="Contract Type", choices=[], validators=[DataRequired()])
     location = StringField(label="Location", validators=[DataRequired()])
+    url = URLField(label="URL", validators=[Optional(), URL()])
 
 
 class RegisterForm(FlaskForm):
