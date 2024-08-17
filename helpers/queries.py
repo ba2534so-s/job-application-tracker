@@ -53,6 +53,10 @@ def get_contract_types_dict():
     return contract_types_dict
 
 # APPLICATION STATUSES
+def get_statuses_tuple():
+    statuses_tuple = []
+    for status in get_statuses()
+
 def get_statuses_dict():
     db = get_db()
     statuses = db.execute("SELECT * FROM statuses").fetchall()
@@ -91,6 +95,9 @@ def add_job(user_id, company, position, location, contract_type, url):
         )
     db.commit()
 
+# edit job application
+#def edit_job(user_id, application_id, company, position, location, contract_type, status, url):
+
 # check existing job
 def check_existing_application(user_id, company, position, location, contract_type, url, date_added):
     date_threshold = (datetime.now() - timedelta(days=150)).strftime("%Y-%m-%d")
@@ -125,7 +132,6 @@ def get_all_applications_for_user(user_id):
 # get all jobs with status applied
 # get all jobs with status interviewing
 # apply to job
-# edit job application
 # delete job 
 def delete_job(user_id, job_id):
     db = get_db()
