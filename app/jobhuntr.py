@@ -35,6 +35,7 @@ def add():
                 contract_type=form.contract_type.data,
                 location=form.location.data,
                 url=url)
+        flash("Job added successfully", category="success")
         return redirect(url_for("index"))
     
     if form.errors != {}: # If there are errors from validations (errors returnes as dict)
