@@ -2,7 +2,7 @@ from flask import Blueprint, flash, g, redirect, render_template, request, url_f
 from werkzeug.exceptions import abort
 from app.auth import login_required
 from helpers.queries import *
-from app.forms import AddForm, DeleteApplicationForm
+from app.forms import AddForm, DeleteApplicationForm, EditForm
 
 bp = Blueprint("jobhuntr", __name__)
 
@@ -24,48 +24,6 @@ def index():
 @bp.route("/add", methods=["GET", "POST"])
 @login_required
 def add():
-
-    '''
-    if request.method == "POST":
-        company = request.form.get("company")
-        position = request.form.get("position")
-        contract_type = request.form.get("contract-type")
-        location = request.form.get("location")
-        url = request.form.get("url")
-        date_added = datetime.now().strftime("%Y-%m-%d")
-        error = None
-
-        if not company:
-            error = "Company name required"
-        elif not position:
-            error = "Position required"
-        elif not contract_type:
-            error = "Contract type required"
-        elif not location:
-            error = "Location required"
-            
-        
-        if error is None:
-            if check_existing_application(g.user["id"], company, position, contract_type, location, url, date_added):
-                flash("You have already added this job recently")
-                return redirect(url_for("jobhuntr.add"))
-            
-            add_job(g.user["id"], company, position, location, contract_type, url, date_added)
-            flash("Job application added successfully.")
-            return redirect(url_for("index"))
-
-
-
-        # check radio button if user wants to add contact information
-        # If yes, get contact info
-
-
-    else:
-        form = AddForm()
-        form.contract_type.choices = [("", "Select Contract Type")] + get_contract_types_tuple()
-        return render_template("jobhuntr/add.html", form=form)
-    '''
-        
     form = AddForm()
     form.contract_type.choices = [("", "Select Contract Type")] + get_contract_types_tuple()
 
@@ -77,6 +35,7 @@ def add():
                 contract_type=form.contract_type.data,
                 location=form.location.data,
                 url=url)
+        flash("Job added successfully", category="success")
         return redirect(url_for("index"))
     
     if form.errors != {}: # If there are errors from validations (errors returnes as dict)
@@ -84,6 +43,15 @@ def add():
             flash(f"There was an error adding the job: {err_msg}", category="danger")
 
     return render_template("jobhuntr/add.html", form=form)
+
+@bp.route("/edit/<int:job_id>", methods=["GET", "POST"])
+@login_required
+def edit(job_id):
+    form = EditForm()
+    form.contract_type.choices = get_contract_types_tuple()
+    form.status.choices = get_statuses_tuple()
+
+    return render_template("jobhuntr/edit.html", form=form)
 
 @bp.route("/delete", methods=["POST"])
 @login_required
