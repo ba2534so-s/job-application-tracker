@@ -49,7 +49,9 @@ def add():
 def edit(job_id):
     form = EditForm()
     form.contract_type.choices = get_contract_types_tuple()
-    # Add statuses tuple after creating the query function
+    form.status.choices = get_statuses_tuple()
+
+    return render_template("jobhuntr/edit.html", form=form)
 
 @bp.route("/delete", methods=["POST"])
 @login_required
