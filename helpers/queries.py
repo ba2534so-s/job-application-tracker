@@ -61,7 +61,9 @@ def get_statuses():
 
 def get_statuses_tuple():
     statuses_tuple = []
-    for status in get_statuses()
+    for status in get_statuses():
+        statuses_tuple.append((status["id"], status["application_status"]))
+    return statuses_tuple
 
 def get_statuses_dict():
     db = get_db()
