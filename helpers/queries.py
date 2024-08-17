@@ -53,6 +53,12 @@ def get_contract_types_dict():
     return contract_types_dict
 
 # APPLICATION STATUSES
+def get_statuses():
+    db = get_db()
+    statuses = db.execute("SELECT * FROM statuses").fetchall()
+    return statuses()
+
+
 def get_statuses_tuple():
     statuses_tuple = []
     for status in get_statuses()
