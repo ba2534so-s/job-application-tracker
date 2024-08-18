@@ -47,9 +47,14 @@ def add():
 @bp.route("/edit/<int:job_id>", methods=["GET", "POST"])
 @login_required
 def edit(job_id):
+    job = get_job_by_id()
+    
     form = EditForm()
     form.contract_type.choices = get_contract_types_tuple()
     form.status.choices = get_statuses_tuple()
+
+
+    form.company.data = 
 
     return render_template("jobhuntr/edit.html", form=form)
 
