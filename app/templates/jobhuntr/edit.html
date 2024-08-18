@@ -6,6 +6,7 @@
     </div>
     <div class="container bg-secondary bg-gradient text-center py-4 px-5 shadow-lg rounded-3">
         <form action="{{ url_for('edit') }}">
+            {{ form.hidden_tag() }}
             
         </form>
     </div>
