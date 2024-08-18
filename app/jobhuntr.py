@@ -57,6 +57,7 @@ def edit(job_id):
     form.company.data = job["company_name"]
     form.position.data = job["job_position"]
     form.contract_type.data = job["contract_type_id"]
+    form.location.data = job["job_location"]
     form.status.data = job["status_id"]
     form.url.data = job["job_post_link"]
 
