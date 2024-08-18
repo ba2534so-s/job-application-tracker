@@ -138,7 +138,7 @@ def get_all_applications_for_user(user_id):
 
 def get_job_by_id(user_id, job_id):
     db = get_db()
-    job = db.execute("SELECT * FROM applications WHERE user_id = ? AND id = ?", (user_id, job_id)).fetchall()
+    job = db.execute("SELECT * FROM applications WHERE user_id = ? AND id = ?", (user_id, job_id)).fetchone()
     return job
 
 # get all jobs with status not started
