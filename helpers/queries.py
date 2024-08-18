@@ -136,6 +136,11 @@ def get_all_applications_for_user(user_id):
     applications = db.execute("SELECT * FROM applications WHERE user_id = ?", (user_id,)).fetchall()
     return applications
 
+def get_job_by_id(user_id, job_id):
+    db = get_db()
+    job = db.execute("SELECT * FROM applications WHERE user_id = ? AND id = ?", (user_id, job_id)).fetchall()
+    return job
+
 # get all jobs with status not started
 # get all jobs with status applied
 # get all jobs with status interviewing
