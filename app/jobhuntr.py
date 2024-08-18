@@ -56,7 +56,7 @@ def edit(job_id):
 
     form.company.data = job["company_name"]
 
-    return render_template("jobhuntr/edit.html", form=form)
+    return render_template("jobhuntr/edit.html", form=form, job=job)
 
 @bp.route("/delete", methods=["POST"])
 @login_required
