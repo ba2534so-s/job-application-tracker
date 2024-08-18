@@ -47,11 +47,21 @@ def add():
 @bp.route("/edit/<int:job_id>", methods=["GET", "POST"])
 @login_required
 def edit(job_id):
+    job = get_job_by_id(g.user["id"], job_id)
+    
     form = EditForm()
     form.contract_type.choices = get_contract_types_tuple()
     form.status.choices = get_statuses_tuple()
 
-    return render_template("jobhuntr/edit.html", form=form)
+
+    form.company.data = job["company_name"]
+    form.position.data = job["job_position"]
+    form.contract_type.data = job["contract_type_id"]
+    form.location.data = job["job_location"]
+    form.status.data = job["status_id"]
+    form.url.data = job["job_post_link"]
+
+    return render_template("jobhuntr/edit.html", form=form, job=job)
 
 @bp.route("/delete", methods=["POST"])
 @login_required

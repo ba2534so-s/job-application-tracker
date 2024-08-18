@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block main %}
+    <div class="mb-3 text-center">
+        <h1>{% block title %}Edit Job{% endblock %}</h1>
+    </div>
+    <div class="container bg-secondary bg-gradient text-center py-4 px-5 shadow-lg rounded-3">
+        <form action="{{ url_for('jobhuntr.edit', job_id=job['id']) }}">
+            {{ form.hidden_tag() }}
+            {{ form.company.label() }}
+            {{ form.company(class="form-control my-3", placeholder="Enter Company Name") }}
+            {{ form.position.label() }}
+            {{ form.position(class="form-control my-3", placeholder="Enter Job Position") }}
+            {{ form.contract_type.label() }}
+            {{ form.contract_type(class="form-select my-3") }}
+            {{ form.location.label() }}
+            {{ form.location(class="form-control my-3", placeholder="Enter Location")}}
+            {{ form.status.label() }}
+            {{ form.status(class="form-select my-3") }}
+            {{ form.url.label() }}
+            {{ form.url(class="form-control my-3", placeholder="Enter Application URL") }}
+            <div class="mt-4">
+                <a href="{{ url_for('index') }}" class="btn btn-lg btn-danger me-2">Cancel</a>
+                {{ form.save_button(class="btn btn-lg btn-success ms-1") }}
+            </div>
+            
+        </form>
+    </div>
+
+{% endblock %}

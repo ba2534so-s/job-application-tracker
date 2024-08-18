@@ -56,7 +56,7 @@ def get_contract_types_dict():
 def get_statuses():
     db = get_db()
     statuses = db.execute("SELECT * FROM statuses").fetchall()
-    return statuses()
+    return statuses
 
 
 def get_statuses_tuple():
@@ -135,6 +135,11 @@ def get_all_applications_for_user(user_id):
     db = get_db()
     applications = db.execute("SELECT * FROM applications WHERE user_id = ?", (user_id,)).fetchall()
     return applications
+
+def get_job_by_id(user_id, job_id):
+    db = get_db()
+    job = db.execute("SELECT * FROM applications WHERE user_id = ? AND id = ?", (user_id, job_id)).fetchone()
+    return job
 
 # get all jobs with status not started
 # get all jobs with status applied
