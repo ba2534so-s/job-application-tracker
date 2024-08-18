@@ -56,7 +56,7 @@ def get_contract_types_dict():
 def get_statuses():
     db = get_db()
     statuses = db.execute("SELECT * FROM statuses").fetchall()
-    return statuses()
+    return statuses
 
 
 def get_statuses_tuple():
