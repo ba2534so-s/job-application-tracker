@@ -60,7 +60,7 @@ def edit(job_id):
         update_job(g.user["id"], job_id, form.company.data, form.position.data, 
                    form.location.data, form.contract_type.data, form.url.data, form.status.data)
         flash("Job update successfully", category="success")
-
+        return redirect(url_for("index"))
 
     form.company.data = job["company_name"]
     form.position.data = job["job_position"]
