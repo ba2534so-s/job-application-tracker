@@ -104,7 +104,9 @@ def add_job(user_id, company, position, location, contract_type, url):
     db.commit()
 
 # edit job application
-#def edit_job(user_id, application_id, company, position, location, contract_type, status, url):
+def update_job(user_id, application_id, company, position, location, contract_type, status, url):
+
+
 
 # check existing job
 def check_existing_application(user_id, company, position, location, contract_type, url):
