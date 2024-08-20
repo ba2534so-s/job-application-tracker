@@ -104,7 +104,7 @@ def add_job(user_id, company, position, location, contract_type, url):
     db.commit()
 
 # edit job application
-def update_job(user_id, application_id, company, position, location, contract_type, status, url=None):
+def update_job(user_id, application_id, company, position, location, contract_type, url, status):
     db = get_db()
     
     current_job = get_job_by_id(user_id, application_id)
@@ -115,6 +115,16 @@ def update_job(user_id, application_id, company, position, location, contract_ty
     else:
         date_applied = current_job["date_applied"]
 
+    db.execute(
+        '''
+        UPDATE applications
+        SET company_name = ?, job_position = ?, job_location = ?, 
+            contract_type_id = ?, job_post_link = ?, date_applied = ?, status_id = ?
+        WHERE user_id = ? AND id = ?
+        ''',
+        (company, position, location, contract_type, url, date_applied, status, user_id, application_id)
+    )
+    db.execute()
 
 # check existing job
 def check_existing_application(user_id, company, position, location, contract_type, url):
