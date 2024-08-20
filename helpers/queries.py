@@ -107,7 +107,7 @@ def add_job(user_id, company, position, location, contract_type, url):
 #def edit_job(user_id, application_id, company, position, location, contract_type, status, url):
 
 # check existing job
-def check_existing_application(user_id, company, position, location, contract_type, url, date_added):
+def check_existing_application(user_id, company, position, location, contract_type, url):
     date_threshold = (datetime.now() - timedelta(days=150)).strftime("%Y-%m-%d")
     db = get_db()
     existing_application = db.execute(
