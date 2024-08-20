@@ -48,6 +48,9 @@ def add():
 @login_required
 def edit(job_id):
     job = get_job_by_id(g.user["id"], job_id)
+    if job is None:
+        flash("Job not found.", category="danger")
+        return redirect(url_for("index"))
     
     form = EditForm()
     form.contract_type.choices = get_contract_types_tuple()
