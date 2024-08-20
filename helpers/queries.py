@@ -124,7 +124,7 @@ def update_job(user_id, application_id, company, position, location, contract_ty
         ''',
         (company, position, location, contract_type, url, date_applied, status, user_id, application_id)
     )
-    db.execute()
+    db.commit()
 
 # check existing job
 def check_existing_application(user_id, company, position, location, contract_type, url):
