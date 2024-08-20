@@ -108,7 +108,8 @@ def update_job(user_id, application_id, company, position, location, contract_ty
     db = get_db()
     
     current_job = get_job_by_id(user_id, application_id)
-    
+    current_status_id = current_job["status_id"]
+
 
     
     
