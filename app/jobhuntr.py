@@ -59,6 +59,7 @@ def edit(job_id):
     if form.validate_on_submit():
         update_job(g.user["id"], job_id, form.company.data, form.position.data, 
                    form.location.data, form.contract_type.data, form.url.data, form.status.data)
+        flash("Job update successfully", category="success")
 
 
     form.company.data = job["company_name"]
