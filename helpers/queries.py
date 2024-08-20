@@ -104,10 +104,30 @@ def add_job(user_id, company, position, location, contract_type, url):
     db.commit()
 
 # edit job application
-#def edit_job(user_id, application_id, company, position, location, contract_type, status, url):
+def update_job(user_id, application_id, company, position, location, contract_type, url, status):
+    db = get_db()
+    
+    current_job = get_job_by_id(user_id, application_id)
+    current_status_id = current_job["status_id"]
+    
+    if current_status_id == 1 and status != 1:
+        date_applied = datetime.now().strftime("%Y-%m-%d")
+    else:
+        date_applied = current_job["date_applied"]
+
+    db.execute(
+        '''
+        UPDATE applications
+        SET company_name = ?, job_position = ?, job_location = ?, 
+            contract_type_id = ?, job_post_link = ?, date_applied = ?, status_id = ?
+        WHERE user_id = ? AND id = ?
+        ''',
+        (company, position, location, contract_type, url, date_applied, status, user_id, application_id)
+    )
+    db.execute()
 
 # check existing job
-def check_existing_application(user_id, company, position, location, contract_type, url, date_added):
+def check_existing_application(user_id, company, position, location, contract_type, url):
     date_threshold = (datetime.now() - timedelta(days=150)).strftime("%Y-%m-%d")
     db = get_db()
     existing_application = db.execute(
