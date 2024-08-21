@@ -21,6 +21,7 @@
         {% if applications %}
             {% for application in applications %}
             {% include "modals/delete_job_modal.html" %}
+            
                 <tbody>
                     <tr>
                         <td>{{ application["id"] }}</td>
@@ -31,7 +32,7 @@
                         <td>{{ statuses[application['status_id']] }}</td>
                         <td>{{ application["date_added"] }}</td>
                         <td>
-                            <button type="button" class="btn btn-sm btn-warning">More Info</button>
+                            <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#info-modal-{{ application['id'] }}">More Info</button>
                             <a class="btn btn-sm btn-info" href="{{ url_for('jobhuntr.edit', job_id=application['id']) }}">Edit</a>
                             <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete-job-modal-{{ application['id']}}">Delete</button>
                         </td>
