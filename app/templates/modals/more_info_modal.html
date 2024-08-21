@@ -1,15 +1,40 @@
 <!--MODAL NEEDS TO BE LARGER IN SIZE FOR ALL INFO TO BE PRESENTED WELL-->
-<div class="modal-fade">
-    <div class="modal-dialog">
+<div class="modal fade" id="info-modal-{{ application['id'] }}" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-
+                <h5 class="modal-title">{{ application["job_position"] }} at {{ application["company_name"] }}</h5>
+                <button type="button" class="btn btn-clode" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                <h6><strong>Company:</strong> {{ application["company_name"] }}</h6>
+                <h6><strong>Position:</strong> {{ application["job_position"] }}</h6>
+                <h6><strong>Location:</strong> {{ application["job_location"] }}</h6>
+                <h6><strong>Contract Type:</strong> {{ contract_types[application['contract_type_id']] }}</h6>
+                <h6><strong>Status:</strong> {{ statuses[application['status_id']] }}</h6>
+                <h6><strong>Date Added:</strong> {{ application["date_added"] }}</h6>
+                
+                {% if application["date_applied"] %}
+                    <h6><strong>Date Applied:</strong> {{ application["date_applied"] }} </h6>
+                {% else %}
+                    <h6><strong>Date Applied:</strong> - </h6>
+                {% endif %}
+                {% if application["job_post_link"] %}
+                    <h6><strong>Application URL:</strong> {{ application["job_post_link"] }}</h6>
+                {% else %}
+                    <h6><strong>Application URL:</strong> - </h6>
+                {% endif %}
+
+                <br>
+                {% if application["contact_id"] %}
+
+                {% else %}
+                    <p>No contact information available.</p>
+                {% endif %}
 
             </div>
             <div class="modal-footer">
-
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
