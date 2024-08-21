@@ -15,9 +15,9 @@
                 <h6><strong>Date Added:</strong> {{ application["date_added"] }}</h6>
                 
                 {% if application["date_applied"] %}
-                    <h6><strong>Date Applied:</strong> <!--ENTER DATE HERE WHEN ITS BEEN HANDLED --></h6>
+                    <h6><strong>Date Applied:</strong></h6>
                 {% else %}
-
+                    <h6><strong>Date Applied:</strong> - </h6>
                 {% endif %}
                 {% if application["job_post_link"] %}
                     <h6><strong>Application URL:</strong> {{ application["job_post_link"] }}</h6>
