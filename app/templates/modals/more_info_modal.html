@@ -16,9 +16,15 @@
                 <h6><strong>Date Applied:</strong> <!--ENTER DATE HERE WHEN ITS BEEN HANDLED --></h6>
                 {% if application["job_post_link"] %}
                     <h6><strong>Application URL:</strong> {{ application["job_post_link"] }}</h6>
+                {% else %}
+                    <h6><strong>Application URL:</strong> - </h6>
                 {% endif %}
 
-                <!--HANDLE CONTACT INFO HERE-->
+                {% if application["contact_id"] %}
+
+                {% else %}
+                
+                {% endif %}
 
             </div>
             <div class="modal-footer">
