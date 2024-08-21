@@ -1,6 +1,6 @@
 <!--MODAL NEEDS TO BE LARGER IN SIZE FOR ALL INFO TO BE PRESENTED WELL-->
 <div class="modal fade" id="info-modal-{{ application['id'] }}" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">{{ application["job_position"] }} at {{ application["company_name"] }}</h5>
@@ -10,7 +10,7 @@
 
             </div>
             <div class="modal-footer">
-
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
