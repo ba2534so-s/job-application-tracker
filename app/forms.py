@@ -21,10 +21,6 @@ class EditForm(FlaskForm):
     status = SelectField(label="Status", choices=[], validators=[DataRequired()])
     save_button = SubmitField(label="Save Changes")
 
-class StatusForm(FlaskForm):
-    status = HiddenField("Status")
-    submit = SubmitField("Update Status")
-
 
 class RegisterForm(FlaskForm):
 
