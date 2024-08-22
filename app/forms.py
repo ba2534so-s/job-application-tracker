@@ -23,7 +23,7 @@ class EditForm(FlaskForm):
 
 class StatusForm(FlaskForm):
     status = HiddenField("Status")
-    
+    submit = SubmitField("Update Status")
 
 
 class RegisterForm(FlaskForm):
