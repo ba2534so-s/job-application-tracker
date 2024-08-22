@@ -46,7 +46,7 @@ def add():
 
 @bp.route("/update-status/<int:job_id>/<int:status_id>")
 @login_required
-def update_status(job_id):
+def update_status(job_id, status_id):
     pass
 
 @bp.route("/edit/<int:job_id>", methods=["GET", "POST"])
