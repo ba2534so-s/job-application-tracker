@@ -39,7 +39,7 @@
                                         <li>
                                             {% if status_id != application["status_id"] %}
                                                 <form action="{{ url_for('jobhuntr.update_status', job_id=application['id']) }}" method="post">
-                                                    <a class="dropdown-item">
+                                                    <a class="dropdown-item" href="{{ url_for('jobhuntr.update_status', job_id=application['id']) status_id=status_id}}">
                                                         
                                                     </a>
                                                 </form>
