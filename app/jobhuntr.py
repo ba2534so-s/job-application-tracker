@@ -2,7 +2,7 @@ from flask import Blueprint, flash, g, redirect, render_template, request, url_f
 from werkzeug.exceptions import abort
 from app.auth import login_required
 from helpers.queries import *
-from app.forms import AddForm, DeleteApplicationForm, EditForm, StatusForm
+from app.forms import AddForm, DeleteApplicationForm, EditForm
 
 bp = Blueprint("jobhuntr", __name__)
 
@@ -10,7 +10,6 @@ bp = Blueprint("jobhuntr", __name__)
 @login_required
 def index():
     delete_form = DeleteApplicationForm()
-    status_form = StatusForm()
 
     applications = get_all_applications_for_user(g.user["id"])
     contract_types = get_contract_types_dict()
@@ -20,8 +19,7 @@ def index():
                            applications=applications, 
                            contract_types=contract_types,
                            statuses=statuses,
-                           delete_form=delete_form,
-                           status_form=status_form)
+                           delete_form=delete_form)
 
 @bp.route("/add", methods=["GET", "POST"])
 @login_required
