@@ -22,7 +22,8 @@ class EditForm(FlaskForm):
     save_button = SubmitField(label="Save Changes")
 
 class StatusForm(FlaskForm):
-
+    status = HiddenField("Status")
+    
 
 
 class RegisterForm(FlaskForm):
