@@ -44,6 +44,11 @@ def add():
 
     return render_template("jobhuntr/add.html", form=form)
 
+@bp.route("/update-status/<int:job_id>")
+@login_required
+def update_status(job_id):
+    pass
+
 @bp.route("/edit/<int:job_id>", methods=["GET", "POST"])
 @login_required
 def edit(job_id):
