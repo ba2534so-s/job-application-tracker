@@ -110,7 +110,10 @@ def update_job(user_id, application_id, company, position, location, contract_ty
     current_job = get_job_by_id(user_id, application_id)
     current_status_id = current_job["status_id"]
     
-    if current_status_id == 1 and status != 1:
+    
+    if int(status) == 1:
+        date_applied = None
+    elif current_status_id == 1:
         date_applied = datetime.now().strftime("%Y-%m-%d")
     else:
         date_applied = current_job["date_applied"]
