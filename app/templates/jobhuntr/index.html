@@ -29,10 +29,10 @@
                         <td>{{ application["job_position"] }}</td>
                         <td>{{ application["job_location"] }}</td>
                         <td>{{ contract_types[application['contract_type_id']] }}</td>
-                        <td><!--{{ statuses[application['status_id']] }}-->
+                        <td>
                             <div class="dropdown">
                                 <button class="btn">
-                                  
+                                   {{ statuses[application['status_id']] }}
                                 </button>
                             </div>
                         </td>
