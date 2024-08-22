@@ -39,7 +39,7 @@
                                         <li>
                                             {% if status_id != application["status_id"] %}
                                                 <form action="{{ url_for('jobhuntr.update_status', job_id=application['id']) }}" method="post">
-                                                    
+                                                    <input type="hidden" name="status" value="{{ status_id }}">
                                                 </form>
                                             {% else %}
                                             
