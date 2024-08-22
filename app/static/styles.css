@@ -4,3 +4,7 @@ body {
     color: white;
 }
 */
+
+.dropdown-item:active {
+    background-color: #adb5bd;
+}
