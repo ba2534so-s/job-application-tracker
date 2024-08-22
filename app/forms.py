@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import PasswordField, StringField, SelectField, SubmitField, URLField, ValidationError
+from wtforms import PasswordField, StringField, SelectField, SubmitField, URLField, ValidationError, HiddenField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, Optional, URL
 from helpers.queries import get_user_by_username, get_user_by_email
 
@@ -20,7 +20,6 @@ class EditForm(FlaskForm):
     url = URLField(label="Application URL", validators=[Optional(), URL()])
     status = SelectField(label="Status", choices=[], validators=[DataRequired()])
     save_button = SubmitField(label="Save Changes")
-
 
 
 class RegisterForm(FlaskForm):
