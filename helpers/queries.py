@@ -113,7 +113,9 @@ def update_status(user_id, application_id, new_status):
         date_applied = datetime.now().strftime("%Y-%m-%d")
         db.execute("UPDATE applications SET status_id = ?, date_applied = ? WHERE user_id = ? AND id = ?"
                    , (new_status, date_applied, user_id, application_id))
-
+    else:
+        db.execute("UPDATE applications SET status_id = ? WHERE user_id = ? AND id = ?", 
+                   (new_status, user_id, application_id))
 
 
 # edit job/application
