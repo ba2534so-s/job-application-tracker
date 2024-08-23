@@ -104,7 +104,14 @@ def add_job(user_id, company, position, location, contract_type, url):
     db.commit()
 
 def update_status(user_id, application_id, new_status):
-    
+    db = get_db()
+    current_status = db.execute(
+        '''
+        SELECT status_id FROM applications 
+        WHERE user_id = ? AND id = ?
+        ''', (user_id, application_id)).fetchone()
+
+
 
 # edit job/application
 def update_job(user_id, application_id, company, position, location, contract_type, url, status):
