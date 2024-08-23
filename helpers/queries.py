@@ -109,7 +109,11 @@ def update_job_status(user_id, application_id, new_status):
     current_job = get_job_by_id(user_id, application_id)
     current_status_id = current_job["status_id"]
 
-    if int(current_status_id) == 1 and new_status != 1:
+    if int(new_status) == 1:
+        date_applied = None
+        db.execute("UPDATE applications SET status_id = ?, date_applied = ? WHERE user_id = ? AND id = ?"
+                   , (new_status, date_applied, user_id, application_id))
+    elif current_status_id == 1:
         date_applied = datetime.now().strftime("%Y-%m-%d")
         db.execute("UPDATE applications SET status_id = ?, date_applied = ? WHERE user_id = ? AND id = ?"
                    , (new_status, date_applied, user_id, application_id))
