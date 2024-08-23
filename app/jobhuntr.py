@@ -48,6 +48,9 @@ def add():
 @login_required
 def update_status(job_id, status_id):
     job = get_job_by_id(g.user["id"], job_id)
+    if job is None:
+        flash("Something went wrong!Job was not found.", category="Danger")
+        return redirect(url_for("index"))
 
 @bp.route("/edit/<int:job_id>", methods=["GET", "POST"])
 @login_required
