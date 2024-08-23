@@ -105,11 +105,9 @@ def add_job(user_id, company, position, location, contract_type, url):
 
 def update_status(user_id, application_id, new_status):
     db = get_db()
-    current_status = db.execute(
-        '''
-        SELECT status_id FROM applications 
-        WHERE user_id = ? AND id = ?
-        ''', (user_id, application_id)).fetchone()
+    
+    current_job = get_job_by_id()
+    
 
 
 
