@@ -103,7 +103,10 @@ def add_job(user_id, company, position, location, contract_type, url):
         )
     db.commit()
 
-# edit job application
+def update_status(user_id, application_id, new_status):
+    
+
+# edit job/application
 def update_job(user_id, application_id, company, position, location, contract_type, url, status):
     db = get_db()
     
@@ -167,7 +170,7 @@ def get_job_by_id(user_id, job_id):
 # get all jobs with status not started
 # get all jobs with status applied
 # get all jobs with status interviewing
-# apply to job
+
 # delete job 
 def delete_job(user_id, job_id):
     db = get_db()
