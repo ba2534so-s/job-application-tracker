@@ -107,7 +107,8 @@ def update_status(user_id, application_id, new_status):
     db = get_db()
     
     current_job = get_job_by_id()
-    
+    current_status_id = current_job["status_id"]
+
 
 
 
