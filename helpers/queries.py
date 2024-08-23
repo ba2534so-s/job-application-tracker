@@ -116,7 +116,7 @@ def update_status(user_id, application_id, new_status):
     else:
         db.execute("UPDATE applications SET status_id = ? WHERE user_id = ? AND id = ?", 
                    (new_status, user_id, application_id))
-
+    db.commit()
 
 # edit job/application
 def update_job(user_id, application_id, company, position, location, contract_type, url, status):
