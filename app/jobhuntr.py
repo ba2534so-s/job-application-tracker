@@ -47,7 +47,12 @@ def add():
 @bp.route("/update-status/<int:job_id>/<int:status_id>")
 @login_required
 def update_status(job_id, status_id):
-    pass
+    job = get_job_by_id(g.user["id"], job_id)
+    if job is None:
+        flash("Something went wrong!Job was not found.", category="Danger")
+        return redirect(url_for("index"))
+    update_job_status(g.user["id"], job_id, status_id)
+    return redirect(request.referrer or url_for("index"))
 
 @bp.route("/edit/<int:job_id>", methods=["GET", "POST"])
 @login_required

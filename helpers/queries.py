@@ -103,7 +103,26 @@ def add_job(user_id, company, position, location, contract_type, url):
         )
     db.commit()
 
-# edit job application
+def update_job_status(user_id, application_id, new_status):
+    db = get_db()
+    
+    current_job = get_job_by_id(user_id, application_id)
+    current_status_id = current_job["status_id"]
+
+    if int(new_status) == 1:
+        date_applied = None
+        db.execute("UPDATE applications SET status_id = ?, date_applied = ? WHERE user_id = ? AND id = ?"
+                   , (new_status, date_applied, user_id, application_id))
+    elif current_status_id == 1:
+        date_applied = datetime.now().strftime("%Y-%m-%d")
+        db.execute("UPDATE applications SET status_id = ?, date_applied = ? WHERE user_id = ? AND id = ?"
+                   , (new_status, date_applied, user_id, application_id))
+    else:
+        db.execute("UPDATE applications SET status_id = ? WHERE user_id = ? AND id = ?", 
+                   (new_status, user_id, application_id))
+    db.commit()
+
+# edit job/application
 def update_job(user_id, application_id, company, position, location, contract_type, url, status):
     db = get_db()
     
@@ -167,7 +186,7 @@ def get_job_by_id(user_id, job_id):
 # get all jobs with status not started
 # get all jobs with status applied
 # get all jobs with status interviewing
-# apply to job
+
 # delete job 
 def delete_job(user_id, job_id):
     db = get_db()
