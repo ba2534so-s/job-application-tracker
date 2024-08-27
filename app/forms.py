@@ -4,6 +4,8 @@ from wtforms.validators import DataRequired, Email, EqualTo, Length, Optional, U
 from helpers.queries import get_user_by_username, get_user_by_email
 
 
+class ContactForm(FlaskForm):
+    name = StringField(label="Contact Name", validators=[DataRequired()])
 class AddForm(FlaskForm):
     company = StringField(label="Company*", validators=[DataRequired()])
     position = StringField(label="Job Position*", validators=[DataRequired()])
