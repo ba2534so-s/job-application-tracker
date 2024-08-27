@@ -6,6 +6,7 @@ from helpers.queries import get_user_by_username, get_user_by_email
 
 class ContactForm(FlaskForm):
     name = StringField(label="Contact Name", validators=[DataRequired()])
+    email = StringField(label="Email", validators=[DataRequired(), Email()])
 class AddForm(FlaskForm):
     company = StringField(label="Company*", validators=[DataRequired()])
     position = StringField(label="Job Position*", validators=[DataRequired()])
