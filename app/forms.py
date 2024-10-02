@@ -5,7 +5,7 @@ from helpers.queries import get_user_by_username, get_user_by_email
 
 
 class ContactForm(FlaskForm):
-    name = StringField(label="Contact Name", validators=[DataRequired()])
+    name = StringField(label="Contact Name*", validators=[DataRequired()])
     email = StringField(label="Email", validators=[Optional(), Email()])
     phone = StringField(label="Phone Number", validators=[Optional()])
 class AddForm(FlaskForm):
