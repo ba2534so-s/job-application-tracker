@@ -27,6 +27,7 @@
                 <div class="collapse" id="contact-section">
                     <div class="card card-body">
                         <h4>Contact Information</h4>
+                        {{ form.contact.hidden_tag() }}
                         {{ form.contact.form.name.label() }}
                         {{ form.contact.form.name(class="form-control my-2", placeholder="Enter Contact Name") }}
                         {{ form.contact.form.email.label() }}
