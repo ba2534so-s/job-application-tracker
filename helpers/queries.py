@@ -80,6 +80,7 @@ def add_job(user_id, company, position, location, contract_type, url, contact_in
     date_added = datetime.now().strftime("%Y-%m-%d")
     db = get_db()
     
+    contact_id = None
     if contact_info is not None:
         contact_id = add_contact(contact_info) if contact_info else None
     
