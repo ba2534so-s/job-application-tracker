@@ -209,3 +209,4 @@ def add_contact(user_id, contact_info):
         VALUES (?, ?, ?)""", 
         (contact_info["name"], contact_info["email"], contact_info["phone"]))
     db.commit()
+    return cursor.lastrowid
