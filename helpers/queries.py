@@ -201,4 +201,5 @@ def delete_job(user_id, job_id):
 
 #CONTACTS
 def add_contact(user_id, contact):
+    db = get_db()
     
