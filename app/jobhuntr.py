@@ -29,6 +29,15 @@ def add():
 
     if form.validate_on_submit():
         url = form.url.data or None # If the URL is empty, store None
+        
+        contact_info = None
+        if form.contact.form.name.data:
+            contact_info = {
+                "name" : form.contact.form.name.data,
+                "email" : form.contact.form.email.data or None,
+                "phone" : form.contact.form.phone.data or None
+            }
+        
         add_job(user_id=g.user["id"],
                 company=form.company.data,
                 position=form.position.data,
