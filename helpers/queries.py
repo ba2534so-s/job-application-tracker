@@ -200,6 +200,12 @@ def delete_job(user_id, job_id):
 
 
 #CONTACTS
-def add_contact(user_id, contact):
+def add_contact(user_id, contact_info):
     db = get_db()
     
+    cursor = db.execute(
+        """
+        INSERT INTO contacts (contact_name, email, phone_number)
+        VALUES (?, ?, ?)""", 
+        (contact_info["name"], contact_info["email"], contact_info["phone"]))
+    db.commit()
