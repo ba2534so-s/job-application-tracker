@@ -197,3 +197,8 @@ def delete_job(user_id, job_id):
         db.commit()
         return job_to_delete
     return None
+
+
+#CONTACTS
+def add_contact(user_id, contact):
+    
