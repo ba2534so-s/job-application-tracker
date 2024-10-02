@@ -43,7 +43,8 @@ def add():
                 position=form.position.data,
                 contract_type=form.contract_type.data,
                 location=form.location.data,
-                url=url)
+                url=url,
+                contact_info=contact_info)
         flash("Job added successfully", category="success")
         return redirect(url_for("index"))
     
