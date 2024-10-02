@@ -89,7 +89,7 @@ def add_job(user_id, company, position, location, contract_type, url, contact_in
         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         """,
         (
-            user_id, company, position, location, contract_type, url, date_added, 1
+            user_id, company, position, location, contract_type, url, date_added, 1, contact_id
         )
     )
     db.commit()
