@@ -76,16 +76,17 @@ def get_statuses_dict():
 
 # APPLICATIONS
 # add job
-def add_job(user_id, company, position, location, contract_type, url):
+def add_job(user_id, company, position, location, contract_type, url, contact_info):
     date_added = datetime.now().strftime("%Y-%m-%d")
     db = get_db()
     
+    contact_id = add_contact(contact_info) if contact_info else None
     
     db.execute(
         """
         INSERT INTO applications (
-            user_id, company_name, job_position, job_location, contract_type_id, job_post_link, date_added, status_id
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            user_id, company_name, job_position, job_location, contract_type_id, job_post_link, date_added, status_id, contact_id
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         """,
         (
             user_id, company, position, location, contract_type, url, date_added, 1
@@ -190,7 +191,7 @@ def delete_job(user_id, job_id):
 
 
 #CONTACTS
-def add_contact(user_id, contact_info):
+def add_contact(contact_info):
     db = get_db()
     
     cursor = db.execute(
