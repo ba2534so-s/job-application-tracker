@@ -79,28 +79,18 @@ def get_statuses_dict():
 def add_job(user_id, company, position, location, contract_type, url):
     date_added = datetime.now().strftime("%Y-%m-%d")
     db = get_db()
-    if url is None:
-        db.execute(
-            """
-            INSERT INTO applications (
-                user_id, company_name, job_position, job_location, contract_type_id, date_added, status_id
-            ) VALUES (?, ?, ?, ?, ?, ?, ?)
-            """,
-            (
-                user_id, company, position, location, contract_type, date_added, 1
-            )
+    
+    
+    db.execute(
+        """
+        INSERT INTO applications (
+            user_id, company_name, job_position, job_location, contract_type_id, job_post_link, date_added, status_id
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        """,
+        (
+            user_id, company, position, location, contract_type, url, date_added, 1
         )
-    else:
-        db.execute(
-            """
-            INSERT INTO applications (
-                user_id, company_name, job_position, job_location, contract_type_id, job_post_link, date_added, status_id
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-            """,
-            (
-                user_id, company, position, location, contract_type, url, date_added, 1
-            )
-        )
+    )
     db.commit()
 
 def update_job_status(user_id, application_id, new_status):
