@@ -48,7 +48,7 @@ def add():
         flash("Job added successfully", category="success")
         return redirect(url_for("index"))
     
-    if form.errors != {}: # If there are errors from validations (errors returnes as dict)
+    if form.errors != {}: # If there are errors from validations (errors returned as dict)
         for err_msg in form.errors.values():
             flash(f"There was an error adding the job: {err_msg}", category="danger")
 
