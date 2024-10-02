@@ -14,7 +14,7 @@ class AddForm(FlaskForm):
     contract_type = SelectField("Contract Type*", choices=[], validators=[DataRequired()])
     location = StringField(label="Location*", validators=[DataRequired()])
     url = URLField(label="Application URL", validators=[Optional(), URL()])
-    contact = FieldList(FormField(ContactForm()))
+    contact = FieldList(FormField(ContactForm))
     add_button = SubmitField(label="Add Job")
 
 class EditForm(FlaskForm):
