@@ -203,3 +203,6 @@ def add_contact(contact_info):
         (contact_info["name"], contact_info["email"], contact_info["phone"]))
     db.commit()
     return cursor.lastrowid
+
+def get_contact_by_id(id):
+    
