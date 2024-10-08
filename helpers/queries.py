@@ -205,4 +205,4 @@ def add_contact(contact_info):
     return cursor.lastrowid
 
 def get_contact_by_id(id):
-    
+    db = get_db()
