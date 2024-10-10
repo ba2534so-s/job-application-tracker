@@ -33,7 +33,7 @@
                         {{ form.contact.form.email.label() }}
                         {{ form.contact.form.email(class="form-control my-2", placeholder="Contact Email", value=contact["email"] if contact else '') }}
                         {{ form.contact.form.phone.label() }}
-                        {{ form.contact.form.phone(class="form-control my-2", placeholder="Contact Phone Number") }}
+                        {{ form.contact.form.phone(class="form-control my-2", placeholder="Contact Phone Number", value=contact["phone"] if contact else '') }}
                     </div>
                 </div>
             </div>
