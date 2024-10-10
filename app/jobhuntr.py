@@ -109,7 +109,7 @@ def edit(job_id):
         flash("Job updated successfully", category="success")
         return redirect(url_for("index"))
 
-    return render_template("jobhuntr/edit.html", form=form, job=job)
+    return render_template("jobhuntr/edit.html", form=form, job=job, contact=contact)
 
 @bp.route("/delete", methods=["POST"])
 @login_required
