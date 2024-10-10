@@ -10,7 +10,7 @@
             {{ form.company.label() }}
             {{ form.company(class="form-control my-3", placeholder="Enter Company Name", value=job["company_name"]) }}
             {{ form.position.label() }}
-            {{ form.position(class="form-control my-3", placeholder="Enter Job Position") }}
+            {{ form.position(class="form-control my-3", placeholder="Enter Job Position", value=job["job_position"]) }}
             {{ form.contract_type.label() }}
             {{ form.contract_type(class="form-select my-3") }}
             {{ form.location.label() }}
