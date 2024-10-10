@@ -105,12 +105,9 @@ def edit(job_id):
             # Remove contact if name field is empty
             delete_contact(contact["id"])
             update_job_contact(job_id, None)
-                
-
 
         flash("Job updated successfully", category="success")
         return redirect(url_for("index"))
-
 
     return render_template("jobhuntr/edit.html", form=form, job=job)
 
