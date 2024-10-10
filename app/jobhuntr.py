@@ -88,6 +88,7 @@ def edit(job_id):
             if contact and (form.contact.form.name.data != contact["name"] or
                     form.contact.form.email.data != contact["email"] or
                     form.contact.form.phone.data != contact["phone"]):
+                # Update contact if contact exists and one of the fields has been changed
                 update_contact(contact["id"], 
                                form.contact.form.name.data,
                                form.contact.form.email.data,
