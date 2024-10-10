@@ -100,7 +100,7 @@ def edit(job_id):
                     form.contact.form.email.data,
                     form.contact.form.phone.data
                 })
-
+                update_job_contact(job_id, contact_id)
                 
 
 
