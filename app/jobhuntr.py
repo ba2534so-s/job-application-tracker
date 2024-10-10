@@ -104,6 +104,7 @@ def edit(job_id):
         elif contact:
             # Remove contact if name field is empty
             delete_contact(contact["id"])
+            update_job_contact(job_id, None)
                 
 
 
