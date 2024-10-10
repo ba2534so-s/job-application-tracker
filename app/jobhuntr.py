@@ -85,7 +85,7 @@ def edit(job_id):
         
         # Handle contact or update or creation based on form data
         if form.contact.form.name.data:
-            
+            if contact:
 
         flash("Job updated successfully", category="success")
         return redirect(url_for("index"))
