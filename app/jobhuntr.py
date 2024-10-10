@@ -86,8 +86,13 @@ def edit(job_id):
         # Handle contact or update or creation based on form data
         if form.contact.form.name.data:
             if contact and (form.contact.form.name.data != contact["name"] or
-                form.contact.form.email.data != contact["email"] or
-                form.contact.form.phone.data != contact["phone"]):
+                    form.contact.form.email.data != contact["email"] or
+                    form.contact.form.phone.data != contact["phone"]):
+                update_contact(contact["id"], 
+                               form.contact.form.name.data,
+                               form.contact.form.email.data,
+                               form.contact.form.phone.data)
+
                 
 
 
