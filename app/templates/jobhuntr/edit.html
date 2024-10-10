@@ -18,7 +18,7 @@
             {{ form.status.label() }}
             {{ form.status(class="form-select my-3", value=job["status_id"]) }}
             {{ form.url.label() }}
-            {{ form.url(class="form-control my-3", placeholder="Enter Application URL") }}
+            {{ form.url(class="form-control my-3", placeholder="Enter Application URL", value=job["job_post_link"]) }}
 
             <div class="mb-3">
                 <button type="button" class="btn btn-sm" data-bs-toggle="collapse" data-bs-target="#contact-section"
