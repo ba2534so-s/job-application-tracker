@@ -82,6 +82,11 @@ def edit(job_id):
         # Handle job update
         update_job(g.user["id"], job_id, form.company.data, form.position.data, 
                    form.location.data, form.contract_type.data, form.url.data, form.status.data)
+        
+        # Handle contact or update or creation based on form data
+        if form.contact.form.name.data:
+            
+
         flash("Job updated successfully", category="success")
         return redirect(url_for("index"))
 
