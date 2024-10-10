@@ -222,3 +222,6 @@ def update_contact(contact_id, name, email, phone):
                (name, email, phone, contact_id)
     )
     db.commit()
+
+def delete_contact(contact_id):
+    
