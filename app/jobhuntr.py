@@ -85,7 +85,11 @@ def edit(job_id):
         
         # Handle contact or update or creation based on form data
         if form.contact.form.name.data:
-            if contact:
+            if contact and (form.contact.form.name.data != contact["name"] or
+                form.contact.form.email.data != contact["email"] or
+                form.contact.form.phone.data != contact["phone"]):
+                
+
 
         flash("Job updated successfully", category="success")
         return redirect(url_for("index"))
