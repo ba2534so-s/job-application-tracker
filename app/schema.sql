@@ -1,9 +1,10 @@
-DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS applications;
 DROP TABLE IF EXISTS statuses;
 DROP TABLE IF EXISTS contract_types;
 DROP TABLE IF EXISTS contacts;
 DROP TABLE IF EXISTS skills;
+DROP TABLE IF EXISTS application_skills;
 
 
 CREATE TABLE users (
@@ -45,8 +46,7 @@ CREATE TABLE contract_types (
 
 CREATE TABLE contacts (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    first_name TEXT NOT NULL,
-    last_name TEXT,
+    contact_name TEXT NOT NULL,
     email TEXT,
     phone_number TEXT
 );

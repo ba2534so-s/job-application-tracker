@@ -6,6 +6,8 @@ from app.forms import AddForm, DeleteApplicationForm, EditForm
 
 bp = Blueprint("jobhuntr", __name__)
 
+
+
 @bp.route("/", methods=["GET", "POST"])
 @login_required
 def index():
@@ -21,6 +23,8 @@ def index():
                            statuses=statuses,
                            delete_form=delete_form)
 
+
+
 @bp.route("/add", methods=["GET", "POST"])
 @login_required
 def add():
@@ -29,20 +33,32 @@ def add():
 
     if form.validate_on_submit():
         url = form.url.data or None # If the URL is empty, store None
+        
+        contact_info = None
+        if form.contact.form.name.data:
+            contact_info = {
+                "name" : form.contact.form.name.data,
+                "email" : form.contact.form.email.data or None,
+                "phone" : form.contact.form.phone.data or None
+            }
+        
         add_job(user_id=g.user["id"],
                 company=form.company.data,
                 position=form.position.data,
                 contract_type=form.contract_type.data,
                 location=form.location.data,
-                url=url)
+                url=url,
+                contact_info=contact_info)
         flash("Job added successfully", category="success")
         return redirect(url_for("index"))
     
-    if form.errors != {}: # If there are errors from validations (errors returnes as dict)
+    if form.errors != {}: # If there are errors from validations (errors returned as dict)
         for err_msg in form.errors.values():
             flash(f"There was an error adding the job: {err_msg}", category="danger")
 
     return render_template("jobhuntr/add.html", form=form)
+
+
 
 @bp.route("/update-status/<int:job_id>/<int:status_id>")
 @login_required
@@ -54,10 +70,15 @@ def update_status(job_id, status_id):
     update_job_status(g.user["id"], job_id, status_id)
     return redirect(request.referrer or url_for("index"))
 
+
+
+
 @bp.route("/edit/<int:job_id>", methods=["GET", "POST"])
 @login_required
 def edit(job_id):
     job = get_job_by_id(g.user["id"], job_id)
+    contact = get_contact_by_id(job["contact_id"]) if job["contact_id"] else None
+    
     if job is None:
         flash("Job not found.", category="danger")
         return redirect(url_for("index"))
@@ -66,21 +87,44 @@ def edit(job_id):
     form.contract_type.choices = get_contract_types_tuple()
     form.status.choices = get_statuses_tuple()
 
+    print(f"VALIDATE ON SUBMIT = {form.validate_on_submit()}")
+    print(f"REQUEST METHOD: {request.method}")
+    print(f"FORM ERRORS: {form.errors}")
+    
     if form.validate_on_submit():
+        # Handle job update
         update_job(g.user["id"], job_id, form.company.data, form.position.data, 
                    form.location.data, form.contract_type.data, form.url.data, form.status.data)
+        
+        # Handle contact or update or creation based on form data
+        if form.contact.form.name.data:
+            if contact and (form.contact.form.name.data != contact["name"] or
+                    form.contact.form.email.data != contact["email"] or
+                    form.contact.form.phone.data != contact["phone"]):
+                # Update contact if contact exists and one of the fields has been changed
+                update_contact(contact["id"], 
+                               form.contact.form.name.data,
+                               form.contact.form.email.data,
+                               form.contact.form.phone.data)
+            else: 
+                # Create new contact if there is no contact already
+                contact_id = add_contact({
+                    form.contact.form.name.data,
+                    form.contact.form.email.data,
+                    form.contact.form.phone.data
+                })
+                update_job_contact(job_id, contact_id)
+        elif contact:
+            # Remove contact if name field is empty
+            delete_contact(contact["id"])
+            update_job_contact(job_id, None)
+
         flash("Job updated successfully", category="success")
         return redirect(url_for("index"))
 
+    return render_template("jobhuntr/edit.html", form=form, job=job, contact=contact)
 
-    form.company.data = job["company_name"]
-    form.position.data = job["job_position"]
-    form.contract_type.data = job["contract_type_id"]
-    form.location.data = job["job_location"]
-    form.status.data = job["status_id"]
-    form.url.data = job["job_post_link"]
 
-    return render_template("jobhuntr/edit.html", form=form, job=job)
 
 @bp.route("/delete", methods=["POST"])
 @login_required

@@ -1,15 +1,20 @@
 from flask_wtf import FlaskForm
-from wtforms import PasswordField, StringField, SelectField, SubmitField, URLField, ValidationError, HiddenField
+from wtforms import FormField, PasswordField, StringField, SelectField, SubmitField, URLField, ValidationError, HiddenField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, Optional, URL
 from helpers.queries import get_user_by_username, get_user_by_email
 
 
+class ContactForm(FlaskForm):
+    name = StringField(label="Contact Name", validators=[Optional()])
+    email = StringField(label="Email", validators=[Optional(), Email()])
+    phone = StringField(label="Phone Number", validators=[Optional()])
 class AddForm(FlaskForm):
     company = StringField(label="Company*", validators=[DataRequired()])
     position = StringField(label="Job Position*", validators=[DataRequired()])
     contract_type = SelectField("Contract Type*", choices=[], validators=[DataRequired()])
     location = StringField(label="Location*", validators=[DataRequired()])
     url = URLField(label="Application URL", validators=[Optional(), URL()])
+    contact = FormField(ContactForm)
     add_button = SubmitField(label="Add Job")
 
 class EditForm(FlaskForm):
@@ -18,6 +23,7 @@ class EditForm(FlaskForm):
     contract_type = SelectField(label="Contract Type", choices=[], validators=[DataRequired()])
     location = StringField(label="Location", validators=[DataRequired()])
     url = URLField(label="Application URL", validators=[Optional(), URL()])
+    contact = FormField(ContactForm)
     status = SelectField(label="Status", choices=[], validators=[DataRequired()])
     save_button = SubmitField(label="Save Changes")
 

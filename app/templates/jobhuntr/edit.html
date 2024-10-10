@@ -5,20 +5,39 @@
         <h1>{% block title %}Edit Job{% endblock %}</h1>
     </div>
     <div class="container bg-secondary bg-gradient text-center py-4 px-5 shadow-lg rounded-3">
-        <form action="{{ url_for('jobhuntr.edit', job_id=job['id']) }}", method="post">
+        <form action="{{ url_for('jobhuntr.edit', job_id=job['id']) }}" method="post">
             {{ form.hidden_tag() }}
             {{ form.company.label() }}
-            {{ form.company(class="form-control my-3", placeholder="Enter Company Name") }}
+            {{ form.company(class="form-control my-3", placeholder="Enter Company Name", value=job["company_name"]) }}
             {{ form.position.label() }}
-            {{ form.position(class="form-control my-3", placeholder="Enter Job Position") }}
+            {{ form.position(class="form-control my-3", placeholder="Enter Job Position", value=job["job_position"]) }}
             {{ form.contract_type.label() }}
-            {{ form.contract_type(class="form-select my-3") }}
+            {{ form.contract_type(class="form-select my-3", value=job["contract_type_id"]) }}
             {{ form.location.label() }}
-            {{ form.location(class="form-control my-3", placeholder="Enter Location")}}
+            {{ form.location(class="form-control my-3", placeholder="Enter Location", value=job["job_location"] if job["job_location"] else '')}}
             {{ form.status.label() }}
-            {{ form.status(class="form-select my-3") }}
+            {{ form.status(class="form-select my-3", value=job["status_id"]) }}
             {{ form.url.label() }}
-            {{ form.url(class="form-control my-3", placeholder="Enter Application URL") }}
+            {{ form.url(class="form-control my-3", placeholder="Enter Application URL", value=job["job_post_link"] if job["job_post_link"] else '') }}
+
+            <div class="mb-3">
+                <button type="button" class="btn btn-sm" data-bs-toggle="collapse" data-bs-target="#contact-section"
+                aria-expanded="false" aria-controls="contact-section">
+                    Contact Info
+                </button>
+                <div class="collapse" id="contact-section">
+                    <div class="card card-body">
+                        {{ form.contact.hidden_tag() }}
+                        {{ form.contact.form.name.label() }}
+                        {{ form.contact.form.name(class="form-control my-2", placeholder="Contact Name", value=contact["contact_name"] if contact else '') }}
+                        {{ form.contact.form.email.label() }}
+                        {{ form.contact.form.email(class="form-control my-2", placeholder="Contact Email", value=contact["email"] if contact else '') }}
+                        {{ form.contact.form.phone.label() }}
+                        {{ form.contact.form.phone(class="form-control my-2", placeholder="Contact Phone Number", value=contact["phone"] if contact else '') }}
+                    </div>
+                </div>
+            </div>
+
             <div class="mt-4">
                 <a href="{{ url_for('index') }}" class="btn btn-lg btn-danger me-2">Cancel</a>
                 {{ form.save_button(class="btn btn-lg btn-success ms-2") }}

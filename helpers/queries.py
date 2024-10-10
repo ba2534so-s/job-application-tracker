@@ -76,31 +76,24 @@ def get_statuses_dict():
 
 # APPLICATIONS
 # add job
-def add_job(user_id, company, position, location, contract_type, url):
+def add_job(user_id, company, position, location, contract_type, url, contact_info):
     date_added = datetime.now().strftime("%Y-%m-%d")
     db = get_db()
-    if url is None:
-        db.execute(
-            """
-            INSERT INTO applications (
-                user_id, company_name, job_position, job_location, contract_type_id, date_added, status_id
-            ) VALUES (?, ?, ?, ?, ?, ?, ?)
-            """,
-            (
-                user_id, company, position, location, contract_type, date_added, 1
-            )
+    
+    contact_id = None
+    if contact_info is not None:
+        contact_id = add_contact(contact_info) if contact_info else None
+    
+    db.execute(
+        """
+        INSERT INTO applications (
+            user_id, company_name, job_position, job_location, contract_type_id, job_post_link, date_added, status_id, contact_id
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """,
+        (
+            user_id, company, position, location, contract_type, url, date_added, 1, contact_id
         )
-    else:
-        db.execute(
-            """
-            INSERT INTO applications (
-                user_id, company_name, job_position, job_location, contract_type_id, job_post_link, date_added, status_id
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-            """,
-            (
-                user_id, company, position, location, contract_type, url, date_added, 1
-            )
-        )
+    )
     db.commit()
 
 def update_job_status(user_id, application_id, new_status):
@@ -197,3 +190,40 @@ def delete_job(user_id, job_id):
         db.commit()
         return job_to_delete
     return None
+
+# Update the contact_id for a job when a new contact is added or an existing contact is removed.
+def update_job_contact(job_id, contact_id):
+    db = get_db()
+    db.execute("UPDATE applications SET contact_id = ? WHERE id = ?", (contact_id, job_id))
+    db.commit()
+
+
+#CONTACTS
+def add_contact(contact_info):
+    db = get_db()
+    
+    cursor = db.execute(
+        """
+        INSERT INTO contacts (contact_name, email, phone_number)
+        VALUES (?, ?, ?)""", 
+        (contact_info["name"], contact_info["email"], contact_info["phone"]))
+    db.commit()
+    return cursor.lastrowid
+
+def get_contact_by_id(id):
+    db = get_db()
+    contact = db.execute("SELECT * FROM contacts WHERE id = ?", (id,)).fetchone()
+    return contact
+
+# Update existing contacts information
+def update_contact(contact_id, name, email, phone):
+    db = get_db()
+    db.execute("UPDATE contacts SET contact_name = ?, email = ?, phone = ? WHERE contact_id = ?", 
+               (name, email, phone, contact_id)
+    )
+    db.commit()
+
+def delete_contact(contact_id):
+    db = get_db()
+    db.execute("DELETE FROM contacts where id = ?", (contact_id,))
+    db.commit()
