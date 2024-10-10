@@ -68,6 +68,8 @@ def update_status(job_id, status_id):
 @login_required
 def edit(job_id):
     job = get_job_by_id(g.user["id"], job_id)
+    contact = get_contact_by_id(job["contact_id"]) if job["contact_id"] else None
+    
     if job is None:
         flash("Job not found.", category="danger")
         return redirect(url_for("index"))
@@ -77,6 +79,7 @@ def edit(job_id):
     form.status.choices = get_statuses_tuple()
 
     if form.validate_on_submit():
+        # Handle job update
         update_job(g.user["id"], job_id, form.company.data, form.position.data, 
                    form.location.data, form.contract_type.data, form.url.data, form.status.data)
         flash("Job updated successfully", category="success")
