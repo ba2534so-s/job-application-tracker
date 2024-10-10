@@ -224,4 +224,4 @@ def update_contact(contact_id, name, email, phone):
     db.commit()
 
 def delete_contact(contact_id):
-    
+    db = get_db()
