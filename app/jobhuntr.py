@@ -6,6 +6,8 @@ from app.forms import AddForm, DeleteApplicationForm, EditForm
 
 bp = Blueprint("jobhuntr", __name__)
 
+
+
 @bp.route("/", methods=["GET", "POST"])
 @login_required
 def index():
@@ -20,6 +22,8 @@ def index():
                            contract_types=contract_types,
                            statuses=statuses,
                            delete_form=delete_form)
+
+
 
 @bp.route("/add", methods=["GET", "POST"])
 @login_required
@@ -54,6 +58,8 @@ def add():
 
     return render_template("jobhuntr/add.html", form=form)
 
+
+
 @bp.route("/update-status/<int:job_id>/<int:status_id>")
 @login_required
 def update_status(job_id, status_id):
@@ -63,6 +69,9 @@ def update_status(job_id, status_id):
         return redirect(url_for("index"))
     update_job_status(g.user["id"], job_id, status_id)
     return redirect(request.referrer or url_for("index"))
+
+
+
 
 @bp.route("/edit/<int:job_id>", methods=["GET", "POST"])
 @login_required
@@ -78,6 +87,10 @@ def edit(job_id):
     form.contract_type.choices = get_contract_types_tuple()
     form.status.choices = get_statuses_tuple()
 
+    print(f"VALIDATE ON SUBMIT = {form.validate_on_submit()}")
+    print(f"REQUEST METHOD: {request.method}")
+    print(f"FORM ERRORS: {form.errors}")
+    
     if form.validate_on_submit():
         # Handle job update
         update_job(g.user["id"], job_id, form.company.data, form.position.data, 
@@ -110,6 +123,8 @@ def edit(job_id):
         return redirect(url_for("index"))
 
     return render_template("jobhuntr/edit.html", form=form, job=job, contact=contact)
+
+
 
 @bp.route("/delete", methods=["POST"])
 @login_required

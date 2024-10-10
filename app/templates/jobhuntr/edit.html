@@ -5,7 +5,7 @@
         <h1>{% block title %}Edit Job{% endblock %}</h1>
     </div>
     <div class="container bg-secondary bg-gradient text-center py-4 px-5 shadow-lg rounded-3">
-        <form action="{{ url_for('jobhuntr.edit', job_id=job['id']) }}", method="post">
+        <form action="{{ url_for('jobhuntr.edit', job_id=job['id']) }}" method="post">
             {{ form.hidden_tag() }}
             {{ form.company.label() }}
             {{ form.company(class="form-control my-3", placeholder="Enter Company Name", value=job["company_name"]) }}
@@ -27,7 +27,7 @@
                 </button>
                 <div class="collapse" id="contact-section">
                     <div class="card card-body">
-                        {{ form.hidden_tag() }}
+                        {{ form.contact.hidden_tag() }}
                         {{ form.contact.form.name.label() }}
                         {{ form.contact.form.name(class="form-control my-2", placeholder="Contact Name", value=contact["contact_name"] if contact else '') }}
                         {{ form.contact.form.email.label() }}
