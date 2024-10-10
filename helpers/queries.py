@@ -195,6 +195,7 @@ def delete_job(user_id, job_id):
 def update_job_contact(job_id, contact_id):
     db = get_db()
     db.execute("UPDATE applications SET contact_id = ? WHERE id = ?", (contact_id, job_id))
+    db.commit()
 
 
 #CONTACTS
