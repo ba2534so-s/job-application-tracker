@@ -191,6 +191,8 @@ def delete_job(user_id, job_id):
         return job_to_delete
     return None
 
+def update_job_contact(job_id, contact_id):
+
 
 #CONTACTS
 def add_contact(contact_info):
