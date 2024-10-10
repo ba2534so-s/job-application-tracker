@@ -191,7 +191,7 @@ def delete_job(user_id, job_id):
         return job_to_delete
     return None
 
-# Update the contact_id a the job when a new contact is added or an existing contact is removed.
+# Update the contact_id for a job when a new contact is added or an existing contact is removed.
 def update_job_contact(job_id, contact_id):
     db = get_db()
     db.execute("UPDATE applications SET contact_id = ? WHERE id = ?", (contact_id, job_id))
@@ -217,3 +217,7 @@ def get_contact_by_id(id):
 
 def update_contact(contact_id, name, email, phone):
     db = get_db()
+    db.execute("UPDATE contacts SET contact_name = ?, email = ?, phone = ? WHERE contact_id = ?", 
+               (name, email, phone, contact_id)
+    )
+    
