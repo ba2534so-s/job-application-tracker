@@ -212,7 +212,7 @@ def add_contact(contact_info):
 
 def get_contact_by_id(id):
     db = get_db()
-    contact = db.execute("SELECT FROM contacts WHERE id = ?", (id,)).fetchone()
+    contact = db.execute("SELECT * FROM contacts WHERE id = ?", (id,)).fetchone()
     return contact
 
 # Update existing contacts information
