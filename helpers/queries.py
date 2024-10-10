@@ -225,3 +225,4 @@ def update_contact(contact_id, name, email, phone):
 
 def delete_contact(contact_id):
     db = get_db()
+    db.execute("DELETE FROM contacts where id = ?", (contact_id,))
