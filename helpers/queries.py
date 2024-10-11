@@ -218,7 +218,7 @@ def get_contact_by_id(id):
 # Update existing contacts information
 def update_contact(contact_id, name, email, phone):
     db = get_db()
-    db.execute("UPDATE contacts SET contact_name = ?, email = ?, phone_number = ? WHERE contact_id = ?", 
+    db.execute("UPDATE contacts SET contact_name = ?, email = ?, phone_number = ? WHERE id = ?", 
                (name, email, phone, contact_id)
     )
     db.commit()
