@@ -87,9 +87,6 @@ def edit(job_id):
     form.contract_type.choices = get_contract_types_tuple()
     form.status.choices = get_statuses_tuple()
 
-    print(f"VALIDATE ON SUBMIT = {form.validate_on_submit()}")
-    print(f"REQUEST METHOD: {request.method}")
-    print(f"FORM ERRORS: {form.errors}")
     
     if form.validate_on_submit():
         # Handle job update
@@ -98,9 +95,9 @@ def edit(job_id):
         
         # Handle contact or update or creation based on form data
         if form.contact.form.name.data:
-            if contact and (form.contact.form.name.data != contact["name"] or
+            if contact and (form.contact.form.name.data != contact["contact_name"] or
                     form.contact.form.email.data != contact["email"] or
-                    form.contact.form.phone.data != contact["phone"]):
+                    form.contact.form.phone.data != contact["phone_number"]):
                 # Update contact if contact exists and one of the fields has been changed
                 update_contact(contact["id"], 
                                form.contact.form.name.data,
@@ -108,11 +105,11 @@ def edit(job_id):
                                form.contact.form.phone.data)
             else: 
                 # Create new contact if there is no contact already
-                contact_id = add_contact({
+                contact_id = add_contact(
                     form.contact.form.name.data,
                     form.contact.form.email.data,
                     form.contact.form.phone.data
-                })
+                )
                 update_job_contact(job_id, contact_id)
         elif contact:
             # Remove contact if name field is empty
@@ -121,6 +118,19 @@ def edit(job_id):
 
         flash("Job updated successfully", category="success")
         return redirect(url_for("index"))
+    
+    # create populate_edit_form function to refactor this function
+    form.company.data = job["company_name"]
+    form.position.data = job["job_position"]
+    form.contract_type.data = job["contract_type_id"]
+    form.location.data = job["job_location"]
+    form.status.data = job["status_id"]
+    form.url.data = job["job_post_link"]
+    if contact:
+        form.contact.form.name.data = contact["contact_name"]
+        form.contact.form.email.data = contact["email"]
+        form.contact.form.phone.data = contact["phone_number"]
+
 
     return render_template("jobhuntr/edit.html", form=form, job=job, contact=contact)
 

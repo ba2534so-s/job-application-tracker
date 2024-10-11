@@ -82,7 +82,9 @@ def add_job(user_id, company, position, location, contract_type, url, contact_in
     
     contact_id = None
     if contact_info is not None:
-        contact_id = add_contact(contact_info) if contact_info else None
+        contact_id = add_contact(contact_info["name"], 
+                                 contact_info["email"], 
+                                 contact_info["phone"]) if contact_info else None
     
     db.execute(
         """
@@ -199,14 +201,14 @@ def update_job_contact(job_id, contact_id):
 
 
 #CONTACTS
-def add_contact(contact_info):
+def add_contact(name, email, phone):
     db = get_db()
     
     cursor = db.execute(
         """
         INSERT INTO contacts (contact_name, email, phone_number)
         VALUES (?, ?, ?)""", 
-        (contact_info["name"], contact_info["email"], contact_info["phone"]))
+        (name, email, phone))
     db.commit()
     return cursor.lastrowid
 
@@ -218,7 +220,7 @@ def get_contact_by_id(id):
 # Update existing contacts information
 def update_contact(contact_id, name, email, phone):
     db = get_db()
-    db.execute("UPDATE contacts SET contact_name = ?, email = ?, phone = ? WHERE contact_id = ?", 
+    db.execute("UPDATE contacts SET contact_name = ?, email = ?, phone_number = ? WHERE id = ?", 
                (name, email, phone, contact_id)
     )
     db.commit()
