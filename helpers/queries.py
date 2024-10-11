@@ -199,14 +199,14 @@ def update_job_contact(job_id, contact_id):
 
 
 #CONTACTS
-def add_contact(contact_info):
+def add_contact(name, email, phone):
     db = get_db()
     
     cursor = db.execute(
         """
         INSERT INTO contacts (contact_name, email, phone_number)
         VALUES (?, ?, ?)""", 
-        (contact_info["name"], contact_info["email"], contact_info["phone"]))
+        (name, email, phone))
     db.commit()
     return cursor.lastrowid
 
