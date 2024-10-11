@@ -119,6 +119,7 @@ def edit(job_id):
         flash("Job updated successfully", category="success")
         return redirect(url_for("index"))
     
+    form.company = job["company_name"]
 
     return render_template("jobhuntr/edit.html", form=form, job=job, contact=contact)
 
