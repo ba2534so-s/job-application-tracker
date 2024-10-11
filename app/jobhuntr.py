@@ -121,6 +121,8 @@ def edit(job_id):
     
     form.company.data = job["company_name"]
     form.position.data = job["job_position"]
+    form.contract_type.data = job["contract_type_id"]
+    
 
     return render_template("jobhuntr/edit.html", form=form, job=job, contact=contact)
 
