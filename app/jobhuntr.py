@@ -87,9 +87,6 @@ def edit(job_id):
     form.contract_type.choices = get_contract_types_tuple()
     form.status.choices = get_statuses_tuple()
 
-    print(f"VALIDATE ON SUBMIT = {form.validate_on_submit()}")
-    print(f"REQUEST METHOD: {request.method}")
-    print(f"FORM ERRORS: {form.errors}")
     
     if form.validate_on_submit():
         # Handle job update
@@ -121,6 +118,7 @@ def edit(job_id):
 
         flash("Job updated successfully", category="success")
         return redirect(url_for("index"))
+    
 
     return render_template("jobhuntr/edit.html", form=form, job=job, contact=contact)
 
