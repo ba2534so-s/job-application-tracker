@@ -119,7 +119,7 @@ def edit(job_id):
         flash("Job updated successfully", category="success")
         return redirect(url_for("index"))
     
-    # create populate function to refactor this function
+    # create populate_edit_form function to refactor this function
     form.company.data = job["company_name"]
     form.position.data = job["job_position"]
     form.contract_type.data = job["contract_type_id"]
