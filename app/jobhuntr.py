@@ -105,11 +105,11 @@ def edit(job_id):
                                form.contact.form.phone.data)
             else: 
                 # Create new contact if there is no contact already
-                contact_id = add_contact({
+                contact_id = add_contact(
                     form.contact.form.name.data,
                     form.contact.form.email.data,
                     form.contact.form.phone.data
-                })
+                )
                 update_job_contact(job_id, contact_id)
         elif contact:
             # Remove contact if name field is empty
