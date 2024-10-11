@@ -127,7 +127,8 @@ def edit(job_id):
     form.status.data = job["status_id"]
     form.url.data = job["job_post_link"]
     if contact:
-        
+        form.contact.form.name.data = contact["contact_name"]
+
 
     return render_template("jobhuntr/edit.html", form=form, job=job, contact=contact)
 
