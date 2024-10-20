@@ -13,7 +13,10 @@
             {{ form.position(class="form-control my-3", placeholder="Enter Job Position") }}
             {{ form.contract_type.label() }}
             <select class="form-select my-3" id="contract_type" name="contract_type" required>
-                
+                {% for value, label in form.contract_type.choices %}
+                    
+
+                {% endfor %}
             </select>
 
             {{ form.location.label() }}
