@@ -35,6 +35,10 @@
                         <option value="{{ value }}" selected>
                             {{ label }}
                         </option>
+                    {% else %}
+                        <option value="{{ value }}">
+                            {{ label }}
+                        </option>
 
                 {% endfor %}
             </select>
