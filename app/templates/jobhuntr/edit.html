@@ -12,7 +12,10 @@
             {{ form.position.label() }}
             {{ form.position(class="form-control my-3", placeholder="Enter Job Position") }}
             {{ form.contract_type.label() }}
-            {{ form.contract_type(class="form-select my-3") }}
+            <select class="form-select my-3" id="contract_type" name="contract_type" required>
+                
+            </select>
+
             {{ form.location.label() }}
             {{ form.location(class="form-control my-3", placeholder="Enter Location")}}
             {{ form.status.label() }}
