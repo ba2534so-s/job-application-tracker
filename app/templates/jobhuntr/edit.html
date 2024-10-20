@@ -32,7 +32,10 @@
             <select class="form-select my-3" id="status" name="status" required>
                 {% for value, label in form.status.choices %}
                     {% if form.status.data == value %}
-                    
+                        <option value="{{ value }}" selected>
+                            {{ label }}
+                        </option>
+
                 {% endfor %}
             </select>
             {{ form.url.label() }}
