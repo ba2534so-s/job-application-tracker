@@ -201,16 +201,17 @@ def update_job_contact(job_id, contact_id):
 
 
 #CONTACTS
-def add_contact(name, email, phone):
+def add_contact(user_id, name, email, phone):
     db = get_db()
     
     cursor = db.execute(
         """
-        INSERT INTO contacts (contact_name, email, phone_number)
-        VALUES (?, ?, ?)""", 
-        (name, email, phone))
+        INSERT INTO contacts (contact_name, user_id, email, phone_number)
+        VALUES (?, ?, ?, ?)""", 
+        (name, user_id, email, phone))
     db.commit()
     return cursor.lastrowid
+
 
 def get_contact_by_id(id):
     db = get_db()
