@@ -20,7 +20,7 @@
                     <h6><strong>Date Applied:</strong> - </h6>
                 {% endif %}
                 {% if application["job_post_link"] %}
-                    <h6><strong>Application URL:</strong> {{ application["job_post_link"] }}</h6>
+                    <h6><strong>Application URL:  </strong><a href="{{ application['job_post_link'] }}">{{ application["job_post_link"] }}</a></h6>
                 {% else %}
                     <h6><strong>Application URL:</strong> - </h6>
                 {% endif %}
