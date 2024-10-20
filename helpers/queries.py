@@ -214,6 +214,8 @@ def add_contact(user_id, name, email, phone):
     return cursor.lastrowid
 
 def get_all_contacts_for_user(user_id):
+    db = get_db()
+    
 
 def get_contact_by_id(id):
     db = get_db()
