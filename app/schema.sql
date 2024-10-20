@@ -61,7 +61,7 @@ CREATE TABLE skills (
 CREATE TABLE application_skills (
     application_id INTEGER NOT NULL,
     skill_id INTEGER NOT NULL,
-    FOREIGN KEY (application_id) references applications (id),
+    FOREIGN KEY (application_id) references applications (id) ON DELETE CASCADE,
     FOREIGN KEY (skill_id) references skills (id),
     PRIMARY KEY (application_id, skill_id)
 );
