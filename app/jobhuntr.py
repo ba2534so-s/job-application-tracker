@@ -104,6 +104,7 @@ def edit(job_id):
             else: 
                 # Create new contact if there is no contact already
                 contact_id = add_contact(
+                    g.user["id"],
                     form.contact.form.name.data,
                     form.contact.form.email.data,
                     form.contact.form.phone.data
