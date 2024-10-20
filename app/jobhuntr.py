@@ -71,8 +71,6 @@ def update_status(job_id, status_id):
     return redirect(request.referrer or url_for("index"))
 
 
-
-
 @bp.route("/edit/<int:job_id>", methods=["GET", "POST"])
 @login_required
 def edit(job_id):
@@ -82,7 +80,7 @@ def edit(job_id):
     if job is None:
         flash("Job not found.", category="danger")
         return redirect(url_for("index"))
-    
+
     form = EditForm()
     form.contract_type.choices = get_contract_types_tuple()
     form.status.choices = get_statuses_tuple()
@@ -106,6 +104,7 @@ def edit(job_id):
             else: 
                 # Create new contact if there is no contact already
                 contact_id = add_contact(
+                    g.user["id"],
                     form.contact.form.name.data,
                     form.contact.form.email.data,
                     form.contact.form.phone.data
@@ -130,7 +129,6 @@ def edit(job_id):
         form.contact.form.name.data = contact["contact_name"]
         form.contact.form.email.data = contact["email"]
         form.contact.form.phone.data = contact["phone_number"]
-
 
     return render_template("jobhuntr/edit.html", form=form, job=job, contact=contact)
 

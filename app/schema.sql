@@ -28,7 +28,7 @@ CREATE TABLE applications (
     status_id INTEGER NOT NULL,
     job_description TEXT,
     cover_letter TEXT,
-    FOREIGN KEY (user_id) references users (id),
+    FOREIGN KEY (user_id) references users (id) ON DELETE CASCADE,
     FOREIGN KEY (contract_type_id) references contract_types (id),
     FOREIGN KEY (contact_id) references contacts (id),
     FOREIGN KEY (status_id) references statuses (id)
@@ -46,9 +46,11 @@ CREATE TABLE contract_types (
 
 CREATE TABLE contacts (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
     contact_name TEXT NOT NULL,
     email TEXT,
-    phone_number TEXT
+    phone_number TEXT,
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
 
 CREATE TABLE skills (
@@ -59,7 +61,7 @@ CREATE TABLE skills (
 CREATE TABLE application_skills (
     application_id INTEGER NOT NULL,
     skill_id INTEGER NOT NULL,
-    FOREIGN KEY (application_id) references applications (id),
+    FOREIGN KEY (application_id) references applications (id) ON DELETE CASCADE,
     FOREIGN KEY (skill_id) references skills (id),
     PRIMARY KEY (application_id, skill_id)
 );

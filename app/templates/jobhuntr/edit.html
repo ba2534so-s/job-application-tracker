@@ -12,11 +12,36 @@
             {{ form.position.label() }}
             {{ form.position(class="form-control my-3", placeholder="Enter Job Position") }}
             {{ form.contract_type.label() }}
-            {{ form.contract_type(class="form-select my-3") }}
+            <select class="form-select my-3" id="contract_type" name="contract_type" required>
+                {% for value, label in form.contract_type.choices %}
+                    {% if form.contract_type.data == value %}
+                        <option value='{{ value }}' selected>
+                            {{ label }}
+                        </option>
+                    {% else %}
+                        <option value='{{ value }}'>
+                            {{ label }}
+                        </option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+
             {{ form.location.label() }}
             {{ form.location(class="form-control my-3", placeholder="Enter Location")}}
             {{ form.status.label() }}
-            {{ form.status(class="form-select my-3") }}
+            <select class="form-select my-3" id="status" name="status" required>
+                {% for value, label in form.status.choices %}
+                    {% if form.status.data == value %}
+                        <option value="{{ value }}" selected>
+                            {{ label }}
+                        </option>
+                    {% else %}
+                        <option value="{{ value }}">
+                            {{ label }}
+                        </option>
+                    {% endif %}
+                {% endfor %}
+            </select>
             {{ form.url.label() }}
             {{ form.url(class="form-control my-3", placeholder="Enter Application URL") }}
 
