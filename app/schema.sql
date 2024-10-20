@@ -46,9 +46,11 @@ CREATE TABLE contract_types (
 
 CREATE TABLE contacts (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
     contact_name TEXT NOT NULL,
     email TEXT,
-    phone_number TEXT
+    phone_number TEXT,
+    FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
 CREATE TABLE skills (
