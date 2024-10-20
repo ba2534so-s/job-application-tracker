@@ -15,6 +15,9 @@
             <select class="form-select my-3" id="contract_type" name="contract_type" required>
                 {% for value, label in form.contract_type.choices %}
                     {% if form.contract_type.data == value %}
+                        <option value='{{ value }}' selected>
+                            {{ label }}
+                        </option>
                     
 
                 {% endfor %}
