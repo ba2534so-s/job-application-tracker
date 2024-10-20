@@ -22,6 +22,7 @@ def index():
                            applications=applications, 
                            contract_types=contract_types,
                            statuses=statuses,
+                           contacts=contacts,
                            delete_form=delete_form)
 
 
