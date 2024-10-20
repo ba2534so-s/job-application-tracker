@@ -28,7 +28,7 @@ CREATE TABLE applications (
     status_id INTEGER NOT NULL,
     job_description TEXT,
     cover_letter TEXT,
-    FOREIGN KEY (user_id) references users (id) ON DELETE CASCADE<,
+    FOREIGN KEY (user_id) references users (id) ON DELETE CASCADE,
     FOREIGN KEY (contract_type_id) references contract_types (id),
     FOREIGN KEY (contact_id) references contacts (id),
     FOREIGN KEY (status_id) references statuses (id)
@@ -50,7 +50,7 @@ CREATE TABLE contacts (
     contact_name TEXT NOT NULL,
     email TEXT,
     phone_number TEXT,
-    FOREIGN KEY (user_id) REFERENCES users (id)
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
 
 CREATE TABLE skills (
