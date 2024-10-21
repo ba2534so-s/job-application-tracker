@@ -34,8 +34,8 @@
                         <strong>Email: </strong> 
                         {% if contacts[application["contact_id"]]["email"] %}
                             {{ contacts[application["contact_id"]]["email"] }}
-                        
-                        </h6>
+                        {% endif %}    
+                    </h6>
                     
                     <h6><strong>Phone No: </strong>{{ contacts[application["contact_id"]]["phone_number"] }}</h6>
 
