@@ -7,7 +7,7 @@
                 <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <h5><strong>Job Information</strong></h5>
+                <h4><strong>Job Information</strong></h4>
                 <h6><strong>Company:</strong> {{ application["company_name"] }}</h6>
                 <h6><strong>Position:</strong> {{ application["job_position"] }}</h6>
                 <h6><strong>Location:</strong> {{ application["job_location"] }}</h6>
@@ -28,8 +28,16 @@
 
                 <br>
                 {% if application["contact_id"] %}
-                    <h5><strong>Contact Information</strong></h5>
-                    <h6><strong>Name:</strong></h6>
+                    <h4><strong>Contact Information</strong></h4>
+                    <h6><strong>Name: </strong>{{ contacts[application["contact_id"]]["contact_name"]}}</h6>
+                    <h6>
+                        <strong>Email: </strong> 
+                        {% if contacts[application["contact_id"]]["email"] %}
+                            {{ contacts[application["contact_id"]]["email"] }}
+                        {% endif %}    
+                    </h6>
+                    
+                    <h6><strong>Phone No: </strong>{{ contacts[application["contact_id"]]["phone_number"] }}</h6>
 
                 {% else %}
                     <p>No contact information available.</p>
