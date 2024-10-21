@@ -29,7 +29,7 @@
                 <br>
                 {% if application["contact_id"] %}
                     <h5><strong>Contact Information</strong></h5>
-                    <h6><strong>Name:</strong></h6>
+                    <h6><strong>Name: </strong>{{ contacts[application["contact_id"]]["contact_name"]}}</h6>
 
                 {% else %}
                     <p>No contact information available.</p>
