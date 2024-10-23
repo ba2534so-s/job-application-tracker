@@ -124,7 +124,7 @@ def edit(job_id):
         flash("Job updated successfully", category="success")
         return redirect(url_for("index"))
     
-    
+    populate_edit_form(form, job, contact)
 
     return render_template("jobhuntr/edit.html", form=form, job=job, contact=contact)
 
