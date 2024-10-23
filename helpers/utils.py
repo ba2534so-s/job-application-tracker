@@ -25,19 +25,21 @@ def populate_edit_form(form, job, contact):
         form.contact.form.phone.data = contact["phone_number"]
 
 def update_exisiting_contact(form, contact):
+    # Update contact if contact exists and one of the fields has been changed
+    if (form.contact.form.name.data != contact["contact_name"] or
+        form.contact.form.email.data != contact["email"] or
+        form.contact.form.phone.data != contact["phone_number"]):
+        
+        update_contact(contact["id"], 
+                       form.contact.form.name.data,
+                       form.contact.form.email.data,
+                       form.contact.form.phone.data)
 
 
 def manage_contact(form, contact, job_id):
     # Handle contact or update or creation based on form data
         if form.contact.form.name.data:
-            if contact and (form.contact.form.name.data != contact["contact_name"] or
-                    form.contact.form.email.data != contact["email"] or
-                    form.contact.form.phone.data != contact["phone_number"]):
-                # Update contact if contact exists and one of the fields has been changed
-                update_contact(contact["id"], 
-                               form.contact.form.name.data,
-                               form.contact.form.email.data,
-                               form.contact.form.phone.data)
+            if contact:
             else: 
                 # Create new contact if there is no contact already
                 contact_id = add_contact(
