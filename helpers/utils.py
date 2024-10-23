@@ -59,4 +59,4 @@ def manage_contact(form, contact, job_id):
                 add_new_contact(form, job_id)
         elif contact:
             # Remove contact if name field is empty
-            
+            delete_existing_contact(contact, job_id)
