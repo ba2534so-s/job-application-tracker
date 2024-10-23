@@ -12,3 +12,5 @@ def login_required(view):
 
 
 def populate_edit_form(form, job, contact):
+    form.company.data = job["company_name"]
+    
