@@ -32,10 +32,10 @@ def create_app(test_config=None):
     from . import db
     db.init_app(app)
 
-    from . import auth
+    from .routes import auth
     app.register_blueprint(auth.bp)
 
-    from . import jobhuntr
+    from .routes import jobhuntr
     app.register_blueprint(jobhuntr.bp)
     app.add_url_rule("/", endpoint="index")
 

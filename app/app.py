@@ -1,2 +1,4 @@
-from flask import Flask
-from app.routes import init_app
+from app import create_app
+
+app = create_app()
+
