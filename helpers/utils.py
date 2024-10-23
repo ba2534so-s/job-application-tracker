@@ -18,4 +18,5 @@ def populate_edit_form(form, job, contact):
     form.location.data = job["job_location"]
     form.status.data = job["status_id"]
     form.url.data = job["job_post_link"]
-    
+    if contact:
+        
