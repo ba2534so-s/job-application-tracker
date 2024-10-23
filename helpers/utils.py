@@ -20,3 +20,4 @@ def populate_edit_form(form, job, contact):
     form.url.data = job["job_post_link"]
     if contact:
         form.contact.form.name.data = contact["contact_name"]
+        form.contact.form.email.data = contact["email"]
