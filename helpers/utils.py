@@ -52,13 +52,7 @@ def manage_contact(form, contact, job_id):
                 update_exisiting_contact(form, contact)
             else: 
                 # Create new contact if there is no contact already
-                contact_id = add_contact(
-                    g.user["id"],
-                    form.contact.form.name.data,
-                    form.contact.form.email.data,
-                    form.contact.form.phone.data
-                )
-                update_job_contact(job_id, contact_id)
+                add_new_contact(form, job_id)
         elif contact:
             # Remove contact if name field is empty
             delete_contact(contact["id"])
