@@ -21,3 +21,4 @@ def populate_edit_form(form, job, contact):
     if contact:
         form.contact.form.name.data = contact["contact_name"]
         form.contact.form.email.data = contact["email"]
+        form.contact.form.phone.data = contact["phone_number"]
