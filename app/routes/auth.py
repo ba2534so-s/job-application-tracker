@@ -1,7 +1,5 @@
-from functools import wraps
-from flask import Blueprint, flash, g, redirect, render_template, request, session, url_for
+from flask import Blueprint, flash, g, redirect, render_template, session, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
-from app.db import get_db
 from helpers.queries import create_user, get_user_by_username, get_user_by_id
 from app.forms import RegisterForm, LoginForm
 
@@ -58,11 +56,3 @@ def logout():
     flash("You have been logged out", category="info")
     return redirect(url_for("index"))
 
-
-def login_required(view):
-    @wraps(view)
-    def wrapped_view(**kwargs):
-        if g.user is None:
-            return redirect(url_for("auth.login"))
-        return view(**kwargs)
-    return wrapped_view
