@@ -24,6 +24,8 @@ def populate_edit_form(form, job, contact):
         form.contact.form.email.data = contact["email"]
         form.contact.form.phone.data = contact["phone_number"]
 
+def update_exisiting_contact(form, contact):
+
 
 def manage_contact(form, contact, job_id):
     # Handle contact or update or creation based on form data
