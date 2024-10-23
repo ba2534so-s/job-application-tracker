@@ -40,6 +40,7 @@ def manage_contact(form, contact, job_id):
     # Handle contact or update or creation based on form data
         if form.contact.form.name.data:
             if contact:
+                update_exisiting_contact(form, contact)
             else: 
                 # Create new contact if there is no contact already
                 contact_id = add_contact(
