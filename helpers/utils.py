@@ -8,3 +8,7 @@ def login_required(view):
             return redirect(url_for("auth.login"))
         return view(**kwargs)
     return wrapped_view
+
+
+
+def populate_edit_form(form, job, contact):
