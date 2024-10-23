@@ -75,6 +75,8 @@ def update_status(job_id, status_id):
     return redirect(request.referrer or url_for("index"))
 
 
+
+
 @bp.route("/edit/<int:job_id>", methods=["GET", "POST"])
 @login_required
 def edit(job_id):
