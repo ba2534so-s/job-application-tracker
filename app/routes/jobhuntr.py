@@ -97,29 +97,7 @@ def edit(job_id):
         update_job(g.user["id"], job_id, form.company.data, form.position.data, 
                    form.location.data, form.contract_type.data, form.url.data, form.status.data)
         
-        # Handle contact or update or creation based on form data
-        if form.contact.form.name.data:
-            if contact and (form.contact.form.name.data != contact["contact_name"] or
-                    form.contact.form.email.data != contact["email"] or
-                    form.contact.form.phone.data != contact["phone_number"]):
-                # Update contact if contact exists and one of the fields has been changed
-                update_contact(contact["id"], 
-                               form.contact.form.name.data,
-                               form.contact.form.email.data,
-                               form.contact.form.phone.data)
-            else: 
-                # Create new contact if there is no contact already
-                contact_id = add_contact(
-                    g.user["id"],
-                    form.contact.form.name.data,
-                    form.contact.form.email.data,
-                    form.contact.form.phone.data
-                )
-                update_job_contact(job_id, contact_id)
-        elif contact:
-            # Remove contact if name field is empty
-            delete_contact(contact["id"])
-            update_job_contact(job_id, None)
+        
 
         flash("Job updated successfully", category="success")
         return redirect(url_for("index"))
