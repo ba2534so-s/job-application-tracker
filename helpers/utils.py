@@ -46,6 +46,8 @@ def add_new_contact(form, job_id):
     update_job_contact(job_id, contact_id)
 
 def delete_existing_contact(contact, job_id):
+    delete_contact(contact["id"])
+    update_job_contact(job_id, None)
 
 def manage_contact(form, contact, job_id):
     # Handle contact or update or creation based on form data
@@ -57,5 +59,4 @@ def manage_contact(form, contact, job_id):
                 add_new_contact(form, job_id)
         elif contact:
             # Remove contact if name field is empty
-            delete_contact(contact["id"])
-            update_job_contact(job_id, None)
+            
