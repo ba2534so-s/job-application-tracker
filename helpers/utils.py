@@ -36,6 +36,14 @@ def update_exisiting_contact(form, contact):
                        form.contact.form.phone.data)
 
 def add_new_contact(form, job_id):
+    #Add a new contact and associate it with the job
+    contact_id = add_contact(
+                    g.user["id"],
+                    form.contact.form.name.data,
+                    form.contact.form.email.data,
+                    form.contact.form.phone.data
+                )
+    update_job_contact(job_id, contact_id)
 
 def manage_contact(form, contact, job_id):
     # Handle contact or update or creation based on form data
