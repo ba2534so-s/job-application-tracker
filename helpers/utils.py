@@ -35,6 +35,7 @@ def update_exisiting_contact(form, contact):
                        form.contact.form.email.data,
                        form.contact.form.phone.data)
 
+def add_new_contact(form, job_id):
 
 def manage_contact(form, contact, job_id):
     # Handle contact or update or creation based on form data
