@@ -1,6 +1,6 @@
 from flask import Blueprint, flash, g, redirect, render_template, request, url_for, jsonify
 from werkzeug.exceptions import abort
-from app.routes.auth import login_required
+from helpers.utils import *
 from helpers.queries import *
 from app.forms import AddForm, DeleteApplicationForm, EditForm
 
