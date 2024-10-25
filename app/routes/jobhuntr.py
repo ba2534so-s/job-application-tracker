@@ -6,8 +6,6 @@ from app.forms import AddForm, DeleteApplicationForm, EditForm
 
 bp = Blueprint("jobhuntr", __name__)
 
-
-
 @bp.route("/", methods=["GET", "POST"])
 @login_required
 def index():
