@@ -190,6 +190,7 @@ def get_not_started_applications(user_id):
     get_applications_by_status(user_id, 1)
 
 # get all jobs with status applied
+def get_applied_applications(user_id):
 # get all jobs with status interviewing
 
 # delete job 
