@@ -35,7 +35,13 @@
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="status-dropdown-{{ application['id'] }}">
                                     {% for status_id, status_name in statuses.items() %}
+                                        <li>
+                                            {% if status_id != application["status_id"] %}
 
+                                            {% else %}
+
+                                            {% endif %}
+                                        </li>
                                     {% endfor %}
                                 </ul>
                             </div>
