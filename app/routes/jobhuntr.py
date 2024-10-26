@@ -29,9 +29,9 @@ def index():
 @login_required
 def not_started():
     delete_form = DeleteApplicationForm()
-    
 
     applications = get_not_started_applications(g.user["id"])
+    contract_types = get_contract_types_dict()
 
     return render_template("jobhuntr/not_started.html", applications=applications)
 
