@@ -197,6 +197,9 @@ def get_applied_applications(user_id):
 def get_interviewing_applications(user_id):
     return get_applications_by_status(user_id, 3)
 
+# get archive jobs (rejected, job offer, expired)
+def get_archived_applications(user_id):
+
 # delete job 
 def delete_job(user_id, job_id):
     db = get_db()
