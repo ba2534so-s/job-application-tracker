@@ -210,6 +210,7 @@ def get_archived_applications(user_id):
         ''', 
         (user_id)
     ).fetchall()
+    return applications
 
 # delete job 
 def delete_job(user_id, job_id):
