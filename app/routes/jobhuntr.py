@@ -45,6 +45,7 @@ def not_started():
                            delete_form=delete_form)
 
 @bp.route("/jobhuntr/applied")
+@login_required
 def applied():
     return render_template("jobhuntr/applied.html")
 
