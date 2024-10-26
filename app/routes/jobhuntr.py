@@ -50,6 +50,7 @@ def applied():
     return render_template("jobhuntr/applied.html")
 
 def interviewing():
+    return render_template("jobhuntr/interviewing.html")
 
 @bp.route("/add", methods=["GET", "POST"])
 @login_required
