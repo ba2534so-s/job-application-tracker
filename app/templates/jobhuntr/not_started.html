@@ -30,7 +30,7 @@
                         <td>{{ contract_types[application["contract_type_id"]] }}</td>
                         <td>
                             <div class="dropdown">
-                                <button type="button" id="status-dropdown-{{ application['id'] }}" class="btn btn-outline-dark btn-sm dropdown-toggle" data-bs-toggle="toggle" aria-expanded="false">
+                                <button type="button" id="status-dropdown-{{ application['id'] }}" class="btn btn-outline-dark btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                     {{ statuses[application['status_id']]}}
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="status-dropdown-{{ application['id'] }}">
@@ -38,7 +38,7 @@
                                         <li>
                                             {% if status_id != application["status_id"] %}
                                                 <a href="{{ url_for('jobhuntr.update_status', job_id=application['id'], status_id=status_id)}}" class="dropdown-item">
-                                                    {{ status_name}}
+                                                    {{ status_name }}
                                                 </a>
                                             {% else %}
                                                 <span class="dropdown-item active bg-secondary">
