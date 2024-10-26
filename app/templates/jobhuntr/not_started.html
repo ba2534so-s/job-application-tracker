@@ -37,9 +37,11 @@
                                     {% for status_id, status_name in statuses.items() %}
                                         <li>
                                             {% if status_id != application["status_id"] %}
-
+                                                <a href="{{ url_for('jobhuntr.update_status', job_id=application['id'], status_id=status_id)}}" class="dropdown-item">
+                                                    {{ status_name}}
+                                                </a>
                                             {% else %}
-
+                                                
                                             {% endif %}
                                         </li>
                                     {% endfor %}
