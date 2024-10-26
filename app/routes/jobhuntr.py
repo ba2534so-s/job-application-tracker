@@ -28,6 +28,9 @@ def index():
 @bp.route("/jobhuntr/not_started", methods=["GET", "POST"])
 @login_required
 def not_started():
+    delete_form = DeleteApplicationForm()
+    
+
     applications = get_not_started_applications(g.user["id"])
 
     return render_template("jobhuntr/not_started.html", applications=applications)
