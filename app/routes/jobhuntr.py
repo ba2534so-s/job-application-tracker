@@ -28,6 +28,7 @@ def index():
 @bp.route("applications/not_started", methods=["GET", "POST"])
 @login_required
 def not_started():
+    application = get_not_started_applications(g.user["id"])
 
 
 @bp.route("/add", methods=["GET", "POST"])
