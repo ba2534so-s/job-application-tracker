@@ -32,6 +32,7 @@ def not_started():
 
     applications = get_not_started_applications(g.user["id"])
     contract_types = get_contract_types_dict()
+    statuses = get_statuses_dict()
 
     return render_template("jobhuntr/not_started.html", applications=applications)
 
