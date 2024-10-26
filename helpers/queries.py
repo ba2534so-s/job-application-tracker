@@ -180,7 +180,7 @@ def get_job_by_id(user_id, job_id):
     return job
 
 def get_applications_by_status(user_id, status_id):
-
+    db = get_db()
 # get all jobs with status not started
 # get all jobs with status applied
 # get all jobs with status interviewing
