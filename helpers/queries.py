@@ -200,6 +200,16 @@ def get_interviewing_applications(user_id):
 # get archive jobs (rejected, job offer, expired)
 def get_archived_applications(user_id):
     db = get_db()
+    applications = db.execute(
+        '''
+        SELECT * FROM applications
+        WHERE user_id = ?
+        AND status_id IN (
+            SELECT id FROM statuses WHERE application_status IN ('Rejected', 'Job Offer', 'Expired')
+        )
+        ''', 
+        (user_id)
+    ).fetchall()
 
 # delete job 
 def delete_job(user_id, job_id):
