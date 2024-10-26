@@ -179,6 +179,8 @@ def get_job_by_id(user_id, job_id):
     job = db.execute("SELECT * FROM applications WHERE user_id = ? AND id = ?", (user_id, job_id)).fetchone()
     return job
 
+def get_applications_by_status(user_id, status_id):
+
 # get all jobs with status not started
 # get all jobs with status applied
 # get all jobs with status interviewing
