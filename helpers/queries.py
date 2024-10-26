@@ -195,6 +195,7 @@ def get_applied_applications(user_id):
 
 # get all jobs with status interviewing
 def get_interviewing_applications(user_id):
+    return get_applications_by_status(user_id, 3)
 
 # delete job 
 def delete_job(user_id, job_id):
