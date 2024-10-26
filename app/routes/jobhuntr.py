@@ -25,12 +25,12 @@ def index():
                            contacts=contacts_dict,
                            delete_form=delete_form)
 
-@bp.route("/applications/not_started", methods=["GET", "POST"])
+@bp.route("/jobhuntr/not_started", methods=["GET", "POST"])
 @login_required
 def not_started():
     applications = get_not_started_applications(g.user["id"])
 
-    return render_template("jobhuntr/not_started", applications=applications)
+    return render_template("jobhuntr/not_started.html", applications=applications)
 
 
 @bp.route("/add", methods=["GET", "POST"])
