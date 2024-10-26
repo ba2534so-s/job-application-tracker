@@ -49,6 +49,8 @@ def not_started():
 def applied():
     return render_template("jobhuntr/applied.html")
 
+def interviewing():
+
 @bp.route("/add", methods=["GET", "POST"])
 @login_required
 def add():
