@@ -42,9 +42,10 @@ def not_started():
                            contract_types=contract_types,
                            statuses=statuses,
                            contacts=contacts_dict,
-                           delete_form=delete_form
-                           )
+                           delete_form=delete_form)
 
+
+def applied():
 
 @bp.route("/add", methods=["GET", "POST"])
 @login_required
