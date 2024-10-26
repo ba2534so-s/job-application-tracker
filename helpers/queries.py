@@ -187,12 +187,14 @@ def get_applications_by_status(user_id, status_id):
 
 # get all jobs with status not started
 def get_not_started_applications(user_id):
-    get_applications_by_status(user_id, 1)
+    return get_applications_by_status(user_id, 1)
 
 # get all jobs with status applied
 def get_applied_applications(user_id):
-    get_applications_by_status(user_id, 2)
+    return get_applications_by_status(user_id, 2)
+
 # get all jobs with status interviewing
+def get_interviewing_applications(user_id):
 
 # delete job 
 def delete_job(user_id, job_id):
