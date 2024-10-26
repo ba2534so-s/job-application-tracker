@@ -49,6 +49,7 @@ def not_started():
 def applied():
     return render_template("jobhuntr/applied.html")
 
+@bp.route("/jobhuntr/interviewing")
 def interviewing():
     return render_template("jobhuntr/interviewing.html")
 
