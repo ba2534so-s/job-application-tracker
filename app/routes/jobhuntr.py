@@ -26,6 +26,7 @@ def index():
                            delete_form=delete_form)
 
 @bp.route("applications/not_started", methods=["GET", "POST"])
+@login_required
 def not_started():
 
 
