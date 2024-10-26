@@ -26,6 +26,8 @@ def index():
                            delete_form=delete_form)
 
 
+def to_apply():
+
 
 @bp.route("/add", methods=["GET", "POST"])
 @login_required
