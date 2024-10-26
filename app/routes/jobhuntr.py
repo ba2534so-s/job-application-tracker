@@ -25,8 +25,8 @@ def index():
                            contacts=contacts_dict,
                            delete_form=delete_form)
 
-
-def to_apply():
+@bp.route("applications/not_started", methods=["GET", "POST"])
+def not_started():
 
 
 @bp.route("/add", methods=["GET", "POST"])
