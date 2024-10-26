@@ -1,6 +1,6 @@
 from functools import wraps
 from flask import g, redirect, url_for
-from queries import *
+from helpers.queries import *
 
 def login_required(view):
     @wraps(view)
