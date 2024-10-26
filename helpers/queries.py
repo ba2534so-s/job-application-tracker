@@ -179,9 +179,38 @@ def get_job_by_id(user_id, job_id):
     job = db.execute("SELECT * FROM applications WHERE user_id = ? AND id = ?", (user_id, job_id)).fetchone()
     return job
 
+def get_applications_by_status(user_id, status_id):
+    db = get_db()
+    applications = db.execute("SELECT * FROM applications WHERE user_id = ? AND status_id = ?", 
+                              (user_id, status_id)).fetchall()
+    return applications
+
 # get all jobs with status not started
+def get_not_started_applications(user_id):
+    return get_applications_by_status(user_id, 1)
+
 # get all jobs with status applied
+def get_applied_applications(user_id):
+    return get_applications_by_status(user_id, 2)
+
 # get all jobs with status interviewing
+def get_interviewing_applications(user_id):
+    return get_applications_by_status(user_id, 3)
+
+# get archive jobs (rejected, job offer, expired)
+def get_archived_applications(user_id):
+    db = get_db()
+    applications = db.execute(
+        '''
+        SELECT * FROM applications
+        WHERE user_id = ?
+        AND status_id IN (
+            SELECT id FROM statuses WHERE application_status IN ('Rejected', 'Job Offer', 'Expired')
+        )
+        ''', 
+        (user_id)
+    ).fetchall()
+    return applications
 
 # delete job 
 def delete_job(user_id, job_id):

@@ -25,6 +25,25 @@ def index():
                            contacts=contacts_dict,
                            delete_form=delete_form)
 
+@bp.route("/jobhuntr/not_started", methods=["GET", "POST"])
+@login_required
+def not_started():
+    delete_form = DeleteApplicationForm()
+
+    applications = get_not_started_applications(g.user["id"])
+    contract_types = get_contract_types_dict()
+    statuses = get_statuses_dict()
+    contacts = get_all_contacts_for_user(g.user["id"])
+
+    contacts_dict = {contact["id"] : contact for contact in contacts}
+
+    return render_template("jobhuntr/not_started.html", 
+                           applications=applications,
+                           contract_types=contract_types,
+                           statuses=statuses,
+                           contacts=contacts_dict,
+                           delete_form=delete_form
+                           )
 
 
 @bp.route("/add", methods=["GET", "POST"])

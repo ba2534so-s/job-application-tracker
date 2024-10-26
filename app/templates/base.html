@@ -26,15 +26,12 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav nav-underline me-auto mt-2">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ url_for('index') }}">Home</a>
-                        </li>
                         {% if g.user %}
                         <li class="nav-item">
-                            <a class="nav-link" href="#">All Applications</a>
+                            <a class="nav-link {% if request.endpoint == 'jobhuntr.index' %} active {% endif %}" href="{{ url_for('index') }}">All Applications</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">To Apply</a>
+                            <a class="nav-link {% if request.endpoint == 'jobhuntr.not_started' %} active {% endif %}" href="{{ url_for('jobhuntr.not_started')}}">To Apply</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Submitted</a>
