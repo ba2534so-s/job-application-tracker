@@ -27,6 +27,7 @@
                         <td>{{ application["company_name"]}}</td>
                         <td>{{ application["job_position"]}}</td>
                         <td>{{ application["job_location"]}}</td>
+                        <td>{{ contract_types[application["contract_type_id"]] }}</td>
                     </tr>
                 </tbody>
             {% endfor %}
