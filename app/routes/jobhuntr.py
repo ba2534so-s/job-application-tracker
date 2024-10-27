@@ -25,7 +25,7 @@ def index():
                            contacts=contacts_dict,
                            delete_form=delete_form)
 
-@bp.route("/jobhuntr/not_started", methods=["GET", "POST"])
+@bp.route("/jobhuntr/not_started")
 @login_required
 def not_started():
     delete_form = DeleteApplicationForm()
@@ -42,8 +42,43 @@ def not_started():
                            contract_types=contract_types,
                            statuses=statuses,
                            contacts=contacts_dict,
-                           delete_form=delete_form
-                           )
+                           delete_form=delete_form)
+
+@bp.route("/jobhuntr/applied")
+@login_required
+def applied():
+    delete_form = DeleteApplicationForm()
+    applications = get_applied_applications(g.user["id"])
+    contract_types = get_contract_types_dict()
+    statuses = get_statuses_dict()
+    contacts = get_all_contacts_for_user(g.user["id"])
+
+    contacts_dict = {contact["id"] : contact for contact in contacts}
+
+    return render_template("jobhuntr/applied.html",
+                           applications=applications,
+                           contract_types=contract_types,
+                           statuses=statuses,
+                           contacts=contacts_dict,
+                           delete_form=delete_form)
+
+@bp.route("/jobhuntr/interviewing")
+@login_required
+def interviewing():
+    delete_form = DeleteApplicationForm()
+    applications = get_interviewing_applications(g.user["id"])
+    contract_types = get_contract_types_dict()
+    statuses = get_statuses_dict()
+    contacts = get_all_contacts_for_user(g.user["id"])
+
+    contacts_dict = {contact["id"] : contact for contact in contacts}
+
+    return render_template("jobhuntr/interviewing.html",
+                           applications=applications,
+                           contract_types=contract_types,
+                           statuses=statuses,
+                           contacts=contacts_dict,
+                           delete_form=delete_form)
 
 
 @bp.route("/add", methods=["GET", "POST"])
