@@ -33,6 +33,7 @@
                         <td>
                             <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#info-modal-{{ application['id']}}">More Info</button>
                             <a class="btn btn-sm btn-info" href="{{ url_for('jobhuntr.edit', job_id=application['id'])}}">Edit</a>
+                            <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete-job-modal-{{ application['id'] }}">Delete</button>
                         </td>
 
 
