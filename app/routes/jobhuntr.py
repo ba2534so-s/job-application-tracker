@@ -80,6 +80,7 @@ def interviewing():
                            contacts=contacts_dict,
                            delete_form=delete_form)
 
+
 @bp.route("/add", methods=["GET", "POST"])
 @login_required
 def add():
