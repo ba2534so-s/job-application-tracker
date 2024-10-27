@@ -66,6 +66,8 @@ def applied():
 @login_required
 def interviewing():
     delete_form = DeleteApplicationForm()
+    applications = get_interviewing_applications(g.user["id"])
+
     return render_template("jobhuntr/interviewing.html")
 
 @bp.route("/add", methods=["GET", "POST"])
