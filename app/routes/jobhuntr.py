@@ -69,6 +69,7 @@ def interviewing():
     applications = get_interviewing_applications(g.user["id"])
     contract_types = get_contract_types_dict()
     statuses = get_statuses_dict()
+    contacts = get_all_contacts_for_user(g.user["id"])
 
     return render_template("jobhuntr/interviewing.html")
 
