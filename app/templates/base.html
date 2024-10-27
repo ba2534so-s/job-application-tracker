@@ -34,7 +34,7 @@
                             <a class="nav-link {% if request.endpoint == 'jobhuntr.not_started' %} active {% endif %}" href="{{ url_for('jobhuntr.not_started')}}">To Apply</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Submitted</a>
+                            <a class="nav-link" href="{{ url_for('jobhuntr.applied')}}">Submitted</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Interviewing</a>
