@@ -48,7 +48,8 @@ def not_started():
 @login_required
 def applied():
     delete_form = DeleteApplicationForm
-    
+    applications = get_applied_applications(g.user["id"])
+
     return render_template("jobhuntr/applied.html")
 
 @bp.route("/jobhuntr/interviewing")
