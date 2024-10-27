@@ -49,6 +49,8 @@ def not_started():
 def applied():
     delete_form = DeleteApplicationForm
     applications = get_applied_applications(g.user["id"])
+    contract_types = get_contract_types_dict()
+    
 
     return render_template("jobhuntr/applied.html")
 
