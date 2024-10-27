@@ -55,7 +55,12 @@ def applied():
 
     contacts_dict = {contact["id"] : contact for contact in contacts}
 
-    return render_template("jobhuntr/applied.html")
+    return render_template("jobhuntr/applied.html",
+                           applications=applications,
+                           contract_types=contract_types,
+                           statuses=statuses,
+                           contacts=contacts_dict,
+                           delete_form=delete_form)
 
 @bp.route("/jobhuntr/interviewing")
 @login_required
