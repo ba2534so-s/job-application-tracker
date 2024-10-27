@@ -73,7 +73,12 @@ def interviewing():
 
     contacts_dict = {contact["id"] : contact for contact in contacts}
 
-    return render_template("jobhuntr/interviewing.html")
+    return render_template("jobhuntr/interviewing.html",
+                           applications=applications,
+                           contract_types=contract_types,
+                           statuses=statuses,
+                           contacts=contacts_dict,
+                           delete_form=delete_form)
 
 @bp.route("/add", methods=["GET", "POST"])
 @login_required
