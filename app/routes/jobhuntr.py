@@ -47,7 +47,7 @@ def not_started():
 @bp.route("/jobhuntr/applied")
 @login_required
 def applied():
-    delete_form = DeleteApplicationForm
+    delete_form = DeleteApplicationForm()
     applications = get_applied_applications(g.user["id"])
     contract_types = get_contract_types_dict()
     statuses = get_statuses_dict()
@@ -65,6 +65,7 @@ def applied():
 @bp.route("/jobhuntr/interviewing")
 @login_required
 def interviewing():
+    delete_form = DeleteApplicationForm()
     return render_template("jobhuntr/interviewing.html")
 
 @bp.route("/add", methods=["GET", "POST"])
