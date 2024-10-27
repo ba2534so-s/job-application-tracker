@@ -30,6 +30,10 @@
                         <td>{{ contract_types[application["contract_type_id"]] }}</td>
                         <td></td>
                         <td>{{ application["date_applied"] }}</td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#info-modal-{{ application['id']}}">More Info</button>
+
+                        </td>
 
 
                     </tr>
