@@ -68,6 +68,7 @@ def interviewing():
     delete_form = DeleteApplicationForm()
     applications = get_interviewing_applications(g.user["id"])
     contract_types = get_contract_types_dict()
+    statuses = get_statuses_dict()
 
     return render_template("jobhuntr/interviewing.html")
 
