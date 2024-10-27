@@ -71,6 +71,8 @@ def interviewing():
     statuses = get_statuses_dict()
     contacts = get_all_contacts_for_user(g.user["id"])
 
+    contacts_dict = {contact["id"] : contact for contact in contacts}
+
     return render_template("jobhuntr/interviewing.html")
 
 @bp.route("/add", methods=["GET", "POST"])
