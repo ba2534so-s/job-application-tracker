@@ -92,11 +92,14 @@ def interviewing():
 
     contacts_dict = {contact["id"] : contact for contact in contacts}
 
+    interviewing_id = 3
+
     return render_template("jobhuntr/interviewing.html",
                            applications=applications,
                            contract_types=contract_types,
                            statuses=statuses,
                            contacts=contacts_dict,
+                           interviewing_id=interviewing_id,
                            delete_form=delete_form)
 
 @bp.route("/jobhuntr/archived")
