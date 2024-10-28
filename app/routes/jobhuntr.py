@@ -30,6 +30,12 @@ def index():
                            contract_types=contract_types,
                            statuses=statuses,
                            contacts=contacts_dict,
+                           not_started_id=not_started_id,
+                           applied_id=applied_id,
+                           interviewing_id=interviewing_id,
+                           rejected_id=rejected_id,
+                           job_offer_id=job_offer_id,
+                           expired_id=expired_id,
                            delete_form=delete_form)
 
 @bp.route("/jobhuntr/not_started")
