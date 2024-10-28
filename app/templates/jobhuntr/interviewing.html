@@ -20,7 +20,7 @@
         </thead>
         {% if applications %}
             {% for application in applications %}
-
+            {% include "modals/delete_job_modal.html" %}
 
             {% endfor %}
         {% else %}
