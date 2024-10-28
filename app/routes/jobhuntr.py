@@ -17,6 +17,11 @@ def index():
     contacts = get_all_contacts_for_user(g.user["id"])
 
     contacts_dict = {contact["id"] : contact for contact in contacts}
+
+    applied_id = 2
+    rejected_id = 4
+    job_offer_id = 5
+    expired_id = 6
     
     return render_template("jobhuntr/index.html", 
                            applications=applications, 
