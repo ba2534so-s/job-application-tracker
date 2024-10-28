@@ -18,6 +18,7 @@ def index():
 
     contacts_dict = {contact["id"] : contact for contact in contacts}
 
+    not_started_id = 1
     applied_id = 2
     interviewing_id = 3
     rejected_id = 4
