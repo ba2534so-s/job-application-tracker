@@ -84,6 +84,9 @@ def interviewing():
 @login_required
 def archived():
     delete_form = DeleteApplicationForm()
+    applications = get_archived_applications(g.user["id"])
+    
+
 
 
 @bp.route("/add", methods=["GET", "POST"])
