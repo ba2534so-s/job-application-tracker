@@ -80,6 +80,31 @@ def interviewing():
                            contacts=contacts_dict,
                            delete_form=delete_form)
 
+@bp.route("/jobhuntr/archived")
+@login_required
+def archived():
+    delete_form = DeleteApplicationForm()
+    applications = get_archived_applications(g.user["id"])
+    contract_types = get_contract_types_dict()
+    statuses = get_statuses_dict()
+    contacts = get_all_contacts_for_user(g.user["id"])
+
+    contacts_dict = {contact["id"] : contact for contact in contacts}
+
+    rejected_id = 4
+    job_offer_id = 5
+    expired_id = 6
+
+    return render_template("jobhuntr/archived.html",
+                           applications=applications,
+                           contract_types=contract_types,
+                           statuses=statuses,
+                           contacts=contacts_dict,
+                           rejected_id=rejected_id,
+                           job_offer_id=job_offer_id,
+                           expired_id=expired_id,
+                           delete_form=delete_form)
+
 
 @bp.route("/add", methods=["GET", "POST"])
 @login_required

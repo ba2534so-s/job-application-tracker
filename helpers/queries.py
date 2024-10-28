@@ -208,7 +208,7 @@ def get_archived_applications(user_id):
             SELECT id FROM statuses WHERE application_status IN ('Rejected', 'Job Offer', 'Expired')
         )
         ''', 
-        (user_id)
+        (user_id,)
     ).fetchall()
     return applications
 
