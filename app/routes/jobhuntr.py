@@ -50,11 +50,14 @@ def not_started():
 
     contacts_dict = {contact["id"] : contact for contact in contacts}
 
+    not_started_id = 1
+
     return render_template("jobhuntr/not_started.html", 
                            applications=applications,
                            contract_types=contract_types,
                            statuses=statuses,
                            contacts=contacts_dict,
+                           not_started_id=not_started_id,
                            delete_form=delete_form)
 
 @bp.route("/jobhuntr/applied")
