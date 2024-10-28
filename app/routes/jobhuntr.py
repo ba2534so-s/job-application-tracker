@@ -89,6 +89,8 @@ def archived():
     statuses = get_statuses_dict()
     contacts = get_all_contacts_for_user(g.user["id"])
 
+    contacts_dict = {contact["id"] : contact for contact in contacts}
+
 
 @bp.route("/add", methods=["GET", "POST"])
 @login_required
