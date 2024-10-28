@@ -71,11 +71,14 @@ def applied():
 
     contacts_dict = {contact["id"] : contact for contact in contacts}
 
+    applied_id = 2
+
     return render_template("jobhuntr/applied.html",
                            applications=applications,
                            contract_types=contract_types,
                            statuses=statuses,
                            contacts=contacts_dict,
+                           applied_id=applied_id
                            delete_form=delete_form)
 
 @bp.route("/jobhuntr/interviewing")
