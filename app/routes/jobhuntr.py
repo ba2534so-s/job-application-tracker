@@ -87,7 +87,7 @@ def archived():
     applications = get_archived_applications(g.user["id"])
     contract_types = get_contract_types_dict()
     statuses = get_statuses_dict()
-
+    contacts = get_all_contacts_for_user(g.user["id"])
 
 
 @bp.route("/add", methods=["GET", "POST"])
