@@ -83,6 +83,7 @@ def interviewing():
 @bp.route("/jobhuntr/archived")
 @login_required
 def archived():
+    delete_form = DeleteApplicationForm()
 
 
 @bp.route("/add", methods=["GET", "POST"])
