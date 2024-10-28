@@ -100,6 +100,9 @@ def archived():
                            contract_types=contract_types,
                            statuses=statuses,
                            contacts=contacts_dict,
+                           rejected_id=rejected_id,
+                           job_offer_id=job_offer_id,
+                           expired_id=expired_id,
                            delete_form=delete_form)
 
 
