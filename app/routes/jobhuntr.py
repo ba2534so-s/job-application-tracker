@@ -78,7 +78,7 @@ def applied():
                            contract_types=contract_types,
                            statuses=statuses,
                            contacts=contacts_dict,
-                           applied_id=applied_id
+                           applied_id=applied_id,
                            delete_form=delete_form)
 
 @bp.route("/jobhuntr/interviewing")
