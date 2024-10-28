@@ -17,12 +17,25 @@ def index():
     contacts = get_all_contacts_for_user(g.user["id"])
 
     contacts_dict = {contact["id"] : contact for contact in contacts}
+
+    not_started_id = 1
+    applied_id = 2
+    interviewing_id = 3
+    rejected_id = 4
+    job_offer_id = 5
+    expired_id = 6
     
     return render_template("jobhuntr/index.html", 
                            applications=applications, 
                            contract_types=contract_types,
                            statuses=statuses,
                            contacts=contacts_dict,
+                           not_started_id=not_started_id,
+                           applied_id=applied_id,
+                           interviewing_id=interviewing_id,
+                           rejected_id=rejected_id,
+                           job_offer_id=job_offer_id,
+                           expired_id=expired_id,
                            delete_form=delete_form)
 
 @bp.route("/jobhuntr/not_started")
@@ -37,11 +50,14 @@ def not_started():
 
     contacts_dict = {contact["id"] : contact for contact in contacts}
 
+    not_started_id = 1
+
     return render_template("jobhuntr/not_started.html", 
                            applications=applications,
                            contract_types=contract_types,
                            statuses=statuses,
                            contacts=contacts_dict,
+                           not_started_id=not_started_id,
                            delete_form=delete_form)
 
 @bp.route("/jobhuntr/applied")
@@ -55,11 +71,14 @@ def applied():
 
     contacts_dict = {contact["id"] : contact for contact in contacts}
 
+    applied_id = 2
+
     return render_template("jobhuntr/applied.html",
                            applications=applications,
                            contract_types=contract_types,
                            statuses=statuses,
                            contacts=contacts_dict,
+                           applied_id=applied_id,
                            delete_form=delete_form)
 
 @bp.route("/jobhuntr/interviewing")
@@ -73,11 +92,14 @@ def interviewing():
 
     contacts_dict = {contact["id"] : contact for contact in contacts}
 
+    interviewing_id = 3
+
     return render_template("jobhuntr/interviewing.html",
                            applications=applications,
                            contract_types=contract_types,
                            statuses=statuses,
                            contacts=contacts_dict,
+                           interviewing_id=interviewing_id,
                            delete_form=delete_form)
 
 @bp.route("/jobhuntr/archived")
