@@ -80,6 +80,9 @@ def interviewing():
                            contacts=contacts_dict,
                            delete_form=delete_form)
 
+@bp.route("/jobhuntr/archived")
+
+
 
 @bp.route("/add", methods=["GET", "POST"])
 @login_required
