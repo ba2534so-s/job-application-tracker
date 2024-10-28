@@ -82,6 +82,7 @@ def interviewing():
 
 @bp.route("/jobhuntr/archived")
 @login_required
+def archived():
 
 
 @bp.route("/add", methods=["GET", "POST"])
