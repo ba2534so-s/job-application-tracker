@@ -81,7 +81,7 @@ def interviewing():
                            delete_form=delete_form)
 
 @bp.route("/jobhuntr/archived")
-
+@login_required
 
 
 @bp.route("/add", methods=["GET", "POST"])
