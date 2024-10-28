@@ -91,6 +91,10 @@ def archived():
 
     contacts_dict = {contact["id"] : contact for contact in contacts}
 
+    rejected_id = 4
+    job_offer_id = 5
+    expired_id = 6
+
     return render_template("jobhuntr/archived.html",
                            applications=applications,
                            contract_types=contract_types,
