@@ -40,7 +40,7 @@
                             <a class="nav-link {% if request.endpoint == 'jobhuntr.interviewing' %} active {% endif %}" href="{{ url_for('jobhuntr.interviewing') }}">Interviewing</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {% if request.endpoint == 'jobhuntr.arhived' %} active {% endif %}" href="#">Archive</a>
+                            <a class="nav-link {% if request.endpoint == 'jobhuntr.arhived' %} active {% endif %}" href="{{ url_for('jobhuntr.archived') }}">Archive</a>
                         </li>
                         {% endif %}
                     </ul>
