@@ -28,7 +28,10 @@
                         <td>
                             <div class="dropdown">
                                 <button type="button" id="status-dropdown-{{ application['id'] }}" 
-                                class="btn btn-outline-dark btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                class="btn btn-sm dropdown-toggle {% if application['status_id'] == rejected_id %} btn-danger 
+                                                                    {% elif application['status_id'] == job_offer_id %} btn-success 
+                                                                    {% elif application['status_id'] == expired_id %} btn-secondary
+                                                                    {% endif %}" data-bs-toggle="dropdown" aria-expanded="false">
                                     {{ statuses[application['status_id']]}}
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="status-dropdown-{{ application['id'] }}">
