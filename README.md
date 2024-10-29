@@ -65,3 +65,9 @@ Before you begin, ensure you have met the following requirements:
    ```
 
    If the browser doesn’t open automatically, go to your web browser and navigate to [http://127.0.0.1:5000](http://127.0.0.1:5000).
+
+
+   ## Usage
+   - Users are directed to the login page.
+   - New users can click the “Register” button to create an account.
+   - After logging in, users have access to additional navigation options for managing their job applications.
