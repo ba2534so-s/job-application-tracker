@@ -1,3 +1,4 @@
+import time
 from threading import Thread
 from app import create_app
 
@@ -7,3 +8,6 @@ app = create_app()
 if __name__ == "__main__":
     # Start Flask server in a separate thread
     Thread(target=lambda: app.run(debug=False)).start()
+
+    # Wait a short time to ensure the server is up
+    time.sleep(1)  # Adjust if necessary
