@@ -14,4 +14,5 @@ JobHuntr is a web application built with Flask, Python, Bootstrap, and SQLite, d
     - **Interviewing**: Jobs for which the user is interviewing or has interviewed but is waiting for a response.
     - **Archived**: Jobs that have expired, been rejected, or resulted in a job offer.
 - **Job Status Management**: Easily change the status of jobs using a toggle menu.
+- **Job Options**: Each job has buttons for "More Info," "Edit," and "Delete."
 
