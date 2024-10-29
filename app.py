@@ -8,7 +8,9 @@ app = create_app()
 # ChatGPT was used to guide me through how to start the application and open browser after server has started
 if __name__ == "__main__":
     # Start Flask server in a separate thread
-    Thread(target=lambda: app.run(debug=False)).start()
+    server_thread = Thread(target=lambda: app.run(debug=False))
+    # Daemonize thread to close it with the main program
+    server_thread.daemon = True 
 
     # Wait a short time to ensure the server is up
     time.sleep(1)  # Adjust if necessary
