@@ -34,3 +34,14 @@ JobHuntr is a web application built with Flask, Python, Bootstrap, and SQLite, d
 
 ## Getting Started
 ### Prerequisites
+Before you begin, ensure you have met the following requirements:
+- **Python**: 
+  - For Windows: Download and install Python 3.x from [python.org](https://www.python.org/downloads/).
+  - For macOS: Check if Python 3.x is installed. You can install it via Homebrew:
+    ```bash
+    brew install python
+    ```
+  - After installation, verify by running:
+    ```bash
+    python --version
+    ```
