@@ -14,3 +14,6 @@ fi
 source venv/bin/activate
 echo "Virtual environment activated."
 
+# Install dependencies
+pip install -r requirements.txt
+echo "Dependencies installed."
