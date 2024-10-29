@@ -12,4 +12,5 @@ JobHuntr is a web application built with Flask, Python, Bootstrap, and SQLite, d
     - **To Apply**: Jobs the user has added but not applied for yet.
     - **Submitted**: Jobs the user has applied for but hasn't received a response for yet.
     - **Interviewing**: Jobs for which the user is interviewing or has interviewed but is waiting for a response.
+    - **Archived**: Jobs that have expired, been rejected, or resulted in a job offer.
 
