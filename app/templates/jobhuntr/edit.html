@@ -7,6 +7,7 @@
     <div class="container bg-secondary bg-gradient text-center py-4 px-5 shadow-lg rounded-3">
         <form action="{{ url_for('jobhuntr.edit', job_id=job['id']) }}" method="post">
             {{ form.hidden_tag() }}
+            <h3 class="mb-3">Job Information</h3>
             {{ form.company.label() }}
             {{ form.company(class="form-control my-3", placeholder="Enter Company Name") }}
             {{ form.position.label() }}
@@ -51,14 +52,18 @@
                     Contact Info
                 </button>
                 <div class="collapse" id="contact-section">
-                    <div class="card card-body">
-                        {{ form.contact.hidden_tag() }}
-                        {{ form.contact.form.name.label() }}
-                        {{ form.contact.form.name(class="form-control my-2", placeholder="Contact Name") }}
-                        {{ form.contact.form.email.label() }}
-                        {{ form.contact.form.email(class="form-control my-2", placeholder="Contact Email") }}
-                        {{ form.contact.form.phone.label() }}
-                        {{ form.contact.form.phone(class="form-control my-2", placeholder="Contact Phone Number") }}
+                    <div class="card text-bg-secondary">
+                        <div class="card-body text-dark">
+                            <h4>Contact Information</h4>
+                            {{ form.contact.hidden_tag() }}
+                            {{ form.contact.form.name.label() }}
+                            {{ form.contact.form.name(class="form-control my-2", placeholder="Contact Name") }}
+                            {{ form.contact.form.email.label() }}
+                            {{ form.contact.form.email(class="form-control my-2", placeholder="Contact Email") }}
+                            {{ form.contact.form.phone.label() }}
+                            {{ form.contact.form.phone(class="form-control my-2", placeholder="Contact Phone Number") }}
+                        </div>
+
                     </div>
                 </div>
             </div>
