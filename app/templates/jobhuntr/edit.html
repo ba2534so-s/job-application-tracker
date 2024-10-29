@@ -51,14 +51,17 @@
                     Contact Info
                 </button>
                 <div class="collapse" id="contact-section">
-                    <div class="card card-body">
-                        {{ form.contact.hidden_tag() }}
-                        {{ form.contact.form.name.label() }}
-                        {{ form.contact.form.name(class="form-control my-2", placeholder="Contact Name") }}
-                        {{ form.contact.form.email.label() }}
-                        {{ form.contact.form.email(class="form-control my-2", placeholder="Contact Email") }}
-                        {{ form.contact.form.phone.label() }}
-                        {{ form.contact.form.phone(class="form-control my-2", placeholder="Contact Phone Number") }}
+                    <div class="card text-bg-secondary">
+                        <div class="card-body">
+                            {{ form.contact.hidden_tag() }}
+                            {{ form.contact.form.name.label() }}
+                            {{ form.contact.form.name(class="form-control my-2", placeholder="Contact Name") }}
+                            {{ form.contact.form.email.label() }}
+                            {{ form.contact.form.email(class="form-control my-2", placeholder="Contact Email") }}
+                            {{ form.contact.form.phone.label() }}
+                            {{ form.contact.form.phone(class="form-control my-2", placeholder="Contact Phone Number") }}
+                        </div>
+
                     </div>
                 </div>
             </div>
