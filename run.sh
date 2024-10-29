@@ -10,3 +10,7 @@ if [ ! -d "venv" ]; then
     echo "Virtual environment created."
 fi
 
+# Activate the virtual environment
+source venv/bin/activate
+echo "Virtual environment activated."
+
