@@ -46,7 +46,7 @@ Before you begin, ensure you have met the following requirements:
     python --version
     ```
 
-### Installation and Running the application
+### Installation and Running the Application
 1. Clone the repository:
    ```bash
    git clone <repository-url>
@@ -65,6 +65,12 @@ Before you begin, ensure you have met the following requirements:
    ```
 
     If the browser doesn’t open automatically, go to your web browser and navigate to [http://127.0.0.1:5000](http://127.0.0.1:5000).
+
+### Closing the Application
+To stop the application, you can either:
+- Press Ctrl + C in the terminal where the application is running.
+- Close the terminal window.
+
 
 
 ## Dependencies
