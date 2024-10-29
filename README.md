@@ -45,3 +45,5 @@ Before you begin, ensure you have met the following requirements:
     ```bash
     python --version
     ```
+
+### Installation and Running the application
