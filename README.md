@@ -69,14 +69,12 @@ Before you begin, ensure you have met the following requirements:
     ```bash
     python --version
     ```
-
 ### Installation and Running the Application
 1. Clone the repository:
    ```bash
-   git clone [GitHub repository](https://github.com/ba2534so-s/job-application-tracker).
+   git clone https://github.com/ba2534so-s/job-application-tracker.git
    cd job-application-tracker
    ```
-
    If you prefer not to use Git, you can download the project as a ZIP file:
    1. Go to the [GitHub repository](https://github.com/ba2534so-s/job-application-tracker).
    2. Click on the green "Code" button.
@@ -94,8 +92,6 @@ Before you begin, ensure you have met the following requirements:
 To stop the application, you can either:
 - Press Ctrl + C in the terminal where the application is running.
 - Close the terminal window.
-
-
 
 ## Dependencies
 All required dependencies are listed in the requirements.txt file. The setup script will automatically install these.
