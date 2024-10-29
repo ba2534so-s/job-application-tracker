@@ -73,7 +73,7 @@ Before you begin, ensure you have met the following requirements:
 ### Installation and Running the Application
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone [GitHub repository](https://github.com/ba2534so-s/job-application-tracker).
    cd job-application-tracker
    ```
 
@@ -106,7 +106,7 @@ All required dependencies are listed in the requirements.txt file. The setup scr
 - After logging in, users have access to additional navigation options for managing their job applications.
 
 ## Note
-Deleting the project folder will remove all associated files, including the virtual environment and database.
+Deleting the project folder will remove all associated files, including the virtual environment and database. Ensure you have backups if necessary.
 
 ## Technology Stack
 ### Backend
