@@ -71,3 +71,6 @@ Before you begin, ensure you have met the following requirements:
    - Users are directed to the login page.
    - New users can click the “Register” button to create an account.
    - After logging in, users have access to additional navigation options for managing their job applications.
+
+   ## Note
+   Deleting the project folder will remove all associated files, including the virtual environment and database.
