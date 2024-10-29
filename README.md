@@ -24,10 +24,10 @@ JobHuntr is a web application built with Flask, Python, Bootstrap, and SQLite, d
 
 ### Registration Page
 
-### Overview Page
-
 ### Archived Page
 
 ### Add Job Page
 
 ### Delete Modal
+
+### More Info
