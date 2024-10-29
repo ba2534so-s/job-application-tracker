@@ -47,3 +47,21 @@ Before you begin, ensure you have met the following requirements:
     ```
 
 ### Installation and Running the application
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd job-application-tracker
+   ```
+
+   If you prefer not to use Git, you can download the project as a ZIP file:
+   1. Go to the [GitHub repository](https://github.com/ba2534so-s/job-application-tracker).
+   2. Click on the green "Code" button.
+   3. Select "Download ZIP."
+   4. Extract the downloaded ZIP file to access the project files.
+
+2. To start the application, navigate to the project directory in your terminal and run the following command:
+   ```bash
+   ./setup.sh
+   ```
+
+   If the browser doesn’t open automatically, go to your web browser and navigate to [http://127.0.0.1:5000](http://127.0.0.1:5000).
