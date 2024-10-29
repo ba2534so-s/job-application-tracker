@@ -5,7 +5,7 @@
     <div class="mb-3 text-center">
         <h1>{% block title %}Login{% endblock %}</h1>
     </div>
-    <div class="container bg-secondary bg-gradient text-center py-4 px-5">
+    <div class="container bg-secondary bg-gradient text-center py-4 px-5 rounded-3">
         <form action="{{ url_for('auth.login') }}" method="post">
             {{ form.hidden_tag() }}
             {{ form.username.label() }}
