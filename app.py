@@ -17,7 +17,7 @@ if __name__ == "__main__":
     time.sleep(1)  # Adjust if necessary
 
     # Open the login page
-    webbrowser.open("http://127.0.0.1:5000/auth/login")
+    webbrowser.open("http://127.0.0.1:5000/")
 
     # Keep the main thread alive to handle KeyboardInterrupt
     try:
