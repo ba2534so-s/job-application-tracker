@@ -1,6 +1,19 @@
 # JobHuntr (Job Application Tracker)
 
-
+## Table of Contents
+- [Overview](#overview)
+- [Features](#features)
+- [Video Demo](#video-demo)
+- [Screenshots](#screenshots)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation and Running the Application](#installation-and-running-the-application)
+  - [Closing the Application](#closing-the-application)
+- [Dependencies](#dependencies)
+- [Usage](#usage)
+- [Note](#note)
+- [Technology Stack](#technology-stack)
+- [Contributions](#contributions)
 
 ## Overview
 JobHuntr is a web application built with Flask, Python, Bootstrap, and SQLite, designed to help users manage their job applications efficiently. The application allows users to track jobs they want to apply for, monitor their application statuses, and organize their job search effectively.
