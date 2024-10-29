@@ -27,3 +27,7 @@ if [ ! -f "instance/jobhuntr.db" ]; then
     flask init-db
     echo "Database initialized."
 fi
+
+# Run the Flask application
+echo "Starting the Flask application..."
+python app.py
