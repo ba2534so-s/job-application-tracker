@@ -85,3 +85,6 @@ Deleting the project folder will remove all associated files, including the virt
 - CSS
 ### Database
 - SQLite
+
+## Contributions
+Contributions are welcome! Please feel free to submit issues or pull requests.
