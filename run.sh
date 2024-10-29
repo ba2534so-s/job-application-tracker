@@ -20,3 +20,10 @@ echo "Dependencies installed."
 
 # Create the instance directory if it doesn't exist
 mkdir -p instance
+
+# Initialize the database if it doesn't exist
+if [ ! -f "instance/jobhuntr.db" ]; then
+    echo "Initializing the database..."
+    flask init-db
+    echo "Database initialized."
+fi
