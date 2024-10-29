@@ -17,3 +17,6 @@ echo "Virtual environment activated."
 # Install dependencies
 pip install -r requirements.txt
 echo "Dependencies installed."
+
+# Create the instance directory if it doesn't exist
+mkdir -p instance
