@@ -1,4 +1,5 @@
 import time
+import webbrowser
 from threading import Thread
 from app import create_app
 
@@ -11,3 +12,6 @@ if __name__ == "__main__":
 
     # Wait a short time to ensure the server is up
     time.sleep(1)  # Adjust if necessary
+
+    # Open the login page
+    webbrowser.open("http://127.0.0.1:5000/auth/login")
