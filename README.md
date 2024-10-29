@@ -10,4 +10,5 @@ JobHuntr is a web application built with Flask, Python, Bootstrap, and SQLite, d
   - **Overview Page**: Displays all added jobs in a table format.
   - **Filtered Views**: Users can navigate through different views:
     - **To Apply**: Jobs the user has added but not applied for yet.
+    - **Submitted**: Jobs the user has applied for but hasn't received a response for yet.
 
