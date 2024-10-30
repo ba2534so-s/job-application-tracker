@@ -41,9 +41,6 @@ A short video of the use of the application can be viewed at [https://youtu.be/y
 ### Login Page
 ![Login Page](assets/login_page.png)
 
-### Registration Page
-![Registration Page](assets/register_page.png) 
-
 ### Archived Page
 ![Archived Page](assets/archived_page.png)
 
