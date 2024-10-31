@@ -34,9 +34,6 @@ JobHuntr is a web application built with Flask, Python, Bootstrap, and SQLite, d
   - **Edit**: Redirects to a page for updating job details.
   - **Delete**: Opens a confirmation modal for deleting a job.
 
-## Video Demo
-A short video of the use of the application can be viewed at [https://youtu.be/y0auaZOhsko?si=Syl_jbEQXfBGR-Hs](https://youtu.be/y0auaZOhsko?si=Syl_jbEQXfBGR-Hs)
-
 ## Screenshots
 ### Login Page
 ![Login Page](assets/login_page.png)
